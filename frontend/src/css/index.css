@@ -1,0 +1,1768 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Share+Tech&display=swap');
+:root {
+  --typography_ratio: 1.06;
+  --responsive_scale: 0.67;
+  --title-XS: calc(1rem * var(--responsive_scale));
+  --title-S: calc(calc(var(--typography_ratio) * var(--responsive_scale)) * 1rem);
+  --title-M: calc(calc(var(--typography_ratio) * var(--typography_ratio) * 1rem) * var(--responsive_scale));
+  --title-L: calc(calc(calc(var(--typography_ratio) * var(--typography_ratio)) * var(--typography_ratio) * 1rem) * var(--responsive_scale));
+  --title-XL: calc(calc(calc(calc(var(--typography_ratio) * var(--typography_ratio)) * var(--typography_ratio)) * var(--typography_ratio) * 1rem) * var(--responsive_scale));
+  --title-XXL: calc(calc(calc(calc(calc(var(--typography_ratio) * var(--typography_ratio)) * var(--typography_ratio)) * var(--typography_ratio)) * var(--typography_ratio) * 1rem) * var(--responsive_scale));
+
+  --hue-primary: 200;
+  --hue-secondary: 20;
+  --sat-full: 100%;
+  --sat: 30%;
+  --sat-fade: 0%;
+
+  --color-primary-1: hsl(var(--hue-primary), calc(var(--sat) * 3), 2%);
+  --color-primary-2: hsl(var(--hue-primary), calc(var(--sat) * 3), 4%);
+  --color-primary-3: hsl(var(--hue-primary), calc(var(--sat) * 3), 6%); /**/
+  --color-primary-4: hsl(var(--hue-primary), calc(var(--sat) * 3), 8%); /**/
+  --color-primary-5: hsl(var(--hue-primary), calc(var(--sat) * 3), 10%); /**/
+  --color-primary-6: hsl(var(--hue-primary), calc(var(--sat) * 3), 14%);
+  --color-primary-7: hsl(var(--hue-primary), calc(var(--sat) * 3), 18%); /**/
+  --color-primary-8: hsl(var(--hue-primary), calc(var(--sat) * 3), 23%);
+  --color-primary-9: hsl(var(--hue-primary), var(--sat), 60%); /**/
+  --color-primary-10: hsl(var(--hue-primary), var(--sat), 64%);
+  --color-primary-11: hsl(var(--hue-primary), var(--sat), 70%); /**/
+  --color-primary-12: hsl(var(--hue-primary), var(--sat), 76%); /**/
+  --color-primary-13: hsl(var(--hue-primary), var(--sat), 80%); /**/
+  --color-primary-14: hsl(var(--hue-primary), var(--sat), 84%); /**/
+  --color-primary-15: hsl(var(--hue-primary), var(--sat), 90%);
+  --color-primary-16: hsl(var(--hue-primary), var(--sat), 96%);
+
+  --color-secondary-1: hsl(var(--hue-secondary), var(--sat-full), 4%);
+  --color-secondary-2: hsl(var(--hue-secondary), var(--sat-full), 6%);
+  --color-secondary-3: hsl(var(--hue-secondary), var(--sat-full), 9%);
+  --color-secondary-4: hsl(var(--hue-secondary), var(--sat-full), 11%);
+  --color-secondary-5: hsl(var(--hue-secondary), var(--sat-full), 15%);
+  --color-secondary-6: hsl(var(--hue-secondary), var(--sat-full), 19%);
+  --color-secondary-7: hsl(var(--hue-secondary), var(--sat-full), 22%);
+  --color-secondary-8: hsl(var(--hue-secondary), var(--sat-full), 27%);
+  --color-secondary-9: hsl(var(--hue-secondary), var(--sat-full), 60%);
+  --color-secondary-10: hsl(var(--hue-secondary), var(--sat-full), 65%);
+  --color-secondary-11: hsl(var(--hue-secondary), var(--sat-full), 71%);
+  --color-secondary-12: hsl(var(--hue-secondary), var(--sat-full), 78%);
+  --color-secondary-13: hsl(var(--hue-secondary), var(--sat-full), 83%);
+  --color-secondary-14: hsl(var(--hue-secondary), var(--sat-full), 88%);
+  --color-secondary-15: hsl(var(--hue-secondary), var(--sat-full), 92%);
+  --color-secondary-16: hsl(var(--hue-secondary), var(--sat-full), 96%);
+
+  --color-visited: var(--color-secondary-6);
+
+  --color-gray-1: hsl(var(--hue-primary), var(--sat-fade), 5%);
+  --color-gray-2: hsl(var(--hue-primary), var(--sat-fade), 10%);
+  --color-gray-3: hsl(var(--hue-primary), var(--sat-fade), 20%);
+  --color-gray-4: hsl(var(--hue-primary), var(--sat-fade), 30%);
+  --color-gray-5: hsl(var(--hue-primary), var(--sat-fade), 40%);
+  --color-gray-6: hsl(var(--hue-primary), var(--sat-fade), 50%);
+  --color-gray-7: hsl(var(--hue-primary), var(--sat-fade), 60%);
+  --color-gray-8: hsl(var(--hue-primary), var(--sat-fade), 70%);
+  --color-gray-9: hsl(var(--hue-primary), var(--sat-fade), 80%);
+  --color-gray-10: hsl(var(--hue-primary), var(--sat-fade), 90%);
+
+  --color-shadow: rgba(0, 0, 0, 0.3);
+  --color-shadow-strong: rgba(0, 0, 0, 0.7);
+
+  --radius-small: 4px;
+  --radius-medium: 10px;
+  --radius-large: 30px;
+
+  --widest: 1400px;
+  --wide: 1200px;
+  --narrow: 41%;
+  --page-padding: 3px;
+  --margin: 2em;
+  --gap: 1rem;
+  /* --scrollbar_width: calculated in App.tsx */
+  --scrollbar_width: 0px;
+  --width-small: clamp(100px, 99vw, 1000px);
+  --bg-size: auto 260%;
+  --transition-type: ease-in-out;
+  --transition-duration: 0.3s;
+  --letter-spacing: 0.04em;
+  --text-family: 'Roboto Condensed', Arial, sans-serif;
+  --title-family: 'Share Tech', 'Roboto Condensed', Arial, sans-serif;
+  font-family: var(--text-family);
+  font-size: 20px;
+  font-weight: 400;
+  color-scheme: dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+@media (min-width: 200px) {
+  :root {
+    --typography_ratio: 1.1;
+  }
+} /*END media*/
+@media (min-width: 300px) {
+  :root {
+    --typography_ratio: 1.16;
+    --responsive_scale: 0.73;
+    --page-padding: 8px;
+  }
+}
+@media (min-width: 500px) {
+  :root {
+    --typography_ratio: 1.2;
+    --responsive_scale: 0.9;
+    --page-padding: 1em;
+  }
+} /*END media*/
+@media (min-width: 700px) {
+  :root {
+    --typography_ratio: 1.25;
+    --responsive_scale: 0.9;
+    --page-padding: 1em;
+  }
+} /*END media*/
+@media (min-width: 1200px) {
+  :root {
+    --typography_ratio: 1.3;
+    --responsive_scale: 1;
+  }
+} /*END media*/
+@media (min-width: 2000px) {
+  :root {
+    --responsive_scale: 1.1;
+  }
+} /*END media*/
+html {
+  scroll-behavior: smooth;
+}
+#root {
+  width: 100%;
+}
+.App {
+  --bg-blue: linear-gradient(4deg, var(--color-primary-15) 0%, var(--color-primary-10) 30%, var(--color-primary-5) 60%, var(--color-primary-3) 100%);
+  --bg-gray: linear-gradient(4deg, var(--color-gray-10) 0%, var(--color-gray-6) 30%, var(--color-gray-2) 50%, var(--color-gray-1) 100%);
+  max-width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  color: var(--color-gray-10);
+  background-color: var(--color-primary-1);
+  background-image: linear-gradient(to bottom, var(--color-primary-2) -2em, var(--color-primary-1) 16em, black 30em, black calc(100% - 15em), var(--color-primary-2) 100%);
+}
+.App.light {
+  background-image: linear-gradient(to bottom, var(--color-primary-3) 2rem, var(--color-primary-1) 16em, white 30em, white calc(100% - 15em), var(--color-primary-2) 100%);
+}
+.App .App-inner-wrap {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.App .App-inner-wrap > * {
+  width: 100%;
+}
+.App main.main-content {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  flex-grow: 1;
+  height: 100%;
+}
+.App main.main-content > div.marginauto {
+  margin: auto;
+}
+body.light,
+.App.light {
+  --color-primary-16: hsl(var(--hue-primary), calc(var(--sat) * 3), 2%);
+  --color-primary-15: hsl(var(--hue-primary), calc(var(--sat) * 3), 4%);
+  --color-primary-14: hsl(var(--hue-primary), calc(var(--sat) * 3), 6%); /**/
+  --color-primary-13: hsl(var(--hue-primary), calc(var(--sat) * 3), 8%); /**/
+  --color-primary-12: hsl(var(--hue-primary), calc(var(--sat) * 3), 10%); /**/
+  --color-primary-11: hsl(var(--hue-primary), calc(var(--sat) * 3), 14%);
+  --color-primary-10: hsl(var(--hue-primary), calc(var(--sat) * 3), 18%); /**/
+  --color-primary-9: hsl(var(--hue-primary), calc(var(--sat) * 3), 23%);
+  --color-primary-8: hsl(var(--hue-primary), var(--sat), 60%); /**/
+  --color-primary-7: hsl(var(--hue-primary), var(--sat), 64%);
+  --color-primary-6: hsl(var(--hue-primary), var(--sat), 70%); /**/
+  --color-primary-5: hsl(var(--hue-primary), var(--sat), 76%); /**/
+  --color-primary-4: hsl(var(--hue-primary), var(--sat), 80%); /**/
+  --color-primary-3: hsl(var(--hue-primary), var(--sat), 84%); /**/
+  --color-primary-2: hsl(var(--hue-primary), var(--sat), 90%);
+  --color-primary-1: hsl(var(--hue-primary), var(--sat), 96%);
+
+  --color-secondary-16: hsl(var(--hue-secondary), var(--sat-full), 4%);
+  --color-secondary-15: hsl(var(--hue-secondary), var(--sat-full), 6%);
+  --color-secondary-14: hsl(var(--hue-secondary), var(--sat-full), 9%);
+  --color-secondary-13: hsl(var(--hue-secondary), var(--sat-full), 11%);
+  --color-secondary-12: hsl(var(--hue-secondary), var(--sat-full), 15%);
+  --color-secondary-11: hsl(var(--hue-secondary), var(--sat-full), 19%);
+  --color-secondary-10: hsl(var(--hue-secondary), var(--sat-full), 22%);
+  --color-secondary-9: hsl(var(--hue-secondary), var(--sat-full), 27%);
+  --color-secondary-8: hsl(var(--hue-secondary), var(--sat-full), 60%);
+  --color-secondary-7: hsl(var(--hue-secondary), var(--sat-full), 65%);
+  --color-secondary-6: hsl(var(--hue-secondary), var(--sat-full), 71%);
+  --color-secondary-5: hsl(var(--hue-secondary), var(--sat-full), 78%);
+  --color-secondary-4: hsl(var(--hue-secondary), var(--sat-full), 83%);
+  --color-secondary-3: hsl(var(--hue-secondary), var(--sat-full), 88%);
+  --color-secondary-2: hsl(var(--hue-secondary), var(--sat-full), 92%);
+  --color-secondary-1: hsl(var(--hue-secondary), var(--sat-full), 96%);
+
+  --color-gray-1: hsl(var(--hue-primary), var(--sat-fade), 90%);
+  --color-gray-2: hsl(var(--hue-primary), var(--sat-fade), 80%);
+  --color-gray-3: hsl(var(--hue-primary), var(--sat-fade), 70%);
+  --color-gray-4: hsl(var(--hue-primary), var(--sat-fade), 60%);
+  --color-gray-5: hsl(var(--hue-primary), var(--sat-fade), 50%);
+  --color-gray-6: hsl(var(--hue-primary), var(--sat-fade), 40%);
+  --color-gray-7: hsl(var(--hue-primary), var(--sat-fade), 30%);
+  --color-gray-8: hsl(var(--hue-primary), var(--sat-fade), 20%);
+  --color-gray-9: hsl(var(--hue-primary), var(--sat-fade), 10%);
+  --color-gray-10: hsl(var(--hue-primary), var(--sat-fade), 5%);
+
+  color-scheme: light;
+  overflow-x: hidden;
+}
+.App .App-inner-wrap > .App-inner-wrap {
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+/*current page: */
+nav ul li a.active,
+nav ul li a.active:hover,
+.light nav ul li a.active,
+.light nav ul li a.active:hover {
+  color: var(--color-gray-7);
+  cursor: default;
+}
+
+nav ul li a.active svg,
+nav ul li a.active:hover svg,
+.light nav ul li a.active svg,
+.light nav ul li a.active:hover svg {
+  outline: 1px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+.user-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+}
+
+/********************************************************************/
+@media (prefers-reduced-motion: no-preference) {
+} /*END @media (prefers-reduced-motion: no-preference)*/
+
+main {
+  position: relative;
+  top: 0;
+  width: 100%;
+  background-color: transparent;
+  padding-bottom: 2em;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/******************** Portfolio sub-navigation ********************/
+
+.nav-sub {
+  position: absolute;
+  top: 4em;
+  right: 50%;
+  -webkit-transform: translateX(50%);
+  -ms-transform: translateX(50%);
+  -o-transform: translateX(50%);
+  -moz-transform: translateX(50%);
+  transform: translateX(50%);
+  display: flex;
+  justify-content: flex-end;
+  text-align: center;
+  font-size: 0.86em;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  /* max-width: calc(var(--widest) - calc(var(--page-padding) * 2)); */
+  min-width: calc(100vw + 1px - var(--scrollbar_width));
+  margin-right: calc(50% - 50vw + calc(var(--scrollbar_width) / 2));
+  z-index: 2;
+}
+.nav-sub * {
+  margin: 0;
+}
+.nav-sub ul {
+  list-style: none;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+  gap: 0.6vh;
+  margin: 0;
+  margin-right: 1em;
+  padding: 0;
+}
+#root .nav-sub .return a.active,
+#root .nav-sub .return a.active span {
+  /*back to portfolio link*/
+  pointer-events: all;
+  cursor: pointer;
+  border-bottom-color: var(--color-primary-8);
+}
+#root .nav-sub .return a.active span {
+  pointer-events: none;
+  text-decoration: none;
+  color: inherit;
+}
+#root .nav-sub .return a.active:hover span,
+#root .nav-sub .return a.active:focus span {
+  color: var(--color-primary-6);
+  text-decoration: none;
+}
+#root .nav-sub .return a.active:hover,
+#root .nav-sub .return a.active:focus {
+  color: var(--color-primary-6);
+  border-bottom-color: currentColor;
+  border-bottom-color: var(--color-secondary-10);
+}
+
+#root .light .nav-sub .return a.active:hover,
+#root .light .nav-sub .return a.active:focus {
+  border-bottom-color: var(--color-secondary-15);
+  text-decoration: none;
+}
+.nav-sub .hide {
+  /*hide back to portfolio link when on portfolio page*/
+  display: none;
+}
+.nav-sub ul a {
+  display: inline-block;
+  position: relative;
+  padding: 0 1em 0.2em;
+  line-height: 2;
+  font-weight: normal;
+  border-top: 3px solid var(--color-primary-2);
+  border-bottom: 3px solid var(--color-primary-6);
+}
+#root .nav-sub ul a {
+  color: var(--color-primary-6);
+}
+.light .nav-sub ul a {
+  border-bottom-color: var(--color-primary-9);
+}
+#root .light .nav-sub ul a,
+#root .light .nav-sub ul a > * {
+  text-decoration-color: hsla(var(--hue-primary), 0%, 0%, 0);
+}
+
+.nav-sub ul a,
+.nav-sub ul a::after {
+  border-radius: var(--radius-large);
+}
+.nav-sub ul a::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-primary-2);
+  -webkit-box-shadow: 0 0.05em 0.9em -0.7em var(--color-primary-11);
+  -ms-box-shadow: 0 0.05em 0.9em -0.7em var(--color-primary-11);
+  -o-box-shadow: 0 0.05em 0.9em -0.7em var(--color-primary-11);
+  -moz-box-shadow: 0 0.05em 0.9em -0.7em var(--color-primary-11);
+  box-shadow: 0 0.05em 0.9em -0.7em var(--color-primary-11);
+}
+.light .nav-sub ul a::after {
+  -webkit-box-shadow: 0 0.1em 0.9em -0.5em var(--color-primary-11);
+  -ms-box-shadow: 0 0.1em 0.9em -0.5em var(--color-primary-11);
+  -moz-box-shadow: 0 0.1em 0.9em -0.5em var(--color-primary-11);
+  -o-box-shadow: 0 0.1em 0.9em -0.5em var(--color-primary-11);
+  box-shadow: 0 0.1em 0.9em -0.5em var(--color-primary-11);
+}
+.nav-sub ul a:hover,
+.nav-sub ul a:focus {
+  color: var(--color-primary-15);
+  outline-offset: -2px;
+  text-decoration: none;
+  border-bottom-color: var(--color-secondary-10);
+  border-top-width: 0;
+  border-bottom-width: 5px;
+}
+.light .nav-sub ul a:hover,
+.light .nav-sub ul a:focus {
+  color: var(--color-primary-9);
+  border-bottom-color: var(--color-secondary-15);
+}
+
+.nav-sub ul li:not(.return) a.active,
+.nav-sub ul li:not(.return) a.active:hover,
+.light .nav-sub ul li:not(.return) a.active,
+.light .nav-sub ul li:not(.return) a.active:hover {
+  pointer-events: none;
+  border-bottom-color: currentColor;
+  border-top-width: 2px;
+  border-bottom-width: 3px;
+}
+
+.nav-sub {
+  right: 0;
+  -webkit-transform: translateX(0%);
+  -ms-transform: translateX(0%);
+  -o-transform: translateX(0%);
+  -moz-transform: translateX(0%);
+  transform: translateX(0%);
+  max-width: calc(var(--widest) - calc(var(--page-padding) * 2));
+  z-index: 3;
+}
+.fadeOut .nav-sub {
+  -webkit-animation: 0.5s fadeOutUp forwards;
+  -moz-animation: 0.5s fadeOutUp forwards;
+  -o-animation: 0.5s fadeOutUp forwards;
+  -ms-animation: 0.5s fadeOutUp forwards;
+  animation: 0.5s fadeOutUp forwards;
+}
+.nav-sub.transformations ul {
+  transition-property: right, left;
+  transition-timing-function: cubic-bezier(0.15, 0, 0.85, 1);
+  transition-duration: calc(2 * var(--transition-duration));
+}
+.nav-sub ul {
+  overflow-x: scroll;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 0;
+  margin-right: initial;
+  padding-bottom: 1em;
+  max-width: calc(100vw - var(--scrollbar_width));
+  scrollbar-color: transparent;
+  scrollbar-width: none;
+}
+
+.nav-sub ul {
+  padding-left: 3em;
+  padding-right: 3em;
+}
+.nav-sub ul::-webkit-scrollbar {
+  height: 0;
+}
+button.horizonal-scroll {
+  position: absolute;
+  top: 0.03em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-primary-2);
+  color: var(--color-gray-7);
+  padding: 0.1em;
+  margin: 0;
+  border: 0;
+  font-size: 2em;
+  opacity: 1;
+  z-index: 1;
+}
+button.goleft {
+  left: -0.1em;
+  padding-right: 0.3em;
+  border-radius: 0 var(--radius-large) var(--radius-large) 0;
+  -webkit-box-shadow:
+    0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-2);
+  -o-box-shadow:
+    0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-2);
+  -moz-box-shadow:
+    0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-2);
+  -ms-box-shadow:
+    0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-2);
+  box-shadow:
+    0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-2);
+}
+button.goright {
+  right: -0.1em;
+  padding-left: 0.3em;
+  border-radius: var(--radius-large) 0 0 var(--radius-large);
+  -webkit-box-shadow:
+    -0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-2);
+  -o-box-shadow:
+    -0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-2);
+  -ms-box-shadow:
+    -0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-2);
+  -moz-box-shadow:
+    -0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-2);
+  box-shadow:
+    -0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-2);
+}
+.light button.goleft {
+  left: -0.1em;
+  padding-right: 0.3em;
+  border-radius: 0 var(--radius-large) var(--radius-large) 0;
+  -webkit-box-shadow:
+    0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-5);
+  -o-box-shadow:
+    0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-5);
+  -moz-box-shadow:
+    0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-5);
+  -ms-box-shadow:
+    0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-5);
+  box-shadow:
+    0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-5);
+}
+.light button.goright {
+  right: -0.1em;
+  padding-left: 0.3em;
+  border-radius: var(--radius-large) 0 0 var(--radius-large);
+  -webkit-box-shadow:
+    -0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-5);
+  -o-box-shadow:
+    -0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-5);
+  -ms-box-shadow:
+    -0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-5);
+  -moz-box-shadow:
+    -0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-5);
+  box-shadow:
+    -0.1em 0 0.2em -0.15em var(--color-primary-9),
+    0 0 0.6em 0.6em var(--color-primary-5);
+}
+button.goleft svg {
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+button.goright svg {
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+button.horizonal-scroll:hover,
+button.horizonal-scroll:focus,
+button.horizonal-scroll:focus-visible {
+  color: var(--color-primary-6);
+}
+button.horizonal-scroll.disable {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.page {
+  padding: 0 var(--page-padding);
+  margin: 0 auto;
+}
+.page > .inner-wrap {
+  display: flex;
+  flex-flow: row wrap;
+  gap: calc(var(--margin)) 2%;
+  justify-content: center;
+  margin: 2em auto 0;
+}
+.page > .inner-wrap > * {
+  flex: 1 1 calc(100vw - calc(var(--page-padding) * 2) - var(--scrollbar_width));
+}
+.page .page {
+  padding: 0;
+}
+
+main.main-content .fullwidth {
+  width: 100%;
+}
+
+body .z {
+  z-index: 2;
+}
+
+.flex {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+.flex > * {
+  flex: 1 1 auto;
+}
+.column {
+  flex-flow: column nowrap;
+}
+.center {
+  justify-content: center;
+  align-items: center;
+}
+#root .gap {
+  gap: 1em;
+}
+#root .gap-half {
+  gap: 0.5em;
+}
+#root .gap0 {
+  gap: 0;
+}
+.textcenter {
+  text-align: center;
+}
+.mb3 {
+  margin-bottom: 3rem;
+}
+.drag,
+.drag:focus-visible {
+  outline: white 6px solid;
+  outline-offset: -5px;
+}
+.main-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.main-footer > .inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5em;
+  font-size: 0.9em;
+  font-weight: 500;
+  gap: 1em;
+  background-color: var(--color-primary-1);
+  width: 100%;
+}
+.light .main-footer > .inner {
+  background-color: var(--color-primary-1);
+}
+.main-footer a {
+  font-size: calc(0.9rem * var(--responsive_scale));
+  line-height: 1.8;
+  text-decoration: none;
+  color: var(--color-primary-9);
+  text-align: center;
+}
+.main-footer a:hover,
+.main-footer a:focus,
+.main-footer a:focus-visible {
+  color: var(--color-secondary-5);
+  text-decoration: underline;
+}
+.light .main-footer a:hover,
+.light .main-footer a:focus,
+.light .main-footer a:focus-visible {
+  color: var(--color-secondary-8);
+}
+.accordion-container span.hide {
+  display: none;
+}
+
+.required {
+  color: red;
+  font-size: 1.5em;
+  line-height: 0.5;
+  margin: 0 0.3em 0 0;
+}
+.wide {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.medium {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.narrow {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fadeIn {
+  -webkit-animation: 0.5s fadeIn forwards;
+  -moz-animation: 0.5s fadeIn forwards;
+  -o-animation: 0.5s fadeIn forwards;
+  -ms-animation: 0.5s fadeIn forwards;
+  animation: 0.5s fadeIn forwards;
+}
+
+.fadeOut {
+  -webkit-animation: 0.5s fadeOut forwards;
+  -moz-animation: 0.5s fadeOut forwards;
+  -o-animation: 0.5s fadeOut forwards;
+  -ms-animation: 0.5s fadeOut forwards;
+  animation: 0.5s fadeOut forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    -webkit-transform: translate(0px, 0px);
+    -ms-transform: translate(0px, 0px);
+    -o-transform: translate(0px, 0px);
+    -moz-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+  }
+  to {
+    -webkit-transform: translate(0, 20px);
+    -ms-transform: translate(0, 20px);
+    -o-transform: translate(0, 20px);
+    -moz-transform: translate(0, 20px);
+    transform: translate(0, 20px);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+    -webkit-transform: translate(0px, 0px);
+    -ms-transform: translate(0px, 0px);
+    -o-transform: translate(0px, 0px);
+    -moz-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+  }
+  to {
+    -webkit-transform: translate(0, -20px);
+    -ms-transform: translate(0, -20px);
+    -o-transform: translate(0, -20px);
+    -moz-transform: translate(0, -20px);
+    transform: translate(0, -20px);
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    -webkit-transform: translate(0px, -20px);
+    -ms-transform: translate(0px, -20px);
+    -o-transform: translate(0px, -20px);
+    -moz-transform: translate(0px, -20px);
+    transform: translate(0px, -20px);
+  }
+  to {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+#root .App .App-inner-wrap .notification,
+#modal-root .notification {
+  --border-radius: 0.6em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  pointer-events: none;
+}
+#root .App .App-inner-wrap .notification p,
+#modal-root .notification p {
+  margin: 0;
+  max-width: 40em;
+  background-color: var(--color-primary-2);
+  color: var(--color-primary-14);
+  border-radius: var(--border-radius);
+  border: 0.3em solid var(--color-primary-12);
+  padding: 1em;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap);
+}
+#root .App .App-inner-wrap .notification.error p,
+#modal-root .notification.error p {
+  color: red;
+  background-color: black;
+  border: 0.3em solid red;
+}
+#root .App .App-inner-wrap .notification p,
+#modal-root .notification p {
+  pointer-events: all;
+}
+.max-content {
+  max-width: max-content;
+}
+
+.password-reset-wrap {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.password-reset-container .accordion-btn.open {
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+.accordion-inner {
+  transition-property: transform, opacity, height;
+  transition-timing-function: var(--transition-type);
+  transition-duration: calc(1.2 * var(--transition-duration));
+  transform-origin: top;
+  transform: scaleY(0);
+  overflow: hidden;
+}
+.accordion-container {
+  position: relative;
+}
+.accordion-inner.animating.closed {
+  transform: scaleY(1);
+  opacity: 1;
+}
+.accordion-inner.animating.open {
+  transform: scaleY(0);
+  opacity: 0;
+}
+.accordion-inner.open {
+  transform: scaleY(1);
+  opacity: 1;
+  height: max-content;
+  padding: 1em;
+  z-index: 666;
+}
+.accordion-inner.closed {
+  transform: scaleY(0);
+  height: 0;
+  opacity: 0;
+}
+.accordion-container button.open {
+  flex: 1 0 auto;
+}
+.accordion-container > button {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.accordion-container.child-absolute.right > div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 666;
+  background-color: var(--color-primary-2);
+}
+
+.accordion-btn.login {
+  border-radius: 1.5em;
+}
+.accordion-inner.login {
+  width: clamp(80px, 100vw, 300px);
+}
+.login-icon-wrap {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+#main-navigation #login-container > button.open,
+#main-navigation #login-container.open > button {
+  display: flex;
+}
+nav .open.password-reset-container {
+  width: 100%;
+}
+nav form.forgot {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1em;
+}
+nav form.forgot .input-wrap {
+  width: 100%;
+}
+nav .open.password-reset-container button.forgot-btn {
+  width: 100%;
+  border-radius: var(--radius-small);
+}
+.tooltip-wrap {
+  --width: clamp(3rem, calc(50vw), 12rem);
+  position: relative;
+  --tooltip-offset: 1.5rem;
+  --tooltip-max-width: var(--width);
+  --tooltip-bgcolor: lightgray;
+  --tooltip-color: black;
+}
+.light .tooltip-wrap {
+  --tooltip-bgcolor: white;
+}
+#root .App .tooltip-wrap > .tooltip,
+.tooltip-wrap > .tooltip {
+  --tooltip-width: var(--width);
+  position: absolute;
+  visibility: collapse;
+  display: inline-block;
+  background-color: var(--tooltip-bgcolor);
+  color: var(--tooltip-color);
+  z-index: 555;
+  min-width: var(--width);
+  width: var(--width);
+}
+#root .App .tooltip-wrap > .tooltip.narrow,
+#root .App .tooltip-wrap.narrow > .tooltip,
+.tooltip-wrap > .tooltip.narrow,
+.tooltip-wrap.narrow > .tooltip {
+  --width: clamp(3rem, calc(50vw), 5rem);
+}
+#root .App .tooltip-wrap > .tooltip.narrow2,
+#root .App .tooltip-wrap.narrow2 > .tooltip,
+.tooltip-wrap > .tooltip.narrow2,
+.tooltip-wrap.narrow2 > .tooltip {
+  --width: clamp(3rem, calc(80vw), max-content);
+  box-sizing: content-box;
+}
+#root .App .tooltip-wrap > .tooltip.narrow3,
+#root .App .tooltip-wrap.narrow3 > .tooltip,
+.tooltip-wrap > .tooltip.narrow3,
+.tooltip-wrap.narrow3 > .tooltip {
+  --width: clamp(2rem, calc(70vw), 6em);
+  --tooltip-max-width: var(--width);
+}
+.tooltip-wrap:not(button):not(a) {
+  cursor: help;
+}
+.tooltip-wrap.pointer:not(button):not(a) {
+  cursor: pointer;
+}
+#root .App .tooltip-wrap:focus > .tooltip,
+#root .App .tooltip-wrap:hover > .tooltip,
+.tooltip-wrap:focus > .tooltip,
+.tooltip-wrap:hover > .tooltip {
+  visibility: visible;
+}
+#root .App .tooltip-wrap > .tooltip.above,
+.tooltip-wrap > .tooltip.above {
+  top: unset;
+  bottom: calc(110% + 1em);
+  left: 50%;
+  transform: translateX(-50%);
+}
+#root .App .tooltip-wrap > .tooltip.above.space,
+.tooltip-wrap > .tooltip.above.space {
+  top: unset;
+  bottom: calc(100% + 2em);
+}
+#root .App .tooltip-wrap > .tooltip.below,
+.tooltip-wrap > .tooltip.below {
+  top: calc(100% + var(--tooltip-offset) * 0.5 + 0.2em);
+  left: 50%;
+  transform: translateX(-50%);
+}
+#root .App .tooltip-wrap > .tooltip.below.space,
+.tooltip-wrap > .tooltip.below.space {
+  top: calc(100% + var(--tooltip-offset) * 0.5 + 0.6em);
+}
+#root .App .tooltip-wrap > .tooltip.right.above,
+#root .App .tooltip-wrap > .tooltip.right.below,
+.tooltip-wrap > .tooltip.right.above,
+.tooltip-wrap > .tooltip.right.below {
+  left: 0;
+  transform: unset;
+  right: unset;
+}
+#root .App .tooltip-wrap > .tooltip.left.above,
+#root .App .tooltip-wrap > .tooltip.left.below,
+.tooltip-wrap > .tooltip.left.above,
+.tooltip-wrap > .tooltip.left.below {
+  left: unset; /* calc(var(--tooltip-width) * -1 + 100%); */
+  transform: unset;
+  right: 0;
+}
+
+#root .App .tooltip-wrap > .tooltip,
+#root .App .tooltip-wrap > .tooltip,
+.tooltip-wrap > .tooltip,
+.tooltip-wrap > .tooltip {
+  visibility: collapse;
+  position: absolute;
+  height: max-content;
+  width: max-content;
+  max-width: var(--tooltip-max-width);
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: normal;
+  text-align: left;
+  line-height: 1;
+  background-color: var(--tooltip-bgcolor);
+  color: var(--tooltip-color);
+  padding: 0.4em 0.4em 0.4em;
+  border-radius: 5px;
+  border-bottom: gray 1px solid;
+  -webkit-box-shadow: -0.3em 0.5em 1em -0.5em rgba(0, 0, 0, 0.4);
+  -o-box-shadow: -0.3em 0.5em 1em -0.5em rgba(0, 0, 0, 0.4);
+  -ms-box-shadow: -0.3em 0.5em 1em -0.5em rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: -0.3em 0.5em 1em -0.5em rgba(0, 0, 0, 0.4);
+  box-shadow: -0.3em 0.5em 1em -0.5em rgba(0, 0, 0, 0.4);
+}
+
+#root .App .tooltip-wrap > .tooltip.left,
+.tooltip-wrap > .tooltip.left {
+  right: 0;
+  left: unset;
+}
+#root .App .tooltip-wrap > .tooltip.right,
+.tooltip-wrap > .tooltip.right {
+  left: 0;
+  right: unset;
+}
+#root .App .tooltip-wrap:hover > .tooltip,
+#root .App .tooltip-wrap:focus > .tooltip,
+.tooltip-wrap:hover > .tooltip,
+.tooltip-wrap:focus > .tooltip {
+  visibility: visible;
+}
+#root .App .tooltip-wrap:hover > .tooltip::before,
+#root .App .tooltip-wrap:focus > .tooltip::before,
+.tooltip-wrap:hover > .tooltip::before,
+.tooltip-wrap:focus > .tooltip::before {
+  content: '';
+  position: absolute;
+  border: 1em solid transparent;
+  border-width: calc(var(--tooltip-offset) * 0.5) calc(var(--tooltip-offset) * 0.2);
+  z-index: 1;
+}
+#root .App .tooltip-wrap:hover > .tooltip.below::before,
+#root .App .tooltip-wrap:focus > .tooltip.below::before,
+.tooltip-wrap:hover > .tooltip.below::before,
+.tooltip-wrap:focus > .tooltip.below::before {
+  top: calc(var(--tooltip-offset) * -0.9);
+  left: calc(var(--tooltip-width) * 0.5);
+  border-bottom-color: var(--tooltip-bgcolor);
+}
+#root .App .tooltip-wrap:hover > .tooltip.above::before,
+#root .App .tooltip-wrap:focus > .tooltip.above::before,
+.tooltip-wrap:hover > .tooltip.above::before,
+.tooltip-wrap:focus > .tooltip.above::before {
+  top: unset;
+  bottom: calc(var(--tooltip-offset) * -0.95);
+  border-top-color: var(--tooltip-bgcolor);
+  left: 47%;
+}
+#root .App .tooltip-wrap:hover > .tooltip.left.above::before,
+#root .App .tooltip-wrap:focus > .tooltip.left.above::before,
+#root .App .tooltip-wrap:hover > .tooltip.left.below::before,
+#root .App .tooltip-wrap:focus > .tooltip.left.below::before,
+.tooltip-wrap:hover > .tooltip.left.above::before,
+.tooltip-wrap:focus > .tooltip.left.above::before,
+.tooltip-wrap:hover > .tooltip.left.below::before,
+.tooltip-wrap:focus > .tooltip.left.below::before {
+  left: unset;
+  right: calc(var(--tooltip-offset) * 0.3);
+}
+#root .App .tooltip-wrap:hover > .tooltip.right.above::before,
+#root .App .tooltip-wrap:focus > .tooltip.right.above::before,
+#root .App .tooltip-wrap:hover > .tooltip.right.below::before,
+#root .App .tooltip-wrap:focus > .tooltip.right.below::before,
+.tooltip-wrap:hover > .tooltip.right.above::before,
+.tooltip-wrap:focus > .tooltip.right.above::before,
+.tooltip-wrap:hover > .tooltip.right.below::before,
+.tooltip-wrap:focus > .tooltip.right.below::before {
+  right: unset;
+  left: calc(var(--tooltip-offset) * 0.3);
+}
+#root .App .tooltip-wrap > .tooltip.center,
+#root .App .tooltip-wrap > .tooltip.center,
+.tooltip-wrap > .tooltip.center,
+.tooltip-wrap > .tooltip.center {
+  top: calc(50% - 0.5em);
+  left: calc(50% - var(--width) * 0.5);
+  right: unset;
+}
+.dblock {
+  display: block;
+}
+.iblock {
+  display: inline-block;
+}
+big > i {
+  letter-spacing: 0.05em;
+}
+
+.terms.page,
+.disclaimer.page {
+  counter-reset: section;
+}
+
+.terms.page h2::before,
+.disclaimer.page h2::before {
+  counter-increment: section;
+  content: counter(section) '. ';
+}
+
+.terms.page h2 {
+  counter-reset: subsection;
+}
+
+.terms.page h3::before,
+.disclaimer.page h3::before {
+  counter-increment: subsection;
+  content: counter(section) '.' counter(subsection) '. ';
+  font-weight: bold;
+}
+
+.terms.page h2,
+.terms.page h3,
+.disclaimer.page h2,
+.disclaimer.page h3 {
+  text-align: left;
+}
+
+#root .survey-form > * {
+  margin-bottom: 2em;
+}
+#root .survey-form > h3 {
+  margin-bottom: 0.5em;
+}
+
+#root .p05 {
+  padding: 0.5em;
+}
+#root .p1 {
+  padding: 1em;
+}
+#root .m0 {
+  margin: 0;
+}
+#root .m05 {
+  margin: 0.5em;
+}
+#root .m1 {
+  margin: 1em;
+}
+#root .mt0 {
+  margin-top: 0;
+}
+#root .mb0 {
+  margin-bottom: 0;
+}
+#root .mt1 {
+  margin-top: 1em;
+}
+#root .mt2 {
+  margin-top: 2em;
+}
+#root .mt3 {
+  margin-top: 3em;
+}
+#root .mb1 {
+  margin-bottom: 1em;
+}
+#root .mb2 {
+  margin-bottom: 2em;
+}
+#root .mb3 {
+  margin-bottom: 3em;
+}
+#root .mt-1 {
+  margin-top: -1em;
+}
+#root .lower03 {
+  margin-top: 0.3rem;
+  margin-bottom: -0.3rem;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 99vh;
+  max-height: 100vh;
+  font-size: calc(1rem * var(--responsive_scale));
+  background-color: var(--color-primary-1);
+  color: var(--color-primary-15);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  max-width: 100vw;
+}
+body.light {
+  background-color: var(--color-primary-4);
+}
+body * {
+  scroll-margin-top: 4rem;
+  color: inherit;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  word-break: break-word;
+}
+.transformations a,
+.transformations a > *,
+#modal-root a,
+#modal-root a > * {
+  transition-property: color, border, transform, font-size, fill, background-position;
+  transition-timing-function: var(--transition-type);
+  transition-duration: var(--transition-duration);
+  transition-delay: 0s;
+}
+main {
+  position: relative;
+}
+main a,
+button.reset.link {
+  position: relative;
+}
+main a,
+main a:link,
+main a > *,
+main a:link > *,
+button.reset.link,
+button.reset.link > * {
+  font-family: var(--title-family);
+  font-weight: 400;
+  color: var(--color-primary-9);
+  letter-spacing: calc(var(--letter-spacing) * -0.9);
+  text-decoration: none;
+  background-image: none;
+  border-radius: 0;
+}
+main a::after,
+button.reset.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.33rem;
+  width: 100%;
+  height: 0.2rem;
+  background-color: currentColor;
+  transition-property: background-color;
+  transition-timing-function: var(--transition-type);
+  transition-duration: var(--transition-duration);
+  border-radius: var(--radius-small);
+  opacity: 0.5;
+}
+main a,
+button.reset.link {
+  border-radius: 0;
+}
+main a.disabled:hover,
+main a.disabled:hover *,
+main a.disabled *:hover,
+.light main a.disabled:hover,
+.light main a.disabled:hover > *,
+.light main a.disabled > *:hover {
+  background: transparent;
+  background-image: none;
+}
+
+.light main a,
+.light main a:link,
+.light main a > *,
+.light main a:link > *,
+.light button.reset.link,
+.light button.reset.link > * {
+  text-decoration: none;
+  background-image: none;
+}
+
+main a:visited,
+main a:visited > * {
+  color: var(--color-visited);
+  text-decoration-color: var(--color-visited);
+}
+main a:hover,
+main a:focus,
+main a:visited:hover,
+main a:visited:focus,
+main a:hover > *,
+main a:focus > *,
+main a:visited:hover > *,
+main a:visited:focus > *,
+button.reset.link:hover,
+button.reset.link:focus,
+button.reset.link:hover > *,
+button.reset.link:focus > * {
+  color: var(--color-secondary-9);
+  text-decoration: underline;
+  text-decoration-color: var(--color-secondary-9);
+}
+button.reset.link,
+button.reset.link:hover,
+button.reset.link:focus,
+button.reset.link:hover > *,
+button.reset.link:focus > * {
+  outline: none;
+}
+.light main a:hover,
+.light main a:focus,
+.light main a:visited:hover,
+.light main a:visited:focus,
+.light main a:hover > *,
+.light main a:focus > *,
+.light main a:visited:hover > *,
+.light main a:visited:focus > *,
+.light button.reset.link:hover,
+.light button.reset.link:focus,
+.light button.reset.link:hover > *,
+.light button.reset.link:focus > * {
+  background-position: 50% 98%;
+  transform-origin: 50% 98%;
+}
+main a.disabled,
+main a.disabled > *,
+.light main a.disabled,
+.light main a.disabled > * {
+  text-decoration: none;
+  color: inherit;
+}
+.light main a.active {
+  text-decoration: none;
+}
+/*Mark regular lists with the class 'ul' */
+.ul {
+  list-style: square;
+  line-height: 1.7;
+  padding-inline-start: 10px;
+}
+
+.ul ul {
+  list-style: circle;
+  padding-inline-start: 20px;
+}
+.ul ul ul {
+  list-style: '/*  '; /*square; circle;*/
+}
+/* li:has(big) {
+  margin-top: 1em;
+} */
+.ul li:last-child {
+  margin-bottom: 1em;
+}
+.ul ul li:last-child {
+  margin-bottom: 0;
+}
+@media (min-width: 400px) {
+  .ul {
+    padding-inline-start: 20px;
+  }
+  .ul ul {
+    padding-inline-start: 30px;
+  }
+} /*END media*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-align: center;
+  font-family: var(--title-family);
+  font-weight: 300;
+  line-height: 1;
+  margin-top: 1.1em;
+  margin-bottom: 0.6em;
+  margin-left: -0.06em;
+  text-wrap: balance;
+  color: var(--color-gray-10);
+  letter-spacing: calc(var(--letter-spacing) * -1);
+}
+.left {
+  text-align: left;
+}
+#root .small {
+  font-size: calc(1rem * var(--responsive_scale));
+  letter-spacing: calc(var(--letter-spacing) * 2);
+}
+#root button.small {
+  font-size: calc(0.8rem * var(--responsive_scale));
+  letter-spacing: calc(var(--letter-spacing) * -0.9);
+  padding: 0.3em 0.9em;
+}
+#root .margin0 {
+  margin: 0;
+}
+#root .margin0auto {
+  margin: 0 auto;
+}
+#root .margin-b1 {
+  margin-bottom: 1em;
+}
+#root .margin-b2 {
+  margin-bottom: 2em;
+}
+#root .regular {
+  font-family: var(--text-family);
+  letter-spacing: var(--letter-spacing);
+  font-weight: 400;
+}
+
+h1 {
+  font-size: var(--title-XXL);
+  max-width: max-content;
+  line-height: 0.95;
+  margin: 0 0 0.1em -0.08em;
+}
+h2 {
+  font-size: var(--title-XL);
+}
+h3 {
+  font-size: var(--title-L);
+}
+h4 {
+  font-size: var(--title-M);
+}
+h5 {
+  font-size: var(--title-S);
+}
+h6 {
+  font-size: var(--title-XS);
+}
+p {
+  margin-block-start: 0;
+  margin-block-end: 1em;
+}
+strong {
+  font-weight: 800;
+  color: var(--color-secondary-1);
+}
+
+button,
+button.restore {
+  padding: 0.6em 0.8em 0.5em;
+  border-radius: var(--radius-small);
+  width: auto;
+  border: 1px solid var(--color-primary-7);
+  border-top-color: var(--color-gray-3);
+  border-bottom-color: var(--color-primary-8);
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  position: relative;
+  height: max-content;
+  color: var(--color-primary-15);
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  white-space: normal;
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+  background: var(--bg-blue);
+  background-size: var(--bg-size);
+  background-position: 50% 3%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2em;
+  transition-property: border-color, border-width, color, background-color, background-position, outline-offset, outline-width, opacity, transform, border-radius;
+  transition-duration: calc(1.5 * var(--transition-duration));
+  transition-timing-function: var(--transition-type);
+  transition-delay: 0s;
+}
+button:disabled {
+  --sat: 40%;
+  --sat2: 50%;
+  border: 1px solid hsl(var(--hue-primary), var(--sat), 30%);
+  background: linear-gradient(4deg, hsl(var(--hue-primary), var(--sat), 95%) 0%, hsl(var(--hue-primary), var(--sat), 60%) 33%, hsl(var(--hue-primary), var(--sat), 25%) 55%, hsl(var(--hue-primary), var(--sat2), 3%) 100%);
+  background-size: var(--bg-size);
+  background-position: 50% 3%;
+}
+.light button:disabled {
+  --sat: 30%;
+  --sat2: 50%;
+  background: linear-gradient(4deg, hsl(var(--hue-primary), var(--sat2), 6%) 0%, hsl(var(--hue-primary), var(--sat), 25%) 35%, hsl(var(--hue-primary), var(--sat), 60%) 55%, hsl(var(--hue-primary), var(--sat), 95%) 100%);
+  background-size: var(--bg-size);
+  background-position: 50% 3%;
+}
+button:disabled {
+  pointer-events: none;
+}
+.gray-button-wrap button,
+button.gray {
+  background: var(--bg-gray);
+  background-size: var(--bg-size);
+  background-position: 50% 3%;
+  border-color: var(--color-gray-5);
+  border-top-color: var(--color-gray-3);
+  border-bottom-color: var(--color-gray-6);
+}
+/* .light .gray-button-wrap button,
+.light button.gray {
+  background: linear-gradient(4deg, hsl(0, 0%, 5%) 0%, hsl(0, 0%, 10%) 30%, hsl(0, 0%, 70%) 60%, hsl(0, 0%, 90%) 100%);
+  background-size: var(--bg-size);
+  background-position: 50% 3%;
+} */
+.light button.grayer:hover,
+.light button.grayer:focus,
+.light button.grayer:focus-visible,
+.light button.gray:hover,
+.light button.gray:focus,
+.light button.gray:focus-visible {
+  background-position: 50% 98%;
+}
+.transformations button,
+.transformations button.restore,
+#modal-root button,
+#modal-root button.restore {
+  transition-property: border-color, border-width, color, background-color, background-position, outline, outline-offset, opacity, transform, border-radius;
+  transition-duration: calc(1.5 * var(--transition-duration));
+  transition-timing-function: var(--transition-type);
+  transition-delay: 0s;
+}
+
+button:hover,
+button:focus,
+button:focus-visible,
+button.restore:hover,
+button.restore:focus,
+button.restore:focus-visible {
+  color: var(--color-primary-1);
+  border-color: var(--color-primary-12);
+  background-position: 50% 98%;
+  outline: 2px solid currentColor;
+  outline-offset: -5px;
+}
+
+button:focus-visible,
+input[type='submit']:hover,
+input[type='submit']:focus,
+input[type='submit']:focus-visible,
+input[type='button']:hover,
+input[type='button']:focus,
+input[type='button']:focus-visible,
+body .focus-within:focus-within,
+button.restore:focus-visible,
+input[type='submit'].restore:hover,
+input[type='submit'].restore:focus,
+input[type='submit'].restore:focus-visible,
+input[type='button'].restore:hover,
+input[type='button'].restore:focus,
+input[type='button'].restore:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
+  outline-offset: -3px;
+}
+body .focus-within:focus-within {
+  outline-offset: 3px;
+}
+
+@media (min-width: 400px) {
+  button,
+  button.restore {
+    padding: 0.6em 1em 0.5em;
+  }
+} /*END media*/
+
+/* Screen-reader text, visually hidden */
+.scr {
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+  -moz-clip-path: inset(50%);
+  -ms-clip-path: inset(50%);
+  -o-clip-path: inset(50%);
+  clip-path: inset(50%);
+  line-height: 1px;
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+.scr:focus-visible {
+  clip: auto;
+  -webkit-clip-path: none;
+  -moz-clip-path: none;
+  -ms-clip-path: none;
+  -o-clip-path: none;
+  clip-path: none;
+  width: auto;
+  height: auto;
+  line-height: normal;
+}
+button.delete,
+button.close,
+.login-wrap button.logout,
+.logout-wrap button.logout {
+  min-width: 4em;
+  background: none;
+  border-color: transparent;
+  color: inherit;
+  padding: 0.4em 0.4em 0.3em;
+}
+button.delete.outline {
+  border-color: red;
+}
+button.close {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  gap: 0;
+  font-size: 0.8em;
+  border-radius: var(--radius-medium);
+}
+button.close:hover,
+button.close:focus {
+  color: inherit;
+}
+button.close span {
+  display: block;
+}
+button.close .times {
+  font-size: 1.3em;
+}
+button.delete {
+  padding: 0.6em 1.2em 0.5em;
+}
+button.delete::after {
+  content: ' \00D7'; /* × */
+  font-size: 1.2em;
+}
+button.delete:hover {
+  color: red;
+  text-shadow: 0 0 0.1em black;
+}
+.light button.delete:hover {
+  text-shadow: 0 0 0.1em white;
+}
+#root button.danger:hover {
+  outline-color: red;
+  border-color: red;
+  text-shadow: none;
+  background-color: var(--color-primary-1);
+}
+#root button.danger.outline:hover {
+  outline-offset: -6px;
+}
+.register-login-wrap {
+  display: flex;
+  flex-flow: row wrap;
+  gap: calc(var(--gap) * 2);
+  justify-content: center;
+}
+.register-login-wrap > .open,
+.register-login-wrap > .logged {
+  flex: 1 0 100%;
+}
+
+.login-wrap p,
+.logout-wrap {
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  flex: 0 0 auto;
+  gap: calc(var(--gap) * 0.8);
+  align-items: center;
+  justify-content: center;
+}
+.logout-wrap .user-menu {
+  position: absolute;
+  top: calc(100% + 0.4em);
+  right: 0;
+  background-color: var(--color-primary-1);
+  border: 1px solid var(--color-primary-6);
+  padding: 0.5em;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.5em;
+  z-index: 999;
+  min-width: 8rem;
+}
+.logout-wrap .user-menu a,
+.logout-wrap .user-menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.3em 0.5em;
+}
+.logout-wrap .user-menu a {
+  color: var(--color-primary-10);
+}
+
+form.login {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 2em;
+}
+.login h2 {
+  font-size: var(--title-XS);
+}
+.login-wrap button.login i {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3em;
+}
+.login-wrap button.login > i > span {
+  font-style: normal;
+}
+.login-wrap button.login.open:not(.nav) {
+  display: none;
+}
+code {
+  display: inline-block;
+  font-family: monospace;
+  background-color: var(--color-primary-4);
+  color: var(--color-primary-15);
+  padding: 0.05em 0.3em;
+  border-radius: var(--radius-small);
+}
+/*reset button styles to regular text:*/
+button.reset {
+  border: none;
+  display: inline-block;
+  padding: 0.03em 0.06em 0.06em;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  color: inherit;
+  background: none;
+  outline-offset: 0;
+}
+button.reset:hover,
+button.reset:focus {
+  padding: 0.03em 0.06em 0.06em;
+  outline-offset: 0;
+}
+button.reset.padding,
+button.reset.padding:hover,
+button.reset.padding:focus {
+  padding: 0.3em 0.6em;
+}

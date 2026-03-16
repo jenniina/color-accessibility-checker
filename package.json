@@ -1,0 +1,16 @@
+{
+  "name": "color-accessibility-checker",
+  "private": true,
+  "license": "UNLICENSED",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "build": "npm -w frontend run build && npm -w backend run build",
+    "build:frontend": "npm -w frontend run build",
+    "build:backend": "npm -w backend run build",
+    "dev": "npm -w backend run dev",
+    "start": "npm -w backend run start"
+  }
+}

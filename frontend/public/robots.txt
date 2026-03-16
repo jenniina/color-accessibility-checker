@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://colors.jenniina.fi/sitemap.xml

@@ -1,0 +1,170 @@
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath, pathToFileURL } from 'node:url'
+import express from 'express'
+import type { Request, Response } from 'express'
+import cors from 'cors'
+import compression from 'compression'
+import sirv from 'sirv'
+import type { ViteDevServer } from 'vite'
+
+import 'dotenv/config'
+import { connectToMongo, mongoIsConnected, mongoLastError } from './db'
+import apiRouter from './routes/index'
+import { mongoSanitize } from './middleware/mongoSanitize'
+import { rateLimit } from './middleware/rateLimit'
+
+const isProd = process.env.NODE_ENV === 'production'
+
+const port = Number(process.env.PORT ?? 5179)
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const backendRoot = path.resolve(__dirname, '..')
+const distRoot = path.resolve(backendRoot, 'dist')
+const distFrontendRoot = path.resolve(distRoot, 'frontend')
+const ssrDistRoot = path.resolve(distRoot, 'ssr')
+const frontendRoot = path.resolve(backendRoot, '..', 'frontend')
+
+const allowedOrigin =
+  process.env.CORS_ORIGIN ??
+  (isProd ? 'https://colors.jenniina.fi' : 'http://localhost:5173')
+
+type RenderFn = (url: string) => { appHtml: string; headTags?: string }
+
+async function createServer() {
+  const app = express()
+
+  app.set('trust proxy', 1)
+
+  app.use(
+    cors({
+      origin: allowedOrigin,
+      methods: ['GET', 'HEAD', 'OPTIONS', 'POST', 'PUT', 'DELETE'],
+      allowedHeaders: [
+        'Origin',
+        'X-Requested-With',
+        'Content-Type',
+        'Accept',
+        'Authorization',
+        'x-api-key',
+      ],
+      exposedHeaders: ['Content-Type'],
+    })
+  )
+
+  app.use(compression())
+
+  app.use(express.json({ limit: '1mb' }))
+  app.use(express.urlencoded({ extended: true }))
+
+  app.use(mongoSanitize())
+
+  // API routes first
+  const apiLimiter = rateLimit({
+    windowMs: 5 * 60 * 1000,
+    max: 300,
+  })
+
+  app.use('/api', apiLimiter, apiRouter)
+
+  let vite: ViteDevServer | undefined
+
+  if (!isProd) {
+    const { createServer: createViteServer } = await import('vite')
+    vite = await createViteServer({
+      root: frontendRoot,
+      server: { middlewareMode: true },
+      appType: 'custom',
+    })
+    app.use(vite.middlewares)
+  } else {
+    // Serve only built asset files; let SSR handle all HTML routes.
+    app.use(
+      '/assets',
+      sirv(path.resolve(distFrontendRoot, 'assets'), {
+        etag: true,
+        maxAge: 31536000,
+        immutable: true,
+      })
+    )
+
+    // Vite manifest folder (small JSON files)
+    app.use(
+      '/.vite',
+      sirv(path.resolve(distFrontendRoot, '.vite'), {
+        etag: true,
+        maxAge: 31536000,
+        immutable: true,
+      })
+    )
+  }
+
+  app.use('*', async (req: Request, res: Response) => {
+    try {
+      const url = req.originalUrl
+
+      let template: string
+      let render: RenderFn
+
+      if (!isProd) {
+        const templatePath = path.resolve(frontendRoot, 'index.html')
+        template = fs.readFileSync(templatePath, 'utf-8')
+        template = await vite!.transformIndexHtml(url, template)
+
+        const mod = await vite!.ssrLoadModule('/src/entry-server.tsx')
+        render = mod.render as RenderFn
+      } else {
+        const templatePath = path.resolve(distFrontendRoot, 'index.html')
+        template = fs.readFileSync(templatePath, 'utf-8')
+
+        const entryPath = path.resolve(ssrDistRoot, 'entry-server.js')
+        if (fs.existsSync(entryPath)) {
+          // Windows ESM requires file:// URL for absolute paths.
+          const mod = (await import(pathToFileURL(entryPath).href)) as {
+            render: RenderFn
+          }
+          render = mod.render
+        } else {
+          // Static-only deployment: no SSR bundle.
+          render = () => ({ appHtml: '' })
+        }
+      }
+
+      const { appHtml, headTags } = render(url)
+
+      const html = template
+        .replace('<!--app-head-->', headTags ?? '')
+        .replace('<!--app-html-->', appHtml)
+
+      res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
+    } catch (e: unknown) {
+      if (!isProd && vite) {
+        vite.ssrFixStacktrace(e as Error)
+      }
+      console.error(e)
+      res.status(500).end('Internal Server Error')
+    }
+  })
+
+  return app
+}
+
+async function start() {
+  await connectToMongo()
+  if (!mongoIsConnected()) {
+    console.error(
+      'Mongo not connected; /api will return 503. Set MONGODB_URI and restart.\n',
+      mongoLastError() ?? ''
+    )
+  }
+
+  const app = await createServer()
+  app.listen(port, () => {
+    console.log(
+      `Accessible Colors SSR server running on http://localhost:${port}`
+    )
+  })
+}
+
+void start()

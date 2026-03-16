@@ -1,0 +1,206 @@
+.navigation {
+  width: 100%;
+  margin: 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: transparent;
+  font-size: 0.8em;
+}
+
+.inner {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8em 0.6em;
+  width: 100%;
+  max-width: min(var(--widest), calc(100vw - var(--page-padding) * 2));
+  padding: 0.4rem var(--page-padding);
+}
+
+.logo {
+  --gap: 0.4rem;
+  flex: 1 0 auto;
+  max-width: 100%;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: calc(var(--letter-spacing) * -1);
+  line-height: 1;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+  line-height: 0.9;
+  font-family: var(--title-family);
+}
+.logo > img + span {
+  flex-shrink: 1;
+}
+.dark .logo img {
+  filter: invert(100%) sepia(100%) grayscale(100%) brightness(150%);
+}
+.links {
+  flex: 6 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.6rem;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.link {
+  position: relative;
+  font-family: var(--title-family);
+  font-size: 1rem;
+  letter-spacing: calc(var(--letter-spacing) * -0.9);
+  color: var(--color-primary-9);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3em 0.1em 0.4em;
+  border-radius: 0;
+  text-decoration: none;
+  /* border-bottom: 0.2rem solid var(--color-primary-6); */
+}
+.link::after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  content: '';
+  display: block;
+  width: 100%;
+  height: 0.2rem;
+  background-color: currentColor;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition-property: transform, opacity;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-type);
+  opacity: 0.22;
+}
+
+.link:hover::after,
+.link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.active::after {
+  transform: scaleX(1);
+}
+.active.link:hover::after,
+.active.link:focus-visible::after {
+  opacity: 0.55;
+}
+.settings {
+  flex: 1 1 auto;
+  padding: 0;
+  max-width: var(--widest);
+  margin: 0;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1em 0.6rem;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+}
+
+.language {
+  width: min(8rem, calc(90vw - var(--page-padding) * 2));
+}
+.language > div {
+  padding: 0.5em 0.4em 0.33em;
+}
+.language > div > span {
+  flex: 1 0 calc(100% - 3em - var(--padding) * 2);
+  font-family: var(--title-family);
+  font-size: 0.9rem;
+}
+/* aria-selected li: */
+.language > div > ul > li[aria-selected='true'] {
+  background-color: var(--color-primary-3);
+}
+
+.theme-btn {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.3rem;
+  gap: 0.5rem;
+  padding: 0;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  overflow: hidden;
+}
+
+.theme-icon {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition-property: transform;
+  transition-duration: calc(2 * var(--transition-duration));
+  transition-timing-function: var(--transition-type);
+}
+.light .theme-icon,
+.dark.theme-btn:hover .theme-icon,
+.dark.theme-btn:focus .theme-icon,
+.dark.theme-btn:focus-visible .theme-icon {
+  transform: translateY(-1.4rem);
+}
+.light.theme-btn:hover .theme-icon,
+.light.theme-btn:focus .theme-icon,
+.light.theme-btn:focus-visible .theme-icon,
+.dark .theme-icon {
+  transform: translateY(0.33rem);
+}
+
+.auth,
+.auth > div {
+  display: flex;
+  flex-flow: row wrap;
+  flex: 0 1 auto;
+}
+
+@media (min-width: 300px) {
+  .links {
+    gap: 0.2rem 0.8rem;
+  }
+}
+@media (min-width: 500px) {
+  .logo {
+    justify-content: flex-start;
+  }
+  .links {
+    justify-content: flex-end;
+  }
+  .settings {
+    justify-content: flex-end;
+  }
+}
+@media (min-width: 700px) {
+  .inner {
+    padding: 0.4rem 0;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1000px) {
+  .logo {
+    flex-grow: 1;
+  }
+  .links {
+    justify-content: center;
+  }
+  .settings {
+    flex-grow: 0;
+  }
+}

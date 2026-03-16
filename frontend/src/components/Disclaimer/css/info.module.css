@@ -1,0 +1,4 @@
+.disclaimer section {
+  max-width: var(--width-small);
+  margin: 0 auto;
+}
