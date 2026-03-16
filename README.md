@@ -21,9 +21,10 @@ React + Vite + TypeScript app for testing color contrast/accessibility, with an 
 From the `accessible-colors/` folder:
 
 ```sh
-cd frontend && npm install
-cd ..\backend && npm install
+npm install
 ```
+
+This repo uses **npm workspaces** (`frontend` + `backend`), so dependencies are installed once at the root and hoisted into a single `accessible-colors/node_modules`.
 
 ## Development
 
@@ -32,7 +33,6 @@ cd ..\backend && npm install
 Run the backend dev server (it will use Vite middleware for the frontend):
 
 ```sh
-cd backend
 npm run dev
 ```
 
@@ -42,8 +42,7 @@ npm run dev
 ### 2) Frontend-only (no SSR)
 
 ```sh
-cd frontend
-npm run dev
+npm -w frontend run dev
 ```
 
 - Vite dev server: `http://localhost:5173` (or whatever Vite chooses)
@@ -54,23 +53,19 @@ npm run dev
 Build everything from the project root (writes output into `backend/dist/...`):
 
 ```sh
-cd accessible-colors
 npm run build
 ```
 
 Equivalent manual steps (frontend first, then backend):
 
 ```sh
-cd frontend
-npm run build
-cd ..\backend
-npm run build
+npm -w frontend run build
+npm -w backend run build
 ```
 
 Run the server:
 
 ```sh
-cd backend
 npm run start
 ```
 
