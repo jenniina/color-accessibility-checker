@@ -8,9 +8,9 @@
     "dev": "nodemon --watch src --ext ts,tsx --exec \"tsx src/server.ts\"",
     "dev:once": "tsx src/server.ts",
     "typecheck:watch": "tsc -w -p tsconfig.json",
-    "start": "node dist/server.js",
+    "start": "node --experimental-specifier-resolution=node dist/server.js",
     "build": "tsc -p tsconfig.json",
-    "start:prod": "node dist/server.js"
+    "start:prod": "node --experimental-specifier-resolution=node dist/server.js"
   },
   "dependencies": {
     "@types/mongoose": "^5.11.96",

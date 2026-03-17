@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express'
-import { User } from '../models/user'
-import { ColorPalettes } from '../models/color'
-import type { IUser } from '../types'
+import { User } from '../models/user.js'
+import { ColorPalettes } from '../models/color.js'
+import type { IUser } from '../types/index.js'
 
 type ColorBlockPayload = {
   id: number

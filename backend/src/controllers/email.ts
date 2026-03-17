@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express'
-import { generateToken } from './auth'
-import { ELanguage, IUser } from '../types'
+import { generateToken } from './auth.js'
+import { ELanguage, IUser } from '../types/index.js'
 export type FormData = {
   firstName: string
   lastName: string

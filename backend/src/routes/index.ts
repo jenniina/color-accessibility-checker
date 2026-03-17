@@ -1,8 +1,8 @@
 import { Router } from 'express'
 import type { Response, Request, NextFunction } from 'express'
-import { rateLimit } from '../middleware/rateLimit'
+import { rateLimit } from '../middleware/rateLimit.js'
 import { body, check, validationResult } from 'express-validator'
-import { sendEmailForm } from '../controllers/email'
+import { sendEmailForm } from '../controllers/email.js'
 
 import {
   getUsers,
@@ -36,9 +36,9 @@ import {
   removeJokeFromBlacklisted,
   revokeUserSessions,
   authPing,
-} from '../controllers/auth'
-import { ELanguage, ELanguages } from '../types'
-import { EPleaseProvideAValidEmailAddress } from '../controllers/email'
+} from '../controllers/auth.js'
+import { ELanguage, ELanguages } from '../types/index.js'
+import { EPleaseProvideAValidEmailAddress } from '../controllers/email.js'
 import {
   getColorAccessibility,
   saveColorAccessibility,
@@ -46,8 +46,8 @@ import {
   getColorPaletteByUser,
   saveColorPaletteByUser,
   deleteColorPaletteByUser,
-} from '../controllers/colors'
-import { mongoIsConnected, mongoLastError } from '../db'
+} from '../controllers/colors.js'
+import { mongoIsConnected, mongoLastError } from '../db.js'
 
 const router = Router()
 

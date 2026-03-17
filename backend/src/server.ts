@@ -9,14 +9,14 @@ import sirv from 'sirv'
 import type { ViteDevServer } from 'vite'
 
 import 'dotenv/config'
-import { connectToMongo, mongoIsConnected, mongoLastError } from './db'
-import apiRouter from './routes/index'
-import { mongoSanitize } from './middleware/mongoSanitize'
-import { rateLimit } from './middleware/rateLimit'
+import { connectToMongo, mongoIsConnected, mongoLastError } from './db.js'
+import apiRouter from './routes/index.js'
+import { mongoSanitize } from './middleware/mongoSanitize.js'
+import { rateLimit } from './middleware/rateLimit.js'
 
 const isProd = process.env.NODE_ENV === 'production'
 
-const port = Number(process.env.PORTT ?? 5179)
+const port = Number(process.env.PORT ?? 5179)
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)

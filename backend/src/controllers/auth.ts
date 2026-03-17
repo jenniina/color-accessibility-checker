@@ -6,17 +6,17 @@ import {
   EPleaseChooseAnotherName,
   EThisNameIsNotAvailable,
   IUser,
-} from '../types'
-import { User } from '../models/user'
-import { Quiz } from '../models/quiz'
-import { Todo } from '../models/todo'
-import { Joke } from '../models/joke'
-import { ITokenPayload, IToken } from '../types'
+} from '../types/index.js'
+import { User } from '../models/user.js'
+import { Quiz } from '../models/quiz.js'
+import { Todo } from '../models/todo.js'
+import { Joke } from '../models/joke.js'
+import { ITokenPayload, IToken } from '../types/index.js'
 import jwt from 'jsonwebtoken'
 import type { JwtPayload, Secret } from 'jsonwebtoken'
-import { sendMail } from './email'
-import { ELanguage } from '../types'
-import { Blobs } from '../models/blobs'
+import { sendMail } from './email.js'
+import { ELanguage } from '../types/index.js'
+import { Blobs } from '../models/blobs.js'
 import mongoose from 'mongoose'
 
 import dotenv from 'dotenv'

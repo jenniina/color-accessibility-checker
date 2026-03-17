@@ -42,4 +42,4 @@ COPY --from=build /app/backend/dist ./backend/dist
 
 WORKDIR /app/backend
 EXPOSE 8080
-CMD ["node", "dist/server.js"]
+CMD ["node", "--experimental-specifier-resolution=node", "dist/server.js"]
