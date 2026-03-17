@@ -16,7 +16,7 @@ import { rateLimit } from './middleware/rateLimit.js'
 
 const isProd = process.env.NODE_ENV === 'production'
 
-const port = 5179
+const port = Number(process.env.PORT ?? 5179)
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
