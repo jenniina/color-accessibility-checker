@@ -8,7 +8,7 @@ import { useCallback, useRef, useState } from 'react'
 import Accordion from '../Accordion/Accordion'
 import { firstToLowerCase } from '../../utils'
 import CopyToClipboard from '../CopyToClipboard/CopyToClipboard'
-import { Link } from 'react-router-dom'
+import { Link, useLocation as useRouterLocation } from 'react-router-dom'
 import Icon from '../Icon/Icon'
 
 export default function Header({
@@ -25,6 +25,7 @@ export default function Header({
   })
   const lightTheme = useTheme()
   const { t } = useLanguageContext()
+  const routerLocation = useRouterLocation()
 
   const resolvedTitle = title ?? t('ColorAccessibility') + ' ' + t('WCAGTool')
 
@@ -109,7 +110,7 @@ export default function Header({
                           replace
                           to={`?${(() => {
                             const next = new URLSearchParams(
-                              window.location.search
+                              routerLocation.search
                             )
                             next.set('login', 'nav')
                             return next.toString()
