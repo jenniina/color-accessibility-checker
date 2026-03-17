@@ -43,6 +43,10 @@ export default defineConfig(({ isSsrBuild }) => {
       ],
     },
     ssr: {
+      // Needed for production SSR on Node ESM (Cloud Run):
+      // `react-helmet-async` is CommonJS and will crash if left externalized
+      // and imported with named exports in the SSR bundle.
+      noExternal: ['react-helmet-async'],
       optimizeDeps: {
         include: [
           'react',
