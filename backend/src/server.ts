@@ -176,19 +176,22 @@ async function createServer() {
 }
 
 async function start() {
-  await connectToMongo()
-  if (!mongoIsConnected()) {
-    console.error(
-      'Mongo not connected; /api will return 503. Set MONGODB_URI and restart.\n',
-      mongoLastError() ?? ''
-    )
-  }
-
   const app = await createServer()
   app.listen(port, () => {
     console.log(
       `Accessible Colors SSR server running on http://localhost:${port}`
     )
+  })
+
+  // Don't block server startup on DB connection (Cloud Run requires the
+  // container to start listening on $PORT quickly).
+  void connectToMongo().then(() => {
+    if (!mongoIsConnected()) {
+      console.error(
+        'Mongo not connected; /api will return 503. Set MONGODB_URI and restart.\n',
+        mongoLastError() ?? ''
+      )
+    }
   })
 }
 
