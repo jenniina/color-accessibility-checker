@@ -208,16 +208,6 @@ export const sanitize = (name: string = getRandomString(9)): string => {
   return name.replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '-')
 }
 
-export function getErrorMessage(err: unknown, fallback: string): string {
-  try {
-    if (err instanceof Error) return err.message
-    if (typeof err === 'string') return err
-    return fallback
-  } catch {
-    return fallback
-  }
-}
-
 export function sleep(ms: number) {
   return new Promise<void>((resolve) => setTimeout(resolve, ms))
 }
@@ -225,4 +215,25 @@ export function sleep(ms: number) {
 export const firstToLowerCase = (str: string) => {
   if (!str) return str
   return str.charAt(0).toLowerCase() + str.slice(1)
+}
+
+import { AxiosError, isAxiosError } from 'axios'
+export function getErrorMessage(err: unknown, fallback: string): string {
+  try {
+    if (isAxiosError(err)) {
+      const axiosErr = err as AxiosError<unknown>
+      const data = axiosErr.response?.data
+      if (data && typeof data === 'object' && 'message' in data) {
+        const d = data as Record<string, unknown>
+        if (typeof d.message === 'string') return d.message
+      }
+      return axiosErr.message ?? fallback ?? 'Unknown error'
+    }
+    if (err instanceof Error) return err.message
+    if (typeof err === 'string') return err
+    return fallback ?? 'Unknown error'
+  } catch {
+    // Defensive catch: don't let a helper throw and break error handling
+    return fallback ?? 'Unknown error'
+  }
 }

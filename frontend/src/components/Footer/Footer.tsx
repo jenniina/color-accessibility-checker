@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { useLanguageContext } from '../../contexts/LanguageContext'
+import { Link } from 'react-router-dom'
 
 const Footer: FC = () => {
   const { t } = useLanguageContext()
@@ -12,6 +13,7 @@ const Footer: FC = () => {
         <a className="footer1" href="https://react.jenniina.fi/">
           <span>{t('ReactPortfolio')}</span>
         </a>
+        <Link to="/info">{t('PrivacyPolicy')}</Link>
       </div>
     </footer>
   )

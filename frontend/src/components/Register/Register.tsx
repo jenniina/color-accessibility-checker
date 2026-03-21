@@ -6,37 +6,17 @@ import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { initializeUser } from '../../reducers/authReducer'
 import { Link } from 'react-router-dom'
 import { useLanguageContext } from '../../contexts/LanguageContext'
+import { useState } from 'react'
+import { notify } from '../../reducers/notificationReducer'
+import { getErrorMessage } from '../../utils'
+import { createUser } from '../../reducers/usersReducer'
 
 interface Props {
-  handleRegister: (e: FormEvent<HTMLFormElement>) => void
-  username: string
-  setUsername: (username: string) => void
-  password: string
-  setPassword: (password: string) => void
-  confirmPassword: string
-  name: string
-  setName: (name: string) => void
-  setConfirmPassword: (confirmPassword: string) => void
   setIsFormOpen?: (isFormOpen: boolean) => void
   text?: string
   isOpen?: boolean
-  sending: boolean
 }
-const Register = ({
-  handleRegister,
-  username,
-  setUsername,
-  password,
-  setPassword,
-  confirmPassword,
-  setConfirmPassword,
-  name,
-  setName,
-  setIsFormOpen,
-  isOpen,
-  text,
-  sending,
-}: Props) => {
+const Register = ({ setIsFormOpen, isOpen, text }: Props) => {
   const { t } = useLanguageContext()
 
   const dispatch = useAppDispatch()
@@ -47,6 +27,33 @@ const Register = ({
     return state.auth
   })
 
+  const [username, setUsername] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [confirmPassword, setConfirmPassword] = useState<string>('')
+  const [name, setName] = useState<string>('')
+  const [sending, setSending] = useState(false)
+
+  const handleRegister = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault()
+    setSending(true)
+    if (password.trim() !== confirmPassword.trim()) {
+      void dispatch(notify(t('PasswordsDoNotMatch'), true, 8))
+      setSending(false)
+      return
+    }
+    void dispatch(createUser({ name, username, password, language: 'en' }))
+      .then(() => {
+        void dispatch(notify(t('RegistrationSuccesful'), false, 8))
+        setSending(false)
+      })
+      .catch((err: unknown) => {
+        console.error(err)
+        const message = getErrorMessage(err, t('Error'))
+        void dispatch(notify(message, true, 8))
+        setSending(false)
+      })
+  }
+
   useEffect(() => {
     void dispatch(initializeUser())
   }, [dispatch])
@@ -56,7 +63,7 @@ const Register = ({
       {!user ? (
         <>
           <Accordion
-            className={`accordion-register register`}
+            className={`accordion-register ${text}`}
             wrapperClass="register-wrap"
             text={t('Register')}
             ref={formRegisterRef}
@@ -66,7 +73,7 @@ const Register = ({
           >
             <>
               <h2>{t('Register')}</h2>
-              <form onSubmit={handleRegister} className={`register ${text}`}>
+              <form onSubmit={handleRegister} className={`register`}>
                 <p>{t('PleaseUseGoodTasteWhenChoosingYourNickname')}</p>
                 <div className="input-wrap">
                   <label>
@@ -141,7 +148,11 @@ const Register = ({
                 >
                   <small>{t('Disclaimer')}</small>
                 </Link>
-                <button type="submit" disabled={sending} className="restore">
+                <button
+                  type="submit"
+                  disabled={sending}
+                  className={`restore ${text}`}
+                >
                   {t('Register')}
                 </button>
               </form>

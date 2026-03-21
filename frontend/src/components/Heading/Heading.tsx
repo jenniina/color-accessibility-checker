@@ -92,7 +92,7 @@ export default function Header({
                   {!user && (
                     <li>
                       {t('IfYouDontWantToRegister')}{' '}
-                      <div className="flex align-center mt1 column gap-half">
+                      <div className="flex column mt1 gap-half left">
                         <CopyToClipboard
                           value={`temp${String.fromCharCode(64)}jenniina.fi`}
                           label="temp [at] jenniina [dot] fi"

@@ -9,6 +9,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useLanguageContext } from '../../contexts/LanguageContext'
 import { getErrorMessage } from '../../utils'
 import Icon from '../Icon/Icon'
+import Register from '../Register/Register'
 
 interface LoginProps {
   setIsFormOpen?: (isFormOpen: boolean) => void
@@ -37,6 +38,7 @@ const FormLogin = ({
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [loggingIn, setLoggingIn] = useState(false)
+  const [registerOpen, setRegisterOpen] = useState(false)
 
   const user = useSelector((state: ReducerProps) => {
     return state.auth?.user
@@ -240,6 +242,11 @@ const FormLogin = ({
                     {loggingIn ? t('LoggingIn') : t('Login')}
                   </button>
                 </form>
+                <Register
+                  isOpen={registerOpen}
+                  setIsFormOpen={setRegisterOpen}
+                  text="reg"
+                />
               </>
             </Accordion>
           </div>

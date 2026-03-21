@@ -612,6 +612,9 @@ body .z {
 .column {
   flex-flow: column nowrap;
 }
+.column.left {
+  align-items: flex-start;
+}
 .center {
   justify-content: center;
   align-items: center;
@@ -1450,7 +1453,7 @@ p {
 }
 strong {
   font-weight: 800;
-  color: var(--color-secondary-1);
+  letter-spacing: calc(0.8 * var(--letter-spacing));
 }
 
 button,
@@ -1667,14 +1670,14 @@ button.delete:hover {
 #root button.danger.outline:hover {
   outline-offset: -6px;
 }
-.register-login-wrap {
+.register-wrap .register {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column nowrap;
   gap: calc(var(--gap) * 2);
   justify-content: center;
 }
-.register-login-wrap > .open,
-.register-login-wrap > .logged {
+.register-wrap > .open,
+.register-wrap > .logged {
   flex: 1 0 100%;
 }
 

@@ -61,14 +61,6 @@ export default function Nav() {
           >
             {t('Contact')}
           </NavLink>
-          <NavLink
-            to="/info"
-            className={({ isActive }) =>
-              isActive ? `${styles.link} ${styles.active}` : styles.link
-            }
-          >
-            {t('Information')}
-          </NavLink>
         </nav>
 
         <div
