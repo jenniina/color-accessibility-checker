@@ -68,6 +68,25 @@ export default function Nav() {
           role="region"
           aria-label={t('Settings')}
         >
+          <div className={`${styles['setting-item']} tooltip-wrap`}>
+            <button
+              type="button"
+              className={`${styles['theme-btn']} ${lightTheme ? styles.light : styles.dark}`}
+              onClick={() => toggleTheme?.()}
+            >
+              <span className={`${styles['theme-icon']}`} aria-hidden="true">
+                <Icon lib="bs" name="BsFillMoonStarsFill" viewBox="0 0 17 17" />
+                <Icon lib="bs" name="BsFillSunFill" />
+              </span>
+              <span className="scr">
+                {lightTheme ? t('DarkMode') : t('LightMode')}
+              </span>
+            </button>
+            <span aria-hidden="true" className="tooltip below left narrow2">
+              {lightTheme ? t('DarkMode') : t('LightMode')}
+            </span>
+          </div>
+
           <div className={styles['setting-item']}>
             <Select
               language={language}
@@ -88,24 +107,6 @@ export default function Nav() {
             />
           </div>
 
-          <div className={`${styles['setting-item']} tooltip-wrap`}>
-            <button
-              type="button"
-              className={`${styles['theme-btn']} ${lightTheme ? styles.light : styles.dark}`}
-              onClick={() => toggleTheme?.()}
-            >
-              <span className={`${styles['theme-icon']}`} aria-hidden="true">
-                <Icon lib="bs" name="BsFillMoonStarsFill" viewBox="0 0 17 17" />
-                <Icon lib="bs" name="BsFillSunFill" />
-              </span>
-              <span className="scr">
-                {lightTheme ? t('DarkMode') : t('LightMode')}
-              </span>
-            </button>
-            <span aria-hidden="true" className="tooltip below left narrow2">
-              {lightTheme ? t('DarkMode') : t('LightMode')}
-            </span>
-          </div>
           <div className={`${styles['setting-item']} ${styles.auth}`}>
             <FormLogin
               text="nav"
