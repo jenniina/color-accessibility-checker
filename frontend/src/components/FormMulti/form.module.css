@@ -1,9 +1,7 @@
 .wrapper {
   position: relative;
   /* max-width: max-content; */
-  max-width: calc(
-    100vw - calc(var(--page-padding) * 2) - var(--scrollbar_width)
-  );
+  max-width: calc(100vw - calc(var(--page-padding) * 2) - var(--scrollbar_width));
   margin: 0 auto;
 }
 .steps {
@@ -93,11 +91,34 @@ button.submit {
 .subfield .dropdownmultiple {
   z-index: 4;
   margin-bottom: 0;
-  min-width: 49%;
+  margin: 0;
+  min-width: 100%;
+}
+.dropdownsingle > div {
+  justify-content: space-between;
+}
+.dropdownsingle > div > span:nth-child(2) {
+  width: 100%;
+  flex: 1 0 auto;
 }
 
 @media (min-width: 300px) {
   .btns {
     flex-flow: row nowrap;
+  }
+  .dropdownsingle,
+  .dropdownmultiple,
+  .subfield .dropdownmultiple {
+    min-width: clamp(250px, 100%, 20rem);
+  }
+  .dropdownsingle > div {
+    flex-flow: row nowrap;
+  }
+  .dropdownsingle > div > span:nth-child(2) {
+    width: auto;
+    flex: 0 1 auto;
+  }
+  .dropdownsingle > div > button {
+    margin-left: auto;
   }
 } /*END media*/

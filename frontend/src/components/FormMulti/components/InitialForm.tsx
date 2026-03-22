@@ -20,7 +20,7 @@ export default function InitialForm({
   return (
     <FormWrapper
       title={t('BasicDetails')}
-      description={t('ThisContactFormIsSplitIntoThreeSteps')}
+      description={t('ThisContactFormIsSplitIntoTwoSteps')}
     >
       <div className="input-wrap">
         <label>
@@ -30,7 +30,7 @@ export default function InitialForm({
             type="text"
             name="firstname"
             value={firstName}
-            onChange={e => updateFields({ firstName: e.target.value })}
+            onChange={(e) => updateFields({ firstName: e.target.value })}
           />
           <span>
             {t('FirstName')}{' '}
@@ -48,7 +48,7 @@ export default function InitialForm({
             type="text"
             name="lastname"
             value={lastName}
-            onChange={e => updateFields({ lastName: e.target.value })}
+            onChange={(e) => updateFields({ lastName: e.target.value })}
           />
           <span>
             {t('LastName')}{' '}

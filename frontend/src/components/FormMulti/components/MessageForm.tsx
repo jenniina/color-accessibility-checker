@@ -55,7 +55,7 @@ export default function MessageForm({
               type="email"
               name="email"
               value={email}
-              onChange={e => updateFields({ email: e.target.value })}
+              onChange={(e) => updateFields({ email: e.target.value })}
             />
             <span>
               {t('YourEmail')}{' '}
@@ -72,12 +72,12 @@ export default function MessageForm({
         <Select
           language={language}
           id="single"
-          className={`${styles.dropdownsingle} full`}
+          className={`${styles.dropdownsingle}`}
           instructions={t('PleaseSelectAnOption')}
           hide
           options={options}
           value={selectsingle}
-          onChange={e => {
+          onChange={(e) => {
             setSelect(e)
             updateFields({
               select: e?.label ?? selectsingle?.label,
@@ -99,7 +99,7 @@ export default function MessageForm({
           value={message}
           rows={4}
           placeholder={t('LetMeKnowWhatOnYourMind')}
-          onChange={e => updateFields({ message: e.target.value })}
+          onChange={(e) => updateFields({ message: e.target.value })}
         />
       </div>
     </FormWrapper>

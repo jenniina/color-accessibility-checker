@@ -1,4 +1,4 @@
-import { FormEvent, useState, useRef, useEffect } from 'react'
+import { FormEvent, useRef, useState } from 'react'
 import Icon from '../Icon/Icon'
 import { useMultistepForm } from './hooks/useMultistepForm'
 import { ELanguages, RefObject } from '../../types'
@@ -9,24 +9,24 @@ import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { notify } from '../../reducers/notificationReducer'
 import { useLanguageContext } from '../../contexts/LanguageContext'
 import MessageForm from './components/MessageForm'
-import ExtrasForm from './components/ExtrasForm'
 import InitialForm from './components/InitialForm'
 
 function FormMulti() {
   const { t, language } = useLanguageContext()
-
   const form = useRef() as RefObject<HTMLFormElement>
 
   const [data, setData] = useState(INITIAL_DATA)
   const [sending, setSending] = useState(false)
+  const [showError, setShowError] = useState(false)
+  const [showMessage, setShowMessage] = useState(false)
 
+  const popup = useRef() as RefObject<HTMLDivElement>
   const dispatch = useAppDispatch()
 
   function updateFields(fields: Partial<FormData>) {
-    setData(prev => {
-      return { ...prev, ...fields }
-    })
+    setData((prev) => ({ ...prev, ...fields }))
   }
+
   const {
     steps,
     currentStepIndex,
@@ -37,74 +37,64 @@ function FormMulti() {
     next,
     goTo,
   } = useMultistepForm([
-    <InitialForm {...data} updateFields={updateFields} key={`InitialForm`} />,
-    <MessageForm {...data} updateFields={updateFields} key={`MessageForm`} />,
-    <ExtrasForm {...data} updateFields={updateFields} key={`ExtrasForm`} />,
+    <InitialForm {...data} updateFields={updateFields} key="InitialForm" />,
+    <MessageForm {...data} updateFields={updateFields} key="MessageForm" />,
   ])
+
+  function flashError() {
+    setShowError(true)
+    setTimeout(() => {
+      setShowError(false)
+    }, 3000)
+  }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    if (!isLastStep) return next()
+    if (!isLastStep) {
+      next()
+      return
+    }
 
-    if (form.current) {
-      try {
-        setSending(true)
-        await sendEmail(data).then(() => {
-          setSending(false)
-          goTo(0)
-          setData(INITIAL_DATA)
-          setShowMessage(true)
-          setTimeout(() => {
-            setShowMessage(false)
-          }, 100000)
-          void dispatch(notify(t('ThankYouForYourMessage'), false, 8))
-        })
-      } catch (error) {
-        console.error('error', error)
-        alert(t('ThereWasAnErrorSendingTheMessage'))
-      }
+    if (data.email.trim() === '' || data.message.trim() === '') {
+      flashError()
+      return
+    }
+
+    if (!form.current) return
+
+    try {
+      setSending(true)
+      await sendEmail(data)
+      goTo(0)
+      setData(INITIAL_DATA)
+      setShowMessage(true)
+      setTimeout(() => {
+        setShowMessage(false)
+      }, 100000)
+      void dispatch(notify(t('ThankYouForYourMessage'), false, 8))
+    } catch (error) {
+      console.error('error', error)
+      alert(t('ThereWasAnErrorSendingTheMessage'))
+    } finally {
+      setSending(false)
     }
   }
 
   function handleNext() {
     if (
-      /*first step with empty fields*/ isFirstStep &&
+      isFirstStep &&
       (data.firstName == null ||
-        data.firstName == '' ||
+        data.firstName === '' ||
         data.lastName == null ||
-        data.lastName == '')
+        data.lastName === '')
     ) {
-      setShowError(true)
-      setTimeout(() => {
-        setShowError(false)
-      }, 3000)
-    } else if (
-      /*middle step with empty fields*/ !isFirstStep &&
-      !isLastStep &&
-      (data.email == null ||
-        data.email.trim() == '' ||
-        data.message == null ||
-        data.message.trim() == '')
-    ) {
-      setShowError(true)
-      setTimeout(() => {
-        setShowError(false)
-      }, 3000)
-    } else {
-      next()
+      flashError()
+      return
     }
+
+    next()
   }
-
-  const [showError, setShowError] = useState(false)
-  const [showMessage, setShowMessage] = useState(false)
-  const popup = useRef() as RefObject<HTMLDivElement>
-  const nextButton = useRef() as RefObject<HTMLButtonElement>
-
-  useEffect(() => {
-    if (popup.current == null || nextButton.current == null) return
-    popup.current.style.top = `-2em`
-  }, [showError])
 
   return (
     <div className={styles.wrapper}>
@@ -117,7 +107,7 @@ function FormMulti() {
       )}
       <form
         ref={form}
-        onSubmit={e => void handleSubmit(e)}
+        onSubmit={(e) => void handleSubmit(e)}
         aria-labelledby="steps"
       >
         <span id="steps" className={styles.steps}>
@@ -126,25 +116,6 @@ function FormMulti() {
             {currentStepIndex + 1}&nbsp;/&nbsp;{steps.length}
           </span>
         </span>
-        <div className={styles.hiddenform}>
-          {isLastStep ? (
-            <>
-              {' '}
-              <InitialForm
-                {...data}
-                updateFields={updateFields}
-                key={`InitialForm2`}
-              />
-              <MessageForm
-                {...data}
-                updateFields={updateFields}
-                key={`MessageForm2`}
-              />
-            </>
-          ) : (
-            ''
-          )}
-        </div>
 
         {step}
 
@@ -156,7 +127,6 @@ function FormMulti() {
           )}
           {!isLastStep && (
             <button
-              ref={nextButton}
               type="button"
               className={isLastStep ? styles.submit : styles.next}
               onClick={handleNext}
@@ -181,6 +151,7 @@ function FormMulti() {
               aria-live="assertive"
               style={{
                 position: 'absolute',
+                top: '-2em',
                 fontWeight: 'bold',
                 color: 'inherit',
                 letterSpacing: '0.04em',

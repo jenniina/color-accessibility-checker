@@ -2313,6 +2313,15 @@ export const translations = {
     cs: 'Tento kontaktní formulář je pro demonstrační účely rozdělen do tří kroků. Nebojte se, není to příliš dlouhé.',
     fi: 'Tämä yhteydenottolomake on jaettu kolmeen vaiheeseen esittelytarkoituksia varten. Älä huoli, se ei ole liian pitkä.',
   },
+  ThisContactFormIsSplitIntoTwoSteps: {
+    en: "This contact form is split into two steps for demonstration purposes. Don't worry, it's not too long.",
+    es: 'Este formulario de contacto se divide en dos pasos con fines de demostración. No te preocupes, no es demasiado largo.',
+    fr: "Ce formulaire de contact est divisé en deux étapes à des fins de démonstration. Ne vous inquiétez pas, ce n'est pas trop long.",
+    de: 'Dieses Kontaktformular ist zu Demonstrationszwecken in zwei Schritte unterteilt. Keine Sorge, es ist nicht zu lang.',
+    pt: 'Este formulário de contato é dividido em duas etapas para fins de demonstração. Não se preocupe, não é muito longo.',
+    cs: 'Tento kontaktní formulář je pro demonstrační účely rozdělen do dvou kroků. Nebojte se, není to příliš dlouhé.',
+    fi: 'Tämä yhteydenottolomake on jaettu kahteen vaiheeseen esittelytarkoituksia varten. Älä huoli, se ei ole liian pitkä.',
+  },
   AppearanceNeedsWork: {
     en: 'Appearance needs work',
     es: 'La apariencia necesita trabajo',
