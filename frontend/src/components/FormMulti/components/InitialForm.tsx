@@ -18,10 +18,7 @@ export default function InitialForm({
   const { t } = useLanguageContext()
 
   return (
-    <FormWrapper
-      title={t('BasicDetails')}
-      description={t('ThisContactFormIsSplitIntoTwoSteps')}
-    >
+    <FormWrapper title={t('BasicDetails')} description={t('Name')}>
       <div className="input-wrap">
         <label>
           <input
