@@ -23,7 +23,7 @@
   --gap: 0.4rem;
   flex: 1 0 auto;
   max-width: 100%;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 300;
   letter-spacing: calc(var(--letter-spacing) * -1);
   line-height: 1;
@@ -34,11 +34,12 @@
   align-items: center;
   justify-content: center;
   gap: var(--gap);
-  line-height: 0.9;
+  line-height: 1;
   font-family: var(--title-family);
 }
 .logo > img + span {
   flex-shrink: 1;
+  margin-top: 0.1rem;
 }
 .dark .logo img {
   filter: invert(100%) sepia(100%) grayscale(100%) brightness(150%);
@@ -114,7 +115,7 @@
 }
 
 .language {
-  width: min(7rem, calc(90vw - var(--page-padding) * 2));
+  width: min(9rem, calc(90vw - var(--page-padding) * 2));
 }
 .language > div {
   /* padding: 0.5em 0.4em 0.33em; */
@@ -124,12 +125,11 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.4rem;
-  height: 2rem;
+  height: 2.4rem;
 }
 .language > div > span {
   flex: 1 0 calc(100% - 3em - var(--padding) * 2);
   font-family: var(--title-family);
-  font-size: 0.9rem;
 }
 /* aria-selected li: */
 .language > div > ul > li[aria-selected='true'] {
@@ -140,11 +140,11 @@
   display: inline-flex;
   align-items: center;
   font-size: 1.3rem;
-  gap: 0.5rem;
+  gap: 0.6rem;
   padding: 0;
   border-radius: 50%;
-  height: 2rem;
-  width: 2.1rem;
+  height: 2.4rem;
+  width: 2.41rem;
   overflow: hidden;
 }
 
@@ -153,7 +153,7 @@
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
+  gap: 0.6rem;
   transition-property: transform;
   transition-duration: calc(2 * var(--transition-duration));
   transition-timing-function: var(--transition-type);
@@ -168,7 +168,7 @@
 .light.theme-btn:focus .theme-icon,
 .light.theme-btn:focus-visible .theme-icon,
 .dark .theme-icon {
-  transform: translateY(0.33rem);
+  transform: translateY(0.55rem);
 }
 
 .auth,
@@ -180,6 +180,7 @@
 .auth > div > div > button {
   padding: 0.1rem 1rem 0;
   height: 2rem;
+  max-height: 2rem;
 }
 
 @media (min-width: 300px) {

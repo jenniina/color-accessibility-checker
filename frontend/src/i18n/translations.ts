@@ -2304,6 +2304,15 @@ export const translations = {
     cs: 'Základní Detaily',
     fi: 'Perustiedot',
   },
+  PleaseFillInYourName: {
+    en: 'Please fill in your name',
+    es: 'Por favor, rellene su nombre',
+    fr: 'Veuillez remplir votre nom',
+    de: 'Bitte geben Sie Ihren Namen ein',
+    pt: 'Por favor, preencha seu nome',
+    cs: 'Vyplňte prosím své jméno',
+    fi: 'Pyydän täyttämään nimesi',
+  },
   ThisContactFormIsSplitIntoThreeSteps: {
     en: "This contact form is split into three steps for demonstration purposes. Don't worry, it's not too long.",
     es: 'Este formulario de contacto se divide en tres pasos con fines de demostración. No te preocupes, no es demasiado largo.',

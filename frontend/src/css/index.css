@@ -139,8 +139,8 @@ html {
   width: 100%;
 }
 .App {
-  --bg-blue: linear-gradient(4deg, var(--color-primary-15) 0%, var(--color-primary-10) 30%, var(--color-primary-5) 60%, var(--color-primary-3) 100%);
-  --bg-gray: linear-gradient(4deg, var(--color-gray-10) 0%, var(--color-gray-6) 30%, var(--color-gray-2) 50%, var(--color-gray-1) 100%);
+  --bg-blue: linear-gradient(3deg, var(--color-primary-15) 0%, var(--color-primary-9) 30%, var(--color-primary-6) 66%, var(--color-primary-3) 100%);
+  --bg-gray: linear-gradient(3deg, var(--color-gray-10) 0%, var(--color-gray-7) 30%, var(--color-gray-2) 66%, var(--color-gray-1) 100%);
   max-width: 100%;
   min-height: 100vh;
   overflow: hidden;
@@ -576,8 +576,10 @@ button.horizonal-scroll.disable {
 }
 
 .page {
-  padding: 0 var(--page-padding);
+  padding: 0;
   margin: 0 auto;
+  width: 100%;
+  max-width: var(--width-small);
 }
 .page > .inner-wrap {
   display: flex;
@@ -1458,7 +1460,8 @@ strong {
 
 button,
 button.restore {
-  padding: 0.6em 0.8em 0.5em;
+  padding: 0.1em 0.4em 0;
+  min-height: 1.8rem;
   border-radius: var(--radius-small);
   width: auto;
   border: 1px solid var(--color-primary-7);
@@ -1576,13 +1579,6 @@ input[type='button'].restore:focus-visible {
 body .focus-within:focus-within {
   outline-offset: 3px;
 }
-
-@media (min-width: 400px) {
-  button,
-  button.restore {
-    padding: 0.6em 1em 0.5em;
-  }
-} /*END media*/
 
 /* Screen-reader text, visually hidden */
 .scr {
@@ -1734,6 +1730,8 @@ form.login {
 }
 .login-wrap button.login > i > span {
   font-style: normal;
+  font-family: var(--title-family);
+  letter-spacing: calc(var(--letter-spacing) * 0.9);
 }
 .login-wrap button.login.open:not(.nav) {
   display: none;
@@ -1768,4 +1766,11 @@ button.reset.padding,
 button.reset.padding:hover,
 button.reset.padding:focus {
   padding: 0.3em 0.6em;
+}
+@media (min-width: 400px) {
+  button,
+  button.restore {
+    padding: 0.1em 0.8em 0;
+    min-height: 2.4rem;
+  }
 }

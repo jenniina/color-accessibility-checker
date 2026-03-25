@@ -8,12 +8,12 @@ import { useTheme, useThemeUpdate } from '../../hooks/useTheme'
 import Icon from '../Icon/Icon'
 import FormLogin from '../Login/Login'
 
-import eye from '../../assets/eye.svg'
+import eye from '../../assets/eye2.svg'
 
 function buildLanguageOptions(): SelectOption[] {
   return Object.values(ELanguages).map((lang) => ({
     value: lang,
-    label: ELanguagesLong[lang],
+    label: ELanguagesLong[lang] + ` (${lang.toUpperCase()})`,
   }))
 }
 
@@ -32,36 +32,13 @@ export default function Nav() {
     >
       <div className={styles.inner}>
         <Link to="/" className={`${styles.logo} tooltip-wrap`}>
-          <img src={eye} alt="Eye icon" height="22" title={t('Logo')} />{' '}
+          <img src={eye} alt="logo" height="26" title={t('Logo')} />{' '}
           <span>Contrast at a Glance</span>
           <span className="scr">by Jenniina</span>
           <span className="tooltip below right narrow2" aria-hidden="true">
             by Jenniina
           </span>
         </Link>
-        <nav
-          id="main-navigation"
-          className={styles.links}
-          aria-label={t('Menu')}
-        >
-          <NavLink
-            to="/"
-            end
-            className={({ isActive }) =>
-              isActive ? `${styles.link} ${styles.active}` : styles.link
-            }
-          >
-            {t('Home')}
-          </NavLink>
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              isActive ? `${styles.link} ${styles.active}` : styles.link
-            }
-          >
-            {t('Contact')}
-          </NavLink>
-        </nav>
 
         <div
           className={styles.settings}
@@ -91,19 +68,22 @@ export default function Nav() {
             <Select
               language={language}
               id="language-navbar"
-              className={`language ${styles.language}`}
+              className={`language ${styles.language} narrow2`}
               instructions={t('LanguageTitle')}
               hide
               hideDelete
               options={languageOptions}
               value={{
                 value: language,
-                label: ELanguagesLong[language],
+                label: `${ELanguagesLong[language]} (${language.toUpperCase()})`,
               }}
               onChange={(o) => {
                 if (!o) return
                 setLanguage(o.value as ELanguages)
               }}
+              tooltip={true}
+              x="left"
+              y="below"
             />
           </div>
 

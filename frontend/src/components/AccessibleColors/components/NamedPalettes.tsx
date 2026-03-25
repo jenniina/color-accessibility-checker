@@ -371,19 +371,8 @@ const NamedPalettes: FC<Props> = ({
 
   if (!isLoggedIn)
     return (
-      <>
-        <div
-          className={`mt2 mb2 ${styles['login-wrap']}`}
-          onClick={() => {
-            //timeout before scroll to allow the login form to open:
-            setTimeout(() => {
-              window.scrollTo({
-                top: document.documentElement.scrollHeight,
-                behavior: 'smooth',
-              })
-            }, 300)
-          }}
-        >
+      <section>
+        <div className={`mt2 mb2 ${styles['login-wrap']}`}>
           <FormLogin
             isOpen={loginOpen}
             setIsFormOpen={setLoginOpen}
@@ -391,7 +380,7 @@ const NamedPalettes: FC<Props> = ({
             text="gray"
           />
         </div>
-      </>
+      </section>
     )
 
   const startIdx = (currentPage - 1) * itemsPerPage

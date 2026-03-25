@@ -242,7 +242,7 @@ const ColorsInput: FC<Props> = ({
       <Select
         hideDelete
         id="color-select"
-        className={styles['color-select']}
+        className={styles['inner-mode-select']}
         language={language}
         instructions={t('SelectColorFormat')}
         hide
@@ -273,7 +273,7 @@ const ColorsInput: FC<Props> = ({
       {selected?.value === 'hex' && (
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={`${styles.inputs} ${styles['hex-input']}`}>
-            <label>
+            <label style={{ fontSize: `calc(${fontSize} * 1.2)` }}>
               <span>Hex: </span>
               <input
                 name={`hex-input-${block.id}`}
@@ -281,7 +281,11 @@ const ColorsInput: FC<Props> = ({
                 value={hex}
                 onChange={(e) => setHex(e.target.value)}
                 className={styles['color-input']}
-                style={{ maxWidth: `${width}`, fontSize: fontSize }}
+                style={{
+                  maxWidth: `${width}`,
+                  fontSize: `calc(${fontSize} * 1.1)`,
+                  lineHeight: 1.4,
+                }}
                 placeholder="#FFFFFF"
               />
             </label>
@@ -291,7 +295,8 @@ const ColorsInput: FC<Props> = ({
             style={{
               minWidth: `calc(100% - 4px)`,
               maxWidth: `calc(100% - 4px)`,
-              fontSize: fontSize,
+              fontSize: `calc(${fontSize} * 1.1)`,
+              lineHeight: 1.4,
             }}
             type="submit"
             className={`${styles['color-format-submit']} gray`}
@@ -306,7 +311,7 @@ const ColorsInput: FC<Props> = ({
           className={`${styles.inputs} ${styles['rgb-inputs']}`}
           onSubmit={handleSubmit}
         >
-          <label>
+          <label style={{ fontSize: `calc(${fontSize} * 1.2)` }}>
             <span>R: </span>
             <input
               name={`r-input-${block.id}`}
@@ -316,11 +321,15 @@ const ColorsInput: FC<Props> = ({
               min={0}
               max={255}
               className={styles['color-input']}
-              style={{ maxWidth: `${width}`, fontSize: fontSize }}
+              style={{
+                maxWidth: `${width}`,
+                fontSize: `calc(${fontSize} * 1.1)`,
+                lineHeight: 1.4,
+              }}
             />
           </label>
 
-          <label>
+          <label style={{ fontSize: `calc(${fontSize} * 1.2)` }}>
             <span>G: </span>
             <input
               name={`g-input-${block.id}`}
@@ -330,11 +339,15 @@ const ColorsInput: FC<Props> = ({
               min={0}
               max={255}
               className={styles['color-input']}
-              style={{ maxWidth: `${width}`, fontSize: fontSize }}
+              style={{
+                maxWidth: `${width}`,
+                fontSize: `calc(${fontSize} * 1.1)`,
+                lineHeight: 1.4,
+              }}
             />
           </label>
 
-          <label>
+          <label style={{ fontSize: `calc(${fontSize} * 1.2)` }}>
             <span>B: </span>
             <input
               name={`b-input-${block.id}`}
@@ -344,7 +357,11 @@ const ColorsInput: FC<Props> = ({
               min={0}
               max={255}
               className={styles['color-input']}
-              style={{ maxWidth: `${width}`, fontSize: fontSize }}
+              style={{
+                maxWidth: `${width}`,
+                fontSize: `calc(${fontSize} * 1.1)`,
+                lineHeight: 1.4,
+              }}
             />
           </label>
         </form>
@@ -355,7 +372,7 @@ const ColorsInput: FC<Props> = ({
           className={`${styles.inputs} ${styles['hsl-inputs']}`}
           onSubmit={handleSubmit}
         >
-          <label>
+          <label style={{ fontSize: `calc(${fontSize} * 1.2)` }}>
             <span>H: </span>
             <input
               name={`h-input-${block.id}`}
@@ -365,10 +382,14 @@ const ColorsInput: FC<Props> = ({
               min={0}
               max={360}
               className={styles['color-input']}
-              style={{ maxWidth: `${width}`, fontSize: fontSize }}
+              style={{
+                maxWidth: `${width}`,
+                fontSize: `calc(${fontSize} * 1.1)`,
+                lineHeight: 1.4,
+              }}
             />
           </label>
-          <label>
+          <label style={{ fontSize: `calc(${fontSize} * 1.2)` }}>
             <span>S: </span>
             <input
               name={`s-input-${block.id}`}
@@ -378,11 +399,15 @@ const ColorsInput: FC<Props> = ({
               min={0}
               max={100}
               className={styles['color-input']}
-              style={{ maxWidth: `${width}`, fontSize: fontSize }}
+              style={{
+                maxWidth: `${width}`,
+                fontSize: `calc(${fontSize} * 1.1)`,
+                lineHeight: 1.4,
+              }}
             />
           </label>
 
-          <label>
+          <label style={{ fontSize: `calc(${fontSize} * 1.2)` }}>
             <span>L: </span>
             <input
               name={`l-input-${block.id}`}
@@ -392,7 +417,11 @@ const ColorsInput: FC<Props> = ({
               min={0}
               max={100}
               className={styles['color-input']}
-              style={{ maxWidth: `${width}`, fontSize: fontSize }}
+              style={{
+                maxWidth: `${width}`,
+                fontSize: `calc(${fontSize} * 1.1)`,
+                lineHeight: 1.4,
+              }}
             />
           </label>
         </form>
