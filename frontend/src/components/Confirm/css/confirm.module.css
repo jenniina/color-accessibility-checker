@@ -48,7 +48,8 @@
   outline-offset: -4px;
 }
 #confirm .buttons button.confirm-btn:hover {
-  outline-color: var(--color-primary-1);
+  color: red;
+  outline-color: red;
   outline-offset: -5px;
 }
 #confirm .buttons .cancel-btn {

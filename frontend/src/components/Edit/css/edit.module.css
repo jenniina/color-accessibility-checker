@@ -1,7 +1,7 @@
 .edit-user {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 2rem;
 }
 
 .p {

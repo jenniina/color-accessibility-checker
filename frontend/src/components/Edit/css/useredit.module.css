@@ -1,5 +1,8 @@
 .editform {
   margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .submit {
@@ -8,7 +11,4 @@
 
 .delete-account {
   margin-top: 0.8rem;
-}
-
-.light {
 }

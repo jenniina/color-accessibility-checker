@@ -1564,11 +1564,53 @@ const registerUser = async (req: Request, res: Response): Promise<void> => {
 
     const existingUser = await User.findOne({ username })
     if (existingUser) {
-      res.status(401).json({
-        message: `${ERegistrationFailed[existingUser.language]}. ${
-          EPleaseCheckYourEmailIfYouHaveAlreadyRegistered[
-            existingUser.language ?? 'en'
-          ]
+      const existingLanguage =
+        (existingUser.language as unknown as ELanguage) ??
+        (language as unknown as ELanguage) ??
+        'en'
+
+      // If the user exists but hasn't verified their email yet, re-send
+      // the verification email instead of treating it as an auth failure.
+      if (!existingUser.verified) {
+        try {
+          const token = await generateToken(existingUser._id)
+          existingUser.token = token
+          await existingUser.save()
+
+          const link = `${process.env.BASE_URI}/api/users/verify/${token}?lang=${existingLanguage}`
+
+          await sendMail(
+            EHelloWelcome[existingLanguage],
+            EEmailMessage[existingLanguage],
+            existingUser.username,
+            link
+          )
+
+          res.status(200).json({
+            success: true,
+            resent: true,
+            message:
+              EPleaseCheckYourEmailIfYouHaveAlreadyRegistered[
+                existingLanguage
+              ] ?? 'Please check your email',
+          })
+          return
+        } catch (error) {
+          console.error('Error re-sending verification email:', error)
+          res.status(500).json({
+            success: false,
+            message: EError[existingLanguage] ?? 'An error occurred',
+          })
+          return
+        }
+      }
+
+      // Already registered and verified
+      res.status(409).json({
+        success: false,
+        message: `${ERegistrationFailed[existingLanguage]}. ${
+          EPleaseCheckYourEmailIfYouHaveAlreadyRegistered[existingLanguage] ??
+          'Please check your email'
         }`,
       })
       return

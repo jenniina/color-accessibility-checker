@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import userService from '../services/users'
-import { IUser, ELanguages, IBlacklistedJoke } from '../types'
+import { IUser, ELanguages } from '../types'
 import { translations as t } from '../i18n/translations'
-import { IJoke } from '../components/Jokes/types'
 import { sleep } from '../utils'
 import { IContent } from '../types'
 
@@ -77,7 +76,9 @@ export const createUser = (newUser: IUser) => {
   ) => {
     const response = await userService.createNewUser(newUser)
     const data = response.data as IContent
-    void dispatch(register(data.user))
+    if (data?.user) {
+      void dispatch(register(data.user))
+    }
     return data
   }
 }
@@ -98,43 +99,6 @@ export const updateUser = (
     dispatch: (arg0: { payload: IUser; type: 'users/update' }) => IUser
   ) => {
     const content = (await userService.updateUser(user)) as IContent
-    void dispatch(update(content.user))
-    return content
-  }
-}
-export const addToBlacklistedJokes = (
-  userId: IUser['_id'],
-  jokeId: IJoke['jokeId'],
-  language: ELanguages,
-  value: string | undefined
-) => {
-  return async (
-    dispatch: (arg0: { payload: IUser; type: 'users/update' }) => IUser
-  ) => {
-    const content = (await userService.addToBlacklistedJokes(
-      userId,
-      jokeId,
-      language,
-      value
-    )) as IContent
-    void dispatch(update(content.user))
-    return content
-  }
-}
-
-export const removeJokeFromBlacklisted = (
-  userId: IUser['_id'] | undefined,
-  joke_id: IBlacklistedJoke['_id'] | undefined,
-  language: ELanguages
-) => {
-  return async (
-    dispatch: (arg0: { payload: IUser; type: 'users/update' }) => IUser
-  ) => {
-    const content = (await userService.removeJokeFromBlacklisted(
-      userId,
-      joke_id,
-      language
-    )) as IContent
     void dispatch(update(content.user))
     return content
   }

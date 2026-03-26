@@ -31,7 +31,7 @@ fieldset:not(:last-of-type) {
 }
 legend {
   font-size: clamp(var(--title-M), 5vw, var(--title-L));
-  letter-spacing: var(--letter-spacing);
+  letter-spacing: calc(var(--letter-spacing) * -1);
   margin: 0 0 1em 0;
   text-align: left;
   padding-top: 1.5em;

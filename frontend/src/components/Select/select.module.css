@@ -29,6 +29,7 @@
 
 .container {
   position: relative;
+  min-width: 11em;
   max-width: 100%;
   min-height: var(--size);
   display: flex;
@@ -92,10 +93,9 @@
   /* border-color: var(--color-fg);
   outline: 1px solid currentColor;
   outline-offset: 2px; */
-  color: var(--color-primary-1);
   border-color: var(--color-primary-12);
   background-position: 50% 98%;
-  outline: 2px solid currentColor;
+  outline: 2px solid var(--color-gray-1);
   outline-offset: -5px;
 }
 
@@ -118,6 +118,14 @@
   flex-wrap: wrap;
   padding-left: calc(var(--padding) * 0.9);
   line-height: 0.9;
+  transition-property: color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-type);
+}
+.container:hover .value,
+.container:focus .value,
+.container:focus-within .value {
+  color: var(--color-gray-1);
 }
 
 button.clear-btn {
@@ -128,10 +136,16 @@ button.clear-btn {
   font-size: var(--size);
   cursor: pointer;
   padding: 0 calc(var(--padding) / 2);
+  min-height: 1.4rem;
 }
 
-button.clear-btn:focus,
-button.clear-btn:hover {
+.container:hover button.clear-btn,
+.container:focus button.clear-btn,
+.container:focus-within button.clear-btn {
+  color: var(--color-gray-1);
+}
+.container button.clear-btn:focus,
+.container button.clear-btn:hover {
   color: var(--color-warning);
 }
 

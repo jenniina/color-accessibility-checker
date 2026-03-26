@@ -42,8 +42,9 @@ const Register = ({ setIsFormOpen, isOpen, text }: Props) => {
       return
     }
     void dispatch(createUser({ name, username, password, language: 'en' }))
-      .then(() => {
-        void dispatch(notify(t('RegistrationSuccesful'), false, 8))
+      .then((data) => {
+        const message = data?.message || t('RegistrationSuccesful')
+        void dispatch(notify(message, false, 8))
         setSending(false)
       })
       .catch((err: unknown) => {
