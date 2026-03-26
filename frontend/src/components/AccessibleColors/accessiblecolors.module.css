@@ -428,6 +428,7 @@
   padding: 0.5em 0.4em 0.46em;
   gap: 0.1em;
   border-radius: 0.4em;
+  min-width: unset;
 }
 .color-edit-container > .inner-mode-select > div ul {
   border-radius: 0.4em;

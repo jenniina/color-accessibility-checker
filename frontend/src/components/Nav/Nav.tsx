@@ -8,7 +8,7 @@ import { useTheme, useThemeUpdate } from '../../hooks/useTheme'
 import Icon from '../Icon/Icon'
 import FormLogin from '../Login/Login'
 
-import eye from '../../assets/eye2.svg'
+import eye from '../../assets/eye3.svg'
 
 function buildLanguageOptions(): SelectOption[] {
   return Object.values(ELanguages).map((lang) => ({

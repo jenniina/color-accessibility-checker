@@ -285,7 +285,7 @@ main {
   display: flex;
   justify-content: flex-end;
   text-align: center;
-  font-size: 0.86em;
+  font-size: clamp(12px, 0.86em, 22px);
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -1206,7 +1206,7 @@ body {
   padding: 0;
   min-height: 99vh;
   max-height: 100vh;
-  font-size: calc(1rem * var(--responsive_scale));
+  font-size: clamp(12px, calc(1rem * var(--responsive_scale)), 22px);
   background-color: var(--color-primary-1);
   color: var(--color-primary-15);
   overflow-x: hidden;
@@ -1402,11 +1402,11 @@ h6 {
   text-align: left;
 }
 #root .small {
-  font-size: calc(1rem * var(--responsive_scale));
+  font-size: clamp(12px, calc(1rem * var(--responsive_scale)), 22px);
   letter-spacing: calc(var(--letter-spacing) * 2);
 }
 #root button.small {
-  font-size: calc(0.8rem * var(--responsive_scale));
+  font-size: clamp(12px, calc(0.8rem * var(--responsive_scale)), 22px);
   letter-spacing: calc(var(--letter-spacing) * -0.9);
   padding: 0.3em 0.9em;
 }
