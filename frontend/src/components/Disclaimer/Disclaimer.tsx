@@ -4,8 +4,13 @@ import styles from './css/info.module.css'
 import { useLanguageContext } from '../../contexts/LanguageContext'
 import SEO from '../../components/SEO/SEO'
 import Heading from '../Heading/Heading'
+import { useEffect } from 'react'
 export default function Disclaimer({ type }: { type: string }) {
   const { t } = useLanguageContext()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <>
@@ -14,6 +19,10 @@ export default function Disclaimer({ type }: { type: string }) {
         description={t('PrivacyAndDataSecurityInformationForLoggedInUsers')}
         canonicalUrl={'https://colors.jenniina.fi/info'}
       />
+      {/* Murupolku etusivulle */}
+      <nav className="breadcrumb">
+        <Link to="/">{t('Home')}</Link> / <span>{t('Information')}</span>
+      </nav>
       <Heading
         title={`${t('Information')}`}
         subtitle={`${t('PrivacyAndDataSecurityInformationForLoggedInUsers')}`}

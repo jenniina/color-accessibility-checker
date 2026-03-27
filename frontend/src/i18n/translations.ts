@@ -2646,6 +2646,15 @@ export const translations = {
     cs: 'Uložit',
     fi: 'Tallenna',
   },
+  SiteDescription: {
+    en: 'is an easy-to-use tool for testing how well colors work together from an accessibility point of view. It shows at a glance whether your color combinations have enough contrast for text and interface elements, making it easier to create designs that more people can read and use.',
+    es: 'es una herramienta fácil de usar para probar qué tan bien funcionan los colores juntos desde el punto de vista de la accesibilidad. Muestra de un vistazo si tus combinaciones de colores tienen suficiente contraste para texto y elementos de interfaz, lo que facilita crear diseños que más personas puedan leer y usar.',
+    fr: "est un outil facile à utiliser pour tester la compatibilité des couleurs du point de vue de l'accessibilité. Il montre en un coup d'œil si vos combinaisons de couleurs ont suffisamment de contraste pour le texte et les éléments d'interface, ce qui facilite la création de designs que plus de personnes peuvent lire et utiliser.",
+    de: 'ist ein benutzerfreundliches Tool, um zu testen, wie gut Farben aus Sicht der Barrierefreiheit zusammenarbeiten. Es zeigt auf einen Blick, ob Ihre Farbkombinationen genügend Kontrast für Text und Interface-Elemente haben, was es einfacher macht, Designs zu erstellen, die mehr Menschen lesen und verwenden können.',
+    pt: 'é uma ferramenta fácil de usar para testar como as cores funcionam juntas do ponto de vista da acessibilidade. Ele mostra rapidamente se suas combinações de cores têm contraste suficiente para texto e elementos de interface, facilitando a criação de designs que mais pessoas podem ler e usar.',
+    cs: 'je snadno použitelný nástroj pro testování toho, jak dobře spolu barvy fungují z pohledu přístupnosti. Na první pohled ukazuje, zda vaše barevné kombinace mají dostatečný kontrast pro text a prvky rozhraní, což usnadňuje vytváření designů, které může číst a používat více lidí.',
+    fi: 'on helppokäyttöinen työkalu värien saavutettavuuden arviointiin. Sen avulla näet nopeasti, onko väriyhdistelmillä riittävä kontrasti tekstille ja käyttöliittymän elementeille, jolloin saavutettavampien ja helpommin käytettävien palvelujen suunnittelu on helpompaa.',
+  },
 } as const
 
 export type Translations = typeof translations

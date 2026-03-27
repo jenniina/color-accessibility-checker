@@ -74,54 +74,57 @@ export default function Header({
                 setIsFormOpen={setHintsOpen}
                 hideBrackets={true}
               >
-                <ul className={`ul medium ${styles['hints-list']}`}>
-                  <li>{t('ColorsCanBeReorderedByDragging')}</li>
-                  <li>{t('HintOrganizingColors')}</li>
-                  <li>
-                    {t('SaveSVG')} (
-                    {firstToLowerCase(t('WithOrWithoutColorName'))})
-                  </li>
-                  <li>
-                    {t('SavePNG')} (
-                    {firstToLowerCase(t('WithOrWithoutColorName'))})
-                  </li>
-                  <li>
-                    {t('ChangingTheSizeWillAlsoChangeTheSizeOfTheSavedFile')}
-                  </li>
-                  <li>{t('LogInToSaveColorPalettesToDatabase')}</li>
-                  {!user && (
+                <>
+                  <p>Contrast at a Glance {t('SiteDescription')}</p>
+                  <ul className={`ul medium ${styles['hints-list']}`}>
+                    <li>{t('ColorsCanBeReorderedByDragging')}</li>
+                    <li>{t('HintOrganizingColors')}</li>
                     <li>
-                      {t('IfYouDontWantToRegister')}{' '}
-                      <div className="flex column mt1 gap-half left">
-                        <CopyToClipboard
-                          value={`temp${String.fromCharCode(64)}jenniina.fi`}
-                          label="temp [at] jenniina [dot] fi"
-                          ariaLabel={t('CopyToClipboard')}
-                        />
-                        {t('Password')}:{' '}
-                        <CopyToClipboard
-                          value="TempAtJenniina"
-                          label="TempAtJenniina"
-                          ariaLabel={t('CopyToClipboard')}
-                        />
-                      </div>{' '}
-                      <div className="flex column mt1">
-                        <Link
-                          replace
-                          to={`?${(() => {
-                            const next = new URLSearchParams(
-                              routerLocation.search
-                            )
-                            next.set('login', 'nav')
-                            return next.toString()
-                          })()}`}
-                        >
-                          {t('Login')}
-                        </Link>
-                      </div>
+                      {t('SaveSVG')} (
+                      {firstToLowerCase(t('WithOrWithoutColorName'))})
                     </li>
-                  )}
-                </ul>
+                    <li>
+                      {t('SavePNG')} (
+                      {firstToLowerCase(t('WithOrWithoutColorName'))})
+                    </li>
+                    <li>
+                      {t('ChangingTheSizeWillAlsoChangeTheSizeOfTheSavedFile')}
+                    </li>
+                    <li>{t('LogInToSaveColorPalettesToDatabase')}</li>
+                    {!user && (
+                      <li>
+                        {t('IfYouDontWantToRegister')}{' '}
+                        <div className="flex column mt1 gap-half left">
+                          <CopyToClipboard
+                            value={`temp${String.fromCharCode(64)}jenniina.fi`}
+                            label="temp [at] jenniina [dot] fi"
+                            ariaLabel={t('CopyToClipboard')}
+                          />
+                          {t('Password')}:{' '}
+                          <CopyToClipboard
+                            value="TempAtJenniina"
+                            label="TempAtJenniina"
+                            ariaLabel={t('CopyToClipboard')}
+                          />
+                        </div>{' '}
+                        <div className="flex column mt1">
+                          <Link
+                            replace
+                            to={`?${(() => {
+                              const next = new URLSearchParams(
+                                routerLocation.search
+                              )
+                              next.set('login', 'nav')
+                              return next.toString()
+                            })()}`}
+                          >
+                            {t('Login')}
+                          </Link>
+                        </div>
+                      </li>
+                    )}
+                  </ul>
+                </>
               </Accordion>
             )}
           </div>

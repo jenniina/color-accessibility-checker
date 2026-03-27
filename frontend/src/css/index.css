@@ -1401,6 +1401,23 @@ h6 {
 .left {
   text-align: left;
 }
+.breadcrumb {
+  width: var(--width-small);
+  margin: 2em auto 0;
+  display: flex;
+  flex-flow: row nowrap;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.9em;
+  color: var(--color-gray-7);
+}
+.breadcrumb a:visited {
+  color: var(--color-primary-9);
+}
+.breadcrumb a::after {
+  background-color: transparent;
+}
 #root .small {
   font-size: clamp(12px, calc(1rem * var(--responsive_scale)), 22px);
   letter-spacing: calc(var(--letter-spacing) * 2);
