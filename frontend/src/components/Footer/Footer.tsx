@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const Footer: FC = () => {
   const { t } = useLanguageContext()
   return (
-    <footer id="main-footer" className="main-footer">
+    <footer id="main-footer" className="main-footer" tabIndex={-1}>
       <div className="inner">
         <a className="copyright" href="https://jenniina.fi/">
           &copy; {new Date().getFullYear()} Jenniina Laine

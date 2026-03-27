@@ -75,7 +75,6 @@ export default function Header({
                 hideBrackets={true}
               >
                 <>
-                  <p>Contrast at a Glance {t('SiteDescription')}</p>
                   <ul className={`ul medium ${styles['hints-list']}`}>
                     <li>{t('ColorsCanBeReorderedByDragging')}</li>
                     <li>{t('HintOrganizingColors')}</li>

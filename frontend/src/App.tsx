@@ -56,7 +56,12 @@ function AppShell() {
     >
       <div className="App-inner-wrap">
         <Nav />
-        <main id="main-content" className="main-content" role="main">
+        <main
+          id="main-content"
+          className="main-content"
+          role="main"
+          tabIndex={-1}
+        >
           <Routes>
             <Route path="/" element={<AccessibleColors />} />
             <Route path="/contact" element={<Contact type="page" />} />

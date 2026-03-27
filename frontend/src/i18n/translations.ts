@@ -107,6 +107,15 @@ export const translations = {
     cs: 'Přejít na hlavní navigaci',
     fi: 'Siirry päävalikkoon',
   },
+  SkipToSettings: {
+    en: 'Skip to settings',
+    es: 'Saltar a configuraciones',
+    fr: 'Passer aux paramètres',
+    de: 'Zu den Einstellungen springen',
+    pt: 'Pular para configurações',
+    cs: 'Přejít na nastavení',
+    fi: 'Siirry asetuksiin',
+  },
   SkipToMainContent: {
     en: 'Skip to main content',
     es: 'Saltar al contenido principal',
@@ -1087,6 +1096,15 @@ export const translations = {
     pt: 'Pular para a próxima cor',
     cs: 'Přejít na další barvu',
     fi: 'Siirry seuraavaan väriin',
+  },
+  SkipToExportButtons: {
+    en: 'Skip to export buttons',
+    es: 'Saltar a los botones de exportación',
+    fr: "Passer aux boutons d'exportation",
+    de: 'Zu den Export-Schaltflächen springen',
+    pt: 'Pular para os botões de exportação',
+    cs: 'Přejít na tlačítka exportu',
+    fi: 'Siirry vientipainikkeisiin',
   },
   LightMode: {
     en: 'Light Mode',

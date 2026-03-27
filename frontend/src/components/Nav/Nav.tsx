@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { useCallback, useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import styles from './nav.module.css'
 import { useLanguageContext } from '../../contexts/LanguageContext'
 import { ELanguages, ELanguagesLong } from '../../types'
@@ -24,12 +24,67 @@ export default function Nav() {
 
   const [settingsOpen, setSettingsOpen] = useState(false)
 
+  const skipLinks = useMemo(
+    () => [
+      {
+        label: t('SkipToSettings'),
+        href: '#settings',
+        targetId: 'settings',
+      },
+      {
+        label: t('SkipToMainContent'),
+        href: '#main-content',
+        targetId: 'main-content',
+      },
+      {
+        label: t('SkipToFooter'),
+        href: '#main-footer',
+        targetId: 'main-footer',
+      },
+    ],
+    [t]
+  )
+
+  const activateSkipLink = useCallback(
+    (href: string, targetId: string) =>
+      (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault()
+        if (typeof window === 'undefined') return
+
+        window.location.hash = href
+
+        const el = window.document.getElementById(targetId)
+        if (!el) return
+
+        const htmlEl = el as HTMLElement
+        htmlEl.scrollIntoView({ block: 'start' })
+        htmlEl.focus()
+      },
+    []
+  )
+
   const languageOptions = useMemo(() => buildLanguageOptions(), [])
 
   return (
     <header
+      id="site-navigation"
       className={`${styles.navigation} ${lightTheme ? styles.light : styles.dark}`}
     >
+      <nav className={styles['skip-links']} aria-label="Skip links">
+        <ul>
+          {skipLinks.map((l) => (
+            <li key={l.href}>
+              <a
+                href={l.href}
+                className={styles['skip-link']}
+                onClick={activateSkipLink(l.href, l.targetId)}
+              >
+                <span>{l.label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
       <div className={styles.inner}>
         <Link to="/" className={`${styles.logo} tooltip-wrap`}>
           <img src={eye} alt="logo" height="26" title={t('Logo')} />{' '}
@@ -41,6 +96,7 @@ export default function Nav() {
         </Link>
 
         <div
+          id="settings"
           className={styles.settings}
           role="region"
           aria-label={t('Settings')}

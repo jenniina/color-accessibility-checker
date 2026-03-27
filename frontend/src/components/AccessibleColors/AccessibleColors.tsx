@@ -965,6 +965,10 @@ const AccessibleColors: FC = () => {
       >
         <section>
           <div id="info" className={styles['info-wrap']}>
+            {' '}
+            <p className="mt1">
+              <i>Contrast at a Glance</i> {t('SiteDescription')}
+            </p>
             <h2>{t('SymbolMeanings')}</h2>
             <ul>
               <li>

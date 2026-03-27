@@ -35,7 +35,7 @@
 .instructions {
   position: relative;
   margin: 0;
-  z-index: 3;
+  z-index: 33;
   display: flex;
   flex-flow: row wrap;
   flex: 1 0 100%;
