@@ -128,6 +128,7 @@ const AccessibleColors: FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null)
 
   const colorPicker = useRef<HTMLDivElement | null>(null)
+  const exportButtonsRef = useRef<HTMLDivElement | null>(null)
   const { ref: scrollRef } = useSideScroll<HTMLDivElement>(
     'accessible-colors-scroll'
   )
@@ -185,6 +186,14 @@ const AccessibleColors: FC = () => {
 
   const [haveCleared, setHaveCleared] = useState(false)
 
+  const focusExportButtons = useCallback(() => {
+    exportButtonsRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+    exportButtonsRef.current?.focus()
+  }, [])
+
   const baseWidth = 8
   const [widthNumber, setWidth] = useLocalStorage(
     'Jenniina-color-block-width',
@@ -193,7 +202,7 @@ const AccessibleColors: FC = () => {
   const width = `${widthNumber}em`
 
   const fontSizeMultiplier = widthNumber / baseWidth
-  console.log('fontSizeMultiplier', fontSizeMultiplier)
+
   const dynamicFontSize = {
     tooltip: `${0.86 * fontSizeMultiplier}em`,
     colorName: `${0.82 * fontSizeMultiplier}em`,
@@ -1177,7 +1186,7 @@ const AccessibleColors: FC = () => {
                         {!isFirst && prevId != null && (
                           <a
                             href={`#color-block-${prevId}`}
-                            className={`${styles['skip-link']} gray`}
+                            className={`${styles['skip-link']}`}
                             onClick={(e) => {
                               e.preventDefault()
                               focusColorBlock(prevId)
@@ -1240,6 +1249,19 @@ const AccessibleColors: FC = () => {
                           <Icon lib="md" name="MdDragIndicator" />
                           <span className="scr">{t('Move')}</span>
                         </big>
+
+                        {isLast && (
+                          <button
+                            type="button"
+                            className={`${styles['skip-link']} gray`}
+                            onClick={focusExportButtons}
+                          >
+                            <span>
+                              {t('SkipToExportButtons')}{' '}
+                              <Icon lib="fa" name="FaArrowRight" />
+                            </span>
+                          </button>
+                        )}
 
                         {!isLast && (
                           <button
@@ -1568,7 +1590,12 @@ const AccessibleColors: FC = () => {
               )
             })}
           </div>
-          <div className={`${styles['btn-wrap']} ${styles['export-wrap']}`}>
+          <div
+            id="export-buttons"
+            ref={exportButtonsRef}
+            tabIndex={-1}
+            className={`${styles['btn-wrap']} ${styles['export-wrap']}`}
+          >
             {listItemsByStatus[status]?.items?.length > 0 && (
               <>
                 <div>

@@ -52,9 +52,18 @@
   outline-offset: -6px;
   border-radius: 50%;
   z-index: 2;
+  transition-property: outline-color, outline-width, outline-offset;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-type);
 }
 .light .color-picker > input[type='color' i] {
   outline: 7px solid black;
+}
+.color-picker > input[type='color' i]:hover,
+.color-picker > input[type='color' i]:focus,
+.color-picker > input[type='color' i]:focus-visible {
+  outline-width: 10px;
+  outline-offset: -6px;
 }
 .color-picker > input[type='color' i]::before {
   content: '';
@@ -85,7 +94,7 @@
 .color-picker > button:hover,
 .color-picker > button:focus,
 .color-picker > button:focus-visible {
-  border-color: transparent;
+  border-color: currentColor;
 }
 .color-picker > button svg {
   width: 1.6em;
@@ -102,15 +111,19 @@
   width: 1.7em;
   border-radius: 0 2em 2em 0;
   background-color: black;
-  transition-property: transform;
+  transition-property: transform, background-color;
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--transition-type);
   transition-delay: 0.1s;
+}
+.color-picker .circle-left-edge {
+  border-right-color: 1px solid currentColor;
 }
 .light .color-picker .circle-left-edge {
   background-color: white;
   transform: scale(0.82, 1);
   z-index: 2;
+  border-right: 2px solid currentColor;
 }
 .color-picker .circle-left-edge::before {
   content: '';
@@ -481,6 +494,12 @@
 }
 #color-container .color-wrap button.remove {
   outline: gray solid 1px;
+}
+#color-container .color-wrap button.remove:hover,
+#color-container .color-wrap button.remove:focus,
+#color-container .color-wrap button.remove:focus-visible {
+  outline-color: red;
+  outline-width: 2px;
 }
 
 .move-buttons {
