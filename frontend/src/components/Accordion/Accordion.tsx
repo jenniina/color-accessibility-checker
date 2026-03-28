@@ -47,6 +47,23 @@ const Accordion = forwardRef(
     const [internalVisible, setInternalVisible] = useState(false)
     const visible = isControlled ? isOpen : internalVisible
     const [isAnimating, setIsAnimating] = useState(false)
+    const [isClosing, setIsClosing] = useState(false)
+
+    const contentId = `${props.id ?? props.className}-content`
+    const shouldRenderPanel = visible || isAnimating
+
+    const panelRef = useRef<HTMLDivElement | null>(null)
+
+    useEffect(() => {
+      const el = panelRef.current
+      if (!el) return
+
+      if (isClosing || !visible) {
+        el.setAttribute('inert', '')
+      } else {
+        el.removeAttribute('inert')
+      }
+    }, [isClosing, visible, shouldRenderPanel])
 
     const onOpenRef = useRef<(() => void) | undefined>(onClick)
     useEffect(() => {
@@ -65,15 +82,18 @@ const Accordion = forwardRef(
 
     const toggleVisibility = () => {
       if (visible) {
+        setIsClosing(true)
         setIsAnimating(true)
         setTimeout(() => {
           if (!isControlled) setInternalVisible(false)
           setIsAnimating(false)
+          setIsClosing(false)
           if (props.setIsFormOpen) {
             props.setIsFormOpen(false)
           }
         }, 300)
       } else {
+        setIsClosing(false)
         setIsAnimating(true)
         if (!isControlled) setInternalVisible(true)
         setTimeout(() => {
@@ -129,6 +149,8 @@ const Accordion = forwardRef(
             props.tooltip ? 'tooltip-wrap' : ''
           } accordion-btn ${props.className} ${visible ? 'open' : 'closed'}`}
           onClick={toggleVisibility}
+          aria-expanded={visible}
+          aria-controls={contentId}
         >
           <span aria-hidden="true" className={props.hideBrackets ? 'hide' : ''}>
             &raquo;&nbsp;
@@ -150,22 +172,27 @@ const Accordion = forwardRef(
           )}
         </button>
 
-        <div
-          className={`accordion-inner ${props.className} ${
-            isAnimating ? 'animating' : ''
-          } ${visible ? 'open' : 'closed'}`}
-        >
-          <button
-            type="button"
-            className={`accordion-btn close`}
-            onClick={toggleVisibility}
+        {shouldRenderPanel && (
+          <div
+            id={contentId}
+            ref={panelRef}
+            className={`accordion-inner ${props.className} ${
+              isAnimating ? 'animating' : ''
+            } ${visible ? 'open' : 'closed'}`}
+            aria-hidden={isClosing || !visible}
           >
-            <Icon lib="fa6" name="FaAnglesUp" />
-            {t('Close')}
-          </button>
+            <button
+              type="button"
+              className={`accordion-btn close`}
+              onClick={toggleVisibility}
+            >
+              <Icon lib="fa6" name="FaAnglesUp" />
+              {t('Close')}
+            </button>
 
-          {props.children}
-        </div>
+            {props.children}
+          </div>
+        )}
       </div>
     )
   }
