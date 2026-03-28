@@ -89,7 +89,7 @@ const useAccessibleColors = (initialColorMode: TColorMode) => {
 
   const [currentColor, setCurrentColor] = useLocalStorage<string>(
     'Jenniina-currentColor',
-    '#DDDDDD'
+    '#6eaecf'
   )
   const [idCounter, setIdCounter] = useLocalStorage<number>(
     'Jenniina-idCounter',
