@@ -104,9 +104,9 @@
 .color-picker .circle-left-edge,
 .color-picker .circle-left-edge::before {
   position: absolute;
-  left: -5px;
-  top: -2px;
-  height: calc(100% + 4px);
+  left: -4px;
+  top: 0;
+  height: 100%;
   display: inline-block;
   width: 1.7em;
   border-radius: 0 2em 2em 0;
@@ -121,26 +121,26 @@
 }
 .light .color-picker .circle-left-edge {
   background-color: white;
-  transform: scale(0.82, 1);
+  transform: scale(1, 1);
   z-index: 2;
-  border-right: 2px solid currentColor;
+  border-right: 1px solid currentColor;
 }
 .color-picker .circle-left-edge::before {
   content: '';
-  left: 2px;
-  top: 1px;
-  height: calc(100% - 2px);
+  left: 0;
+  top: 0;
+  height: 100%;
   border-right-width: 2px;
   position: absolute;
   background-color: transparent;
   border-right: 2px solid currentColor;
-  transform-origin: -10% center;
+  transform-origin: -20% center;
   z-index: -1;
 }
 .color-picker button:hover .circle-left-edge::before,
 .color-picker button:focus .circle-left-edge::before,
 .color-picker button:focus-visible .circle-left-edge::before {
-  transform: scale(1.13, 1);
+  transform: scale(1.16, 0.96);
 }
 
 @media (min-width: 400px) {
@@ -180,12 +180,25 @@
   border-radius: 1.5em;
 }
 #color-container .btn-wrap.export-wrap {
+  display: flex;
+  flex-flow: row wrap;
   align-items: flex-end;
   justify-content: center;
   margin-top: 1em;
+  gap: 4em 3em;
+}
+.color-picker,
+.login-wrap,
+#color-container .btn-wrap.export-wrap > div {
+  padding: 0.6em;
+  border: 2px solid var(--color-gray-2);
+  border-top-color: var(--color-gray-1);
+  border-radius: 1.5em;
+  box-shadow: 0 5px 10px -5px var(--color-gray-4);
 }
 
 #color-container .btn-wrap.export-wrap > div {
+  flex: 0 1 auto;
   display: flex;
   flex-flow: row wrap;
   align-items: flex-end;
@@ -193,7 +206,7 @@
   gap: 1em;
 }
 #color-container .btn-wrap.export-wrap .visibility-wrap {
-  margin: 0.4rem 0 0;
+  margin: 0;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -864,6 +877,10 @@
   .color-edit-container > .color-select > div > span {
     max-width: 100%;
   }
+  .color-picker {
+    padding: 0.8em 2em;
+    border-radius: 4em;
+  }
 }
 @media (min-width: 400px) {
   .color-picker > label {
@@ -880,5 +897,12 @@
   .color-blocks {
     width: clamp(100px, max-content, calc(99vw - var(--page-padding)));
     max-width: calc(99vw - var(--page-padding));
+  }
+}
+
+@media (min-width: 700px) {
+  #color-container .btn-wrap.export-wrap > div {
+    padding: 0.6em 0.8em;
+    border-radius: 1.8em;
   }
 }

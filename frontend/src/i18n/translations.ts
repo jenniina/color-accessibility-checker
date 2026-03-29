@@ -80,6 +80,15 @@ export const translations = {
     cs: 'Kopírovat',
     fi: 'Kopioi',
   },
+  Export: {
+    en: 'Export',
+    es: 'Exportar',
+    fr: 'Exporter',
+    de: 'Exportieren',
+    pt: 'Exportar',
+    cs: 'Exportovat',
+    fi: 'Lataa',
+  },
   CopyToClipboard: {
     en: 'Copy to clipboard',
     es: 'Copiar al portapapeles',

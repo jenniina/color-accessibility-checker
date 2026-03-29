@@ -310,5 +310,9 @@ input[type='checkbox' i]:focus-visible {
   display: block;
   margin: 0 auto;
   width: max-content;
-  max-width: 240px;
+  max-width: 100%;
+}
+.accordion-register button {
+  flex: 1 0 100%;
+  min-width: 100%;
 }

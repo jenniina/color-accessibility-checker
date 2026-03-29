@@ -64,7 +64,7 @@ const Register = ({ setIsFormOpen, isOpen, text }: Props) => {
       {!user ? (
         <>
           <Accordion
-            className={`accordion-register ${text}`}
+            className={`accordion-register ${text} gray restore`}
             wrapperClass="register-wrap"
             text={t('Register')}
             ref={formRegisterRef}
@@ -152,7 +152,7 @@ const Register = ({ setIsFormOpen, isOpen, text }: Props) => {
                 <button
                   type="submit"
                   disabled={sending}
-                  className={`restore ${text}`}
+                  className={`gray restore ${text}`}
                 >
                   {t('Register')}
                 </button>
