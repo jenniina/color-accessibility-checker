@@ -976,12 +976,34 @@ const AccessibleColors: FC = () => {
                   <b
                     style={{
                       display: 'inline-block',
+                      backgroundColor: 'var(--color-primary-15)',
+                      borderRadius: '50%',
+                      width: `2em`,
+                      height: `2em`,
                     }}
                   ></b>
                 </div>
                 <span>
-                  {t('Line')}: {t('ColorsNotCompatible')};{' '}
-                  {t('ContrastNotSufficient')}
+                  {t('BestFit')}: {t('TheRoundFilledIndicator')}
+                </span>
+              </li>
+              <li>
+                <div>
+                  <b
+                    style={{
+                      display: 'inline-block',
+                      backgroundColor: 'var(--color-primary-1)',
+                      outline: `0.25em solid var(--color-primary-15)`,
+                      outlineOffset: `-0.25em`,
+                      borderRadius: '50%',
+                      width: `1.7em`,
+                      height: `1.7em`,
+                    }}
+                  ></b>
+                </div>
+                <span>
+                  {t('MinimumCompatibilityForSmallText')}:{' '}
+                  {t('TheRoundHollowIndicator')}.{' '}
                 </span>
               </li>
               <li>
@@ -1005,30 +1027,13 @@ const AccessibleColors: FC = () => {
                   <b
                     style={{
                       display: 'inline-block',
-                      backgroundColor: 'var(--color-primary-1)',
-                      outline: `0.25em solid var(--color-primary-15)`,
-                      outlineOffset: `-0.25em`,
-                      borderRadius: '50%',
-                      width: `1.7em`,
-                      height: `1.7em`,
                     }}
                   ></b>
                 </div>
-                <span>{t('TheRoundHollowIndicator')}</span>
-              </li>{' '}
-              <li>
-                <div>
-                  <b
-                    style={{
-                      display: 'inline-block',
-                      backgroundColor: 'var(--color-primary-15)',
-                      borderRadius: '50%',
-                      width: `2em`,
-                      height: `2em`,
-                    }}
-                  ></b>
-                </div>
-                <span>{t('TheRoundFilledIndicator')}</span>
+                <span>
+                  {t('BadFit')}: {t('ColorsNotCompatible')};{' '}
+                  {t('ContrastNotSufficient')}
+                </span>
               </li>
             </ul>
           </div>
