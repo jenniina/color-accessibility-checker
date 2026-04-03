@@ -146,10 +146,10 @@ html {
   overflow: hidden;
   color: var(--color-gray-10);
   background-color: var(--color-primary-1);
-  background-image: linear-gradient(to bottom, var(--color-primary-2) -2em, var(--color-primary-1) 16em, black 30em, black calc(100% - 15em), var(--color-primary-2) 100%);
+  background-image: linear-gradient(to bottom, var(--color-primary-2) -2em, var(--color-primary-1) 16em, black 30em, black calc(100% - 33em), var(--color-primary-2) 100%);
 }
 .App.light {
-  background-image: linear-gradient(to bottom, var(--color-primary-3) 2rem, var(--color-primary-1) 16em, white 30em, white calc(100% - 15em), var(--color-primary-2) 100%);
+  background-image: linear-gradient(to bottom, var(--color-primary-3) 2rem, var(--color-primary-1) 16em, white 30em, white calc(100% - 33em), var(--color-primary-2) 100%);
 }
 .App .App-inner-wrap {
   width: 100%;
