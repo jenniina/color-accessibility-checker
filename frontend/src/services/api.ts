@@ -22,7 +22,7 @@ api.interceptors.response.use(
     if (error?.response?.status === 401) {
       localStorage.removeItem('JokeApptoken')
       localStorage.removeItem('loggedJokeAppUser')
-      window.location.href = '?login=login'
+      window.location.href = '?login=true'
     }
     return Promise.reject(error)
   }

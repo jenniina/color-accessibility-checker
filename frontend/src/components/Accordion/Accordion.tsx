@@ -28,7 +28,6 @@ interface accordionProps {
   onClick?: () => void
   id?: string
   hideBrackets?: boolean
-  showButton?: boolean
   tooltip?: string
   y?: 'above' | 'below'
   x?: 'left' | 'right'

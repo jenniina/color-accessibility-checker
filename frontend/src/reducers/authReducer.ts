@@ -116,7 +116,7 @@ export const logoutAllDevices = (userId: string) => {
     void dispatch(logoutUser(null))
 
     // optional redirect to login
-    window.location.href = '?login=login'
+    window.location.href = '?login=true'
   }
 }
 

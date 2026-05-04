@@ -309,7 +309,6 @@ input[type='checkbox' i]:focus-visible {
 .accordion-login {
   display: block;
   margin: 0 auto;
-  width: max-content;
   max-width: 100%;
 }
 .accordion-register button {
