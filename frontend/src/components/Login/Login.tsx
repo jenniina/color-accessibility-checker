@@ -11,6 +11,7 @@ import { getErrorMessage } from '../../utils'
 import Icon from '../Icon/Icon'
 import Register from '../Register/Register'
 import CopyToClipboard from '../CopyToClipboard/CopyToClipboard'
+import PasswordReset from '../PasswordReset/PasswordReset'
 
 interface LoginProps {
   setIsFormOpen?: (isFormOpen: boolean) => void
@@ -175,6 +176,7 @@ const FormLogin = ({
             )}
             <Accordion
               id="login"
+              showButton={true}
               className={`login ${text ?? ''}`}
               wrapperClass={`login-wrap  ${below ? 'child-absolute right' : 'above'}`}
               text={
@@ -249,6 +251,15 @@ const FormLogin = ({
                   setIsFormOpen={setRegisterOpen}
                   text="reg"
                 />
+
+                <Accordion
+                  className="password-reset"
+                  wrapperClass="password-reset-wrap"
+                  text={`${t('ForgotPassword')}`}
+                  hideBrackets={true}
+                >
+                  <PasswordReset text="login" />
+                </Accordion>
 
                 <div className="mt3 flex column gap-half left">
                   <span>{t('IfYouDontWantToRegister')} </span>
