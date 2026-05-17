@@ -49,7 +49,7 @@
   --color-secondary-15: hsl(var(--hue-secondary), var(--sat-full), 92%);
   --color-secondary-16: hsl(var(--hue-secondary), var(--sat-full), 96%);
 
-  --color-visited: var(--color-secondary-6);
+  --color-visited: var(--color-secondary-9);
 
   --color-gray-1: hsl(var(--hue-primary), var(--sat-fade), 5%);
   --color-gray-2: hsl(var(--hue-primary), var(--sat-fade), 10%);
@@ -828,6 +828,17 @@ body .z {
   justify-content: flex-start;
   align-items: center;
 }
+.password-reset-wrap > button {
+  flex: 1 0 100%;
+}
+.password-reset-container > div,
+.password-reset-container form {
+  gap: 1.1em;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
 .password-reset-container .accordion-btn.open {
   font-size: 0.8em;
   opacity: 0.8;
@@ -879,6 +890,7 @@ body .z {
   right: 0;
   z-index: 666;
   background-color: var(--color-primary-2);
+  border-radius: var(--radius-medium);
 }
 
 .accordion-btn.login {
@@ -1683,6 +1695,9 @@ button.delete:hover {
 #root button.danger.outline:hover {
   outline-offset: -6px;
 }
+.register-wrap {
+  margin-bottom: 1rem;
+}
 .register-wrap .register {
   display: flex;
   flex-flow: column nowrap;
@@ -1749,9 +1764,6 @@ form.login {
   font-style: normal;
   font-family: var(--title-family);
   letter-spacing: calc(var(--letter-spacing) * 0.9);
-}
-.login-wrap button.login.open:not(.nav) {
-  display: none;
 }
 code {
   display: inline-block;

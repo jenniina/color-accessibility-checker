@@ -33,6 +33,7 @@ interface accordionProps {
   x?: 'left' | 'right'
   wrapperClass: string
   closeClass?: string
+  showButton?: boolean
 }
 
 const Accordion = forwardRef(
@@ -142,34 +143,42 @@ const Accordion = forwardRef(
           props.className
         }-container accordion-container ${props.wrapperClass}`}
       >
-        <button
-          type="button"
-          className={`${
-            props.tooltip ? 'tooltip-wrap' : ''
-          } accordion-btn ${props.className} ${visible ? 'open' : 'closed'}`}
-          onClick={toggleVisibility}
-          aria-expanded={visible}
-          aria-controls={contentId}
-        >
-          <span aria-hidden="true" className={props.hideBrackets ? 'hide' : ''}>
-            &raquo;&nbsp;
-          </span>
-          <i>{props.text}</i>
-          <span aria-hidden="true" className={props.hideBrackets ? 'hide' : ''}>
-            &nbsp;&laquo;
-          </span>
-          {props.tooltip && (
-            <>
-              <span className="scr">{props.tooltip}</span>
-              <strong
-                className={`tooltip narrow2 ${props.x} ${props.y}`}
-                aria-hidden="true"
-              >
-                {props.tooltip}
-              </strong>
-            </>
-          )}
-        </button>
+        {!visible || (visible && props.showButton) ? (
+          <button
+            type="button"
+            className={`${
+              props.tooltip ? 'tooltip-wrap' : ''
+            } accordion-btn ${props.className} ${visible ? 'open' : 'closed'}`}
+            onClick={toggleVisibility}
+            aria-expanded={visible}
+            aria-controls={contentId}
+          >
+            <span
+              aria-hidden="true"
+              className={props.hideBrackets ? 'hide' : ''}
+            >
+              &raquo;&nbsp;
+            </span>
+            <i>{props.text}</i>
+            <span
+              aria-hidden="true"
+              className={props.hideBrackets ? 'hide' : ''}
+            >
+              &nbsp;&laquo;
+            </span>
+            {props.tooltip && (
+              <>
+                <span className="scr">{props.tooltip}</span>
+                <strong
+                  className={`tooltip narrow2 ${props.x} ${props.y}`}
+                  aria-hidden="true"
+                >
+                  {props.tooltip}
+                </strong>
+              </>
+            )}
+          </button>
+        ) : null}
 
         {shouldRenderPanel && (
           <div
