@@ -24,7 +24,7 @@ const Register = ({ setIsFormOpen, isOpen, text }: Props) => {
   const formRegisterRef = useRef<HTMLDivElement>(null)
 
   const user = useSelector((state: ReducerProps) => {
-    return state.auth
+    return state.auth?.user
   })
 
   const [username, setUsername] = useState<string>('')

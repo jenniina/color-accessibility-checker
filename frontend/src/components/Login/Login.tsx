@@ -10,6 +10,7 @@ import { useLanguageContext } from '../../contexts/LanguageContext'
 import { getErrorMessage } from '../../utils'
 import Icon from '../Icon/Icon'
 import Register from '../Register/Register'
+import CopyToClipboard from '../CopyToClipboard/CopyToClipboard'
 
 interface LoginProps {
   setIsFormOpen?: (isFormOpen: boolean) => void
@@ -242,11 +243,33 @@ const FormLogin = ({
                     {loggingIn ? t('LoggingIn') : t('Login')}
                   </button>
                 </form>
+
                 <Register
                   isOpen={registerOpen}
                   setIsFormOpen={setRegisterOpen}
                   text="reg"
                 />
+
+                <div className="mt3 flex column gap-half left">
+                  <span>{t('IfYouDontWantToRegister')} </span>
+                  <div className="flex align-center column gap-half left">
+                    <CopyToClipboard
+                      value={`temp${String.fromCharCode(64)}jenniina.fi`}
+                      label="temp <at> jenniina <dot> fi"
+                      ariaLabel={t('CopyToClipboard')}
+                      className="m0"
+                    />
+                    <div className="flex column gap-half left mt1">
+                      {t('Password')}:{' '}
+                      <CopyToClipboard
+                        value="TempAtJenniina"
+                        label="TempAtJenniina"
+                        ariaLabel={t('CopyToClipboard')}
+                        className="m0"
+                      />
+                    </div>
+                  </div>
+                </div>
               </>
             </Accordion>
           </div>
