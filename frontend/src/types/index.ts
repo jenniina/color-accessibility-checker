@@ -49,7 +49,7 @@ export enum ELanguagesLong {
   fi = 'Suomi',
   es = 'Español',
   fr = 'Français',
-  de = 'Deutch',
+  de = 'Deutsch',
   pt = 'Português',
   cs = 'Čeština',
 }
@@ -72,7 +72,7 @@ export const LanguageOfLanguage: ILanguageOfLanguage = {
     English: 'English',
     Español: 'Spanish',
     Français: 'French',
-    Deutch: 'German',
+    Deutsch: 'German',
     Português: 'Portuguese',
     Čeština: 'Czech',
     Suomi: 'Finnish',
@@ -81,7 +81,7 @@ export const LanguageOfLanguage: ILanguageOfLanguage = {
     English: 'Inglés',
     Español: 'Español',
     Français: 'Francés',
-    Deutch: 'Alemán',
+    Deutsch: 'Alemán',
     Português: 'Portugués',
     Čeština: 'Checo',
     Suomi: 'Finlandés',
@@ -90,7 +90,7 @@ export const LanguageOfLanguage: ILanguageOfLanguage = {
     English: 'Anglais',
     Español: 'Espagnol',
     Français: 'Français',
-    Deutch: 'Allemand',
+    Deutsch: 'Allemand',
     Português: 'Portugais',
     Čeština: 'Tchèque',
     Suomi: 'Finnois',
@@ -99,7 +99,7 @@ export const LanguageOfLanguage: ILanguageOfLanguage = {
     English: 'Englisch',
     Español: 'Spanisch',
     Français: 'Französisch',
-    Deutch: 'Deutsch',
+    Deutsch: 'Deutsch',
     Português: 'Portugiesisch',
     Čeština: 'Tschechisch',
     Suomi: 'Finnisch',
@@ -108,7 +108,7 @@ export const LanguageOfLanguage: ILanguageOfLanguage = {
     English: 'Inglês',
     Español: 'Espanhol',
     Français: 'Francês',
-    Deutch: 'Alemão',
+    Deutsch: 'Alemão',
     Português: 'Português',
     Čeština: 'Tcheco',
     Suomi: 'Finlandês',
@@ -117,7 +117,7 @@ export const LanguageOfLanguage: ILanguageOfLanguage = {
     English: 'Angličtina',
     Español: 'Španělština',
     Français: 'Francouzština',
-    Deutch: 'Němčina',
+    Deutsch: 'Němčina',
     Português: 'Portugalština',
     Čeština: 'Čeština',
     Suomi: 'Finština',
@@ -126,7 +126,7 @@ export const LanguageOfLanguage: ILanguageOfLanguage = {
     English: 'Englanti',
     Español: 'Espanja',
     Français: 'Ranska',
-    Deutch: 'Saksa',
+    Deutsch: 'Saksa',
     Português: 'Portugali',
     Čeština: 'Tšekki',
     Suomi: 'Suomi',
@@ -138,7 +138,7 @@ export interface ILanguageOfLanguage {
     English: 'English'
     Español: 'Spanish'
     Français: 'French'
-    Deutch: 'German'
+    Deutsch: 'German'
     Português: 'Portuguese'
     Čeština: 'Czech'
     Suomi: 'Finnish'
@@ -147,7 +147,7 @@ export interface ILanguageOfLanguage {
     English: 'Inglés'
     Español: 'Español'
     Français: 'Francés'
-    Deutch: 'Alemán'
+    Deutsch: 'Alemán'
     Português: 'Portugués'
     Čeština: 'Checo'
     Suomi: 'Finlandés'
@@ -156,7 +156,7 @@ export interface ILanguageOfLanguage {
     English: 'Anglais'
     Español: 'Espagnol'
     Français: 'Français'
-    Deutch: 'Allemand'
+    Deutsch: 'Allemand'
     Português: 'Portugais'
     Čeština: 'Tchèque'
     Suomi: 'Finnois'
@@ -165,7 +165,7 @@ export interface ILanguageOfLanguage {
     English: 'Englisch'
     Español: 'Spanisch'
     Français: 'Französisch'
-    Deutch: 'Deutsch'
+    Deutsch: 'Deutsch'
     Português: 'Portugiesisch'
     Čeština: 'Tschechisch'
     Suomi: 'Finnisch'
@@ -174,7 +174,7 @@ export interface ILanguageOfLanguage {
     English: 'Inglês'
     Español: 'Espanhol'
     Français: 'Francês'
-    Deutch: 'Alemão'
+    Deutsch: 'Alemão'
     Português: 'Português'
     Čeština: 'Tcheco'
     Suomi: 'Finlandês'
@@ -183,7 +183,7 @@ export interface ILanguageOfLanguage {
     English: 'Angličtina'
     Español: 'Španělština'
     Français: 'Francouzština'
-    Deutch: 'Němčina'
+    Deutsch: 'Němčina'
     Português: 'Portugalština'
     Čeština: 'Čeština'
     Suomi: 'Finština'
@@ -192,7 +192,7 @@ export interface ILanguageOfLanguage {
     English: 'Englanti'
     Español: 'Espanja'
     Français: 'Ranska'
-    Deutch: 'Saksa'
+    Deutsch: 'Saksa'
     Português: 'Portugali'
     Čeština: 'Tšekki'
     Suomi: 'Suomi'
@@ -204,7 +204,7 @@ export interface ILanguageOfLanguage {
     English: 'English'
     Español: 'Spanish'
     Français: 'French'
-    Deutch: 'German'
+    Deutsch: 'German'
     Português: 'Portuguese'
     Čeština: 'Czech'
     Suomi: 'Finnish'
@@ -213,7 +213,7 @@ export interface ILanguageOfLanguage {
     English: 'Inglés'
     Español: 'Español'
     Français: 'Francés'
-    Deutch: 'Alemán'
+    Deutsch: 'Alemán'
     Português: 'Portugués'
     Čeština: 'Checo'
     Suomi: 'Finlandés'
@@ -222,7 +222,7 @@ export interface ILanguageOfLanguage {
     English: 'Anglais'
     Español: 'Espagnol'
     Français: 'Français'
-    Deutch: 'Allemand'
+    Deutsch: 'Allemand'
     Português: 'Portugais'
     Čeština: 'Tchèque'
     Suomi: 'Finnois'
@@ -231,7 +231,7 @@ export interface ILanguageOfLanguage {
     English: 'Englisch'
     Español: 'Spanisch'
     Français: 'Französisch'
-    Deutch: 'Deutsch'
+    Deutsch: 'Deutsch'
     Português: 'Portugiesisch'
     Čeština: 'Tschechisch'
     Suomi: 'Finnisch'
@@ -240,7 +240,7 @@ export interface ILanguageOfLanguage {
     English: 'Inglês'
     Español: 'Espanhol'
     Français: 'Francês'
-    Deutch: 'Alemão'
+    Deutsch: 'Alemão'
     Português: 'Português'
     Čeština: 'Tcheco'
     Suomi: 'Finlandês'
@@ -249,7 +249,7 @@ export interface ILanguageOfLanguage {
     English: 'Angličtina'
     Español: 'Španělština'
     Français: 'Francouzština'
-    Deutch: 'Němčina'
+    Deutsch: 'Němčina'
     Português: 'Portugalština'
     Čeština: 'Čeština'
     Suomi: 'Finština'
@@ -258,7 +258,7 @@ export interface ILanguageOfLanguage {
     English: 'Englanti'
     Español: 'Espanja'
     Français: 'Ranska'
-    Deutch: 'Saksa'
+    Deutsch: 'Saksa'
     Português: 'Portugali'
     Čeština: 'Tšekki'
     Suomi: 'Suomi'
@@ -269,7 +269,7 @@ export enum ELanguageOfLanguage_en {
   English = 'English',
   Español = 'Spanish',
   Français = 'French',
-  Deutch = 'German',
+  Deutsch = 'German',
   Português = 'Portuguese',
   Čeština = 'Czech',
   Suomi = 'Finnish',
@@ -278,7 +278,7 @@ export enum ELanguageOfLanguage_es {
   English = 'Inglés',
   Español = 'Español',
   Français = 'Francés',
-  Deutch = 'Alemán',
+  Deutsch = 'Alemán',
   Português = 'Portugués',
   Čeština = 'Checo',
   Suomi = 'Finlandés',
@@ -287,7 +287,7 @@ export enum ELanguageOfLanguage_fr {
   English = 'Anglais',
   Español = 'Espagnol',
   Français = 'Français',
-  Deutch = 'Allemand',
+  Deutsch = 'Allemand',
   Português = 'Portugais',
   Čeština = 'Tchèque',
   Suomi = 'Finnois',
@@ -296,7 +296,7 @@ export enum ELanguageOfLanguage_de {
   English = 'Englisch',
   Español = 'Spanisch',
   Français = 'Französisch',
-  Deutch = 'Deutsch',
+  Deutsch = 'Deutsch',
   Português = 'Portugiesisch',
   Čeština = 'Tschechisch',
   Suomi = 'Finnisch',
@@ -305,7 +305,7 @@ export enum ELanguageOfLanguage_pt {
   English = 'Inglês',
   Español = 'Espanhol',
   Français = 'Francês',
-  Deutch = 'Alemão',
+  Deutsch = 'Alemão',
   Português = 'Português',
   Čeština = 'Tcheco',
   Suomi = 'Finlandês',
@@ -314,7 +314,7 @@ export enum ELanguageOfLanguage_cs {
   English = 'Angličtina',
   Español = 'Španělština',
   Français = 'Francouzština',
-  Deutch = 'Němčina',
+  Deutsch = 'Němčina',
   Português = 'Portugalština',
   Čeština = 'Čeština',
   Suomi = 'Finština',
@@ -323,7 +323,7 @@ export enum ELanguageOfLanguage_fi {
   English = 'Englanti',
   Español = 'Espanja',
   Français = 'Ranska',
-  Deutch = 'Saksa',
+  Deutsch = 'Saksa',
   Português = 'Portugali',
   Čeština = 'Tšekki',
   Suomi = 'Suomi',
