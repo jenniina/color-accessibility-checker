@@ -137,7 +137,7 @@ input:-internal-autofill-selected {
   color: inherit !important;
 }
 input:-webkit-autofill,
-input:-webkit-autofill:focus {
+input:-webkit-autofill:focus-visible {
   transition:
     background-color 600000s 0s,
     color 600000s 0s;
@@ -179,7 +179,7 @@ input:-webkit-autofill:focus {
 .input-wrap.not-required:not(.filled) input[type='text' i] {
   color: transparent !important;
 }
-.input-wrap.not-required input:focus {
+.input-wrap.not-required input:focus-visible {
   color: inherit !important;
 }
 .input-wrap.not-required label:has(:-internal-autofill-selected) {
@@ -191,9 +191,9 @@ input:-webkit-autofill:focus {
 .input-wrap.not-required label:focus-within {
   color: inherit;
 }
-.input-wrap input:focus ~ span,
+.input-wrap input:focus-visible ~ span,
 .input-wrap:not(.not-required) input:valid ~ span,
-.input-wrap.not-required input:focus ~ span,
+.input-wrap.not-required input:focus-visible ~ span,
 .input-wrap.placeholder input ~ span {
   -webkit-transform: translateY(-2em);
   -ms-transform: translateY(-2em);
@@ -237,7 +237,6 @@ input[type='checkbox' i] {
 
 input[type='checkbox' i]:checked,
 input[type='checkbox' i]:hover,
-input[type='checkbox' i]:focus,
 input[type='checkbox' i]:focus-visible {
   accent-color: var(--color-primary-11);
   outline-color: currentColor;

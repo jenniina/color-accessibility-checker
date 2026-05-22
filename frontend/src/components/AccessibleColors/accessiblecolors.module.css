@@ -60,7 +60,6 @@
   outline: 7px solid black;
 }
 .color-picker > input[type='color' i]:hover,
-.color-picker > input[type='color' i]:focus,
 .color-picker > input[type='color' i]:focus-visible {
   outline-width: 10px;
   outline-offset: -6px;
@@ -92,7 +91,6 @@
   z-index: 1;
 }
 .color-picker > button:hover,
-.color-picker > button:focus,
 .color-picker > button:focus-visible {
   border-color: currentColor;
 }
@@ -138,7 +136,7 @@
   z-index: -1;
 }
 .color-picker button:hover .circle-left-edge::before,
-.color-picker button:focus .circle-left-edge::before,
+.color-picker button:focus-visible .circle-left-edge::before,
 .color-picker button:focus-visible .circle-left-edge::before {
   transform: scale(1.16, 0.96);
 }
@@ -509,7 +507,6 @@
   outline: gray solid 1px;
 }
 #color-container .color-wrap button.remove:hover,
-#color-container .color-wrap button.remove:focus,
 #color-container .color-wrap button.remove:focus-visible {
   outline-color: red;
   outline-width: 2px;
@@ -594,20 +591,17 @@
   padding: 0.2em 0.3em 0.2em 0em;
 }
 #color-container .block-wrap .color-wrap .move-buttons button:hover,
-#color-container .block-wrap .color-wrap .move-buttons button:focus,
 #color-container .block-wrap .color-wrap .move-buttons button:focus-visible {
   outline-width: 0;
   border-color: currentColor;
   border-width: 0.2em;
 }
 #color-container .block-wrap .color-wrap .move-buttons button.left:hover,
-#color-container .block-wrap .color-wrap .move-buttons button.left:focus,
 #color-container .block-wrap .color-wrap .move-buttons button.left:focus-visible {
   border-right-width: 0.2em;
   border-left-width: 0.1em;
 }
 #color-container .block-wrap .color-wrap .move-buttons button.right:hover,
-#color-container .block-wrap .color-wrap .move-buttons button.right:focus,
 #color-container .block-wrap .color-wrap .move-buttons button.right:focus-visible {
   border-left-width: 0.2em;
   border-right-width: 0.1em;
@@ -637,7 +631,6 @@
   border: 0;
 }
 
-.skip-link:focus,
 .skip-link:focus-visible {
   z-index: 2;
   top: 0;
@@ -657,7 +650,6 @@
   background-color: var(--color-primary-1);
   outline-offset: -2px;
 }
-.skip-link:focus span,
 .skip-link:focus-visible span {
   display: inline-block;
   line-height: 1;
