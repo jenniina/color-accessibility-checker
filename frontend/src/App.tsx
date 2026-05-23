@@ -52,7 +52,7 @@ function AppShell() {
   return (
     <div
       style={styleWrap}
-      className={`App ${lightTheme ? 'light' : ''} transformations ${language}`}
+      className={`App ${lightTheme ? 'light' : ''} ${language}`}
     >
       <div className="App-inner-wrap">
         <Nav />

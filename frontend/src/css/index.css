@@ -428,7 +428,7 @@ main {
   -ms-animation: 0.5s fadeOutUp forwards;
   animation: 0.5s fadeOutUp forwards;
 }
-.nav-sub.transformations ul {
+.nav-subul {
   transition-property: right, left;
   transition-timing-function: cubic-bezier(0.15, 0, 0.85, 1);
   transition-duration: calc(2 * var(--transition-duration));
@@ -1237,8 +1237,8 @@ body * {
   box-sizing: border-box;
   word-break: break-word;
 }
-.transformations a,
-.transformations a > *,
+a,
+a > *,
 #modal-root a,
 #modal-root a > * {
   transition-property: color, border, transform, font-size, fill, background-position;
@@ -1558,8 +1558,8 @@ button.gray {
 .light button.gray:focus-visible {
   background-position: 50% 98%;
 }
-.transformations button,
-.transformations button.restore,
+button,
+button.restore,
 #modal-root button,
 #modal-root button.restore {
   transition-property: border-color, border-width, color, background-color, background-position, outline, outline-offset, opacity, transform, border-radius;
