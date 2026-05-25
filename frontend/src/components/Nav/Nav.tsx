@@ -147,7 +147,6 @@ export default function Nav() {
               text="nav"
               setIsFormOpen={setSettingsOpen}
               isOpen={settingsOpen}
-              onClick={setSettingsOpen}
               below={true}
             />
           </div>

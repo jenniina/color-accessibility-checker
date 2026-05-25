@@ -120,10 +120,10 @@ nav .input-wrap {
   -moz-transform-origin: bottom;
   transform-origin: bottom;
   background-color: var(--color-primary-1);
-  background: linear-gradient(4deg, var(--color-primary-7) 0%, var(--color-primary-4) 0%, var(--color-primary-2) 100%);
+  background-image: linear-gradient(4deg, var(--color-gray-2) 0%, var(--color-gray-1) 100%);
   pointer-events: none;
   border-radius: var(--radius-small);
-  border-bottom: solid 0.1em var(--color-primary-6);
+  border-bottom: solid 0.1em var(--color-gray-5);
   transition-property: transform;
   transition-timing-function: var(--transition-type);
   transition-duration: var(--transition-duration);

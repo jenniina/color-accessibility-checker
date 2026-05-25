@@ -58,8 +58,12 @@ export function useOutsideClick({
 
   const clickOrTouchListener = useCallback(
     (e: MouseEvent | TouchEvent) => {
-      //change to optional chaining
-      if (ref?.current && !ref.current.contains(e.target as HTMLElement)) {
+      const target = e.target as Node | null
+
+      // Ignore clicks on elements that were removed during the same event.
+      if (!target?.isConnected) return
+
+      if (ref?.current && !ref.current.contains(target)) {
         onOutsideClick?.(e)
       }
     },

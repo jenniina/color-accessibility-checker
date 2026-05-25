@@ -412,7 +412,11 @@ const NamedPalettes: FC<Props> = ({
                 <span>{t('Name')}:</span>
               </label>
             </div>
-            <button className="gray tooltip-wrap" type="submit" disabled={busy}>
+            <button
+              className="gray small tooltip-wrap"
+              type="submit"
+              disabled={busy}
+            >
               {t('Save')} <Icon lib="fa" name="FaSave" aria-hidden="true" />
               <span className="tooltip below left narrow2">
                 {t('SaveToDatabase')}

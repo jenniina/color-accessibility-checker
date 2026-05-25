@@ -17,16 +17,49 @@ import { useOutsideClick } from '../../hooks/useOutsideClick'
 interface LoginProps {
   setIsFormOpen?: (isFormOpen: boolean) => void
   isOpen?: boolean
-  onClick?: (open: boolean) => void
   text?: string
   below?: boolean
   showIcon?: boolean
+}
+const OtherSites = () => {
+  const { t } = useLanguageContext()
+  return (
+    <div className="mt1">
+      <span>{t('YouMayLogInToTheseSitesWithTheSameCredentials')}:</span>
+      <ul className="ul">
+        <li>
+          <a className="tooltip-wrap" href="https://blobs.jenniina.fi">
+            {t('BlobArtApp')}
+            <span className="tooltip narrow2 right above">
+              {t('BlobAppIntro')}
+            </span>
+          </a>
+        </li>
+        <li>
+          <a className="tooltip-wrap" href="https://jokes.jenniina.fi">
+            {t('TheComediansCompanion')}
+            <span className="tooltip narrow2 right above">
+              {t('JokeAppWithCustomizableOptions')}.{' '}
+              {t('YouMaySaveYourFavoriteJokesOrAddYourOwn')}
+            </span>
+          </a>
+        </li>
+        <li>
+          <a className="tooltip-wrap" href="https://react.jenniina.fi">
+            {t('JenniinasReactPortfolio')}
+            <span className="tooltip narrow2 right above">
+              {t('PortfolioIntro')}
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  )
 }
 
 const FormLogin = ({
   setIsFormOpen,
   isOpen,
-  onClick,
   text,
   below,
   showIcon = false,
@@ -160,6 +193,7 @@ const FormLogin = ({
               >
                 {t('Logout')} &times;
               </button>
+              <OtherSites />
             </div>
           )}
         </div>
@@ -184,6 +218,7 @@ const FormLogin = ({
                     margin: '0 auto',
                     display: 'flex',
                   }}
+                  aria-hidden="true"
                 />
                 <span className="scr">{t('Login')}</span>
               </button>
@@ -295,6 +330,7 @@ const FormLogin = ({
                     </div>
                   </div>
                 </div>
+                <OtherSites />
               </>
             </Accordion>
           </div>
