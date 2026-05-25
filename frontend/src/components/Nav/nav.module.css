@@ -41,7 +41,6 @@
   border: 0;
 }
 
-.skip-link:focus,
 .skip-link:focus-visible {
   z-index: 2;
   top: 0;
@@ -62,7 +61,7 @@
   outline-offset: -2px;
 }
 
-.skip-link:focus span,
+.skip-link:focus-visible span,
 .skip-link:focus-visible span {
   display: inline-block;
   line-height: 1;
@@ -221,12 +220,10 @@
 }
 .light .theme-icon,
 .dark.theme-btn:hover .theme-icon,
-.dark.theme-btn:focus .theme-icon,
 .dark.theme-btn:focus-visible .theme-icon {
   transform: translateY(-1.4rem);
 }
 .light.theme-btn:hover .theme-icon,
-.light.theme-btn:focus .theme-icon,
 .light.theme-btn:focus-visible .theme-icon,
 .dark .theme-icon {
   transform: translateY(0.55rem);

@@ -320,19 +320,19 @@ main {
   color: inherit;
 }
 #root .nav-sub .return a.active:hover span,
-#root .nav-sub .return a.active:focus span {
+#root .nav-sub .return a.active:focus-visible span {
   color: var(--color-primary-6);
   text-decoration: none;
 }
 #root .nav-sub .return a.active:hover,
-#root .nav-sub .return a.active:focus {
+#root .nav-sub .return a.active:focus-visible {
   color: var(--color-primary-6);
   border-bottom-color: currentColor;
   border-bottom-color: var(--color-secondary-10);
 }
 
 #root .light .nav-sub .return a.active:hover,
-#root .light .nav-sub .return a.active:focus {
+#root .light .nav-sub .return a.active:focus-visible {
   border-bottom-color: var(--color-secondary-15);
   text-decoration: none;
 }
@@ -387,7 +387,7 @@ main {
   box-shadow: 0 0.1em 0.9em -0.5em var(--color-primary-11);
 }
 .nav-sub ul a:hover,
-.nav-sub ul a:focus {
+.nav-sub ul a:focus-visible {
   color: var(--color-primary-15);
   outline-offset: -2px;
   text-decoration: none;
@@ -396,7 +396,7 @@ main {
   border-bottom-width: 5px;
 }
 .light .nav-sub ul a:hover,
-.light .nav-sub ul a:focus {
+.light .nav-sub ul a:focus-visible {
   color: var(--color-primary-9);
   border-bottom-color: var(--color-secondary-15);
 }
@@ -428,7 +428,7 @@ main {
   -ms-animation: 0.5s fadeOutUp forwards;
   animation: 0.5s fadeOutUp forwards;
 }
-.nav-sub.transformations ul {
+.nav-subul {
   transition-property: right, left;
   transition-timing-function: cubic-bezier(0.15, 0, 0.85, 1);
   transition-duration: calc(2 * var(--transition-duration));
@@ -566,7 +566,6 @@ button.goright svg {
   transform: rotate(90deg);
 }
 button.horizonal-scroll:hover,
-button.horizonal-scroll:focus,
 button.horizonal-scroll:focus-visible {
   color: var(--color-primary-6);
 }
@@ -669,13 +668,11 @@ body .z {
   text-align: center;
 }
 .main-footer a:hover,
-.main-footer a:focus,
 .main-footer a:focus-visible {
   color: var(--color-secondary-5);
   text-decoration: underline;
 }
 .light .main-footer a:hover,
-.light .main-footer a:focus,
 .light .main-footer a:focus-visible {
   color: var(--color-secondary-8);
 }
@@ -976,9 +973,9 @@ nav .open.password-reset-container button.forgot-btn {
 .tooltip-wrap.pointer:not(button):not(a) {
   cursor: pointer;
 }
-#root .App .tooltip-wrap:focus > .tooltip,
+#root .App .tooltip-wrap:focus-visible > .tooltip,
 #root .App .tooltip-wrap:hover > .tooltip,
-.tooltip-wrap:focus > .tooltip,
+.tooltip-wrap:focus-visible > .tooltip,
 .tooltip-wrap:hover > .tooltip {
   visibility: visible;
 }
@@ -1058,15 +1055,15 @@ nav .open.password-reset-container button.forgot-btn {
   right: unset;
 }
 #root .App .tooltip-wrap:hover > .tooltip,
-#root .App .tooltip-wrap:focus > .tooltip,
+#root .App .tooltip-wrap:focus-visible > .tooltip,
 .tooltip-wrap:hover > .tooltip,
-.tooltip-wrap:focus > .tooltip {
+.tooltip-wrap:focus-visible > .tooltip {
   visibility: visible;
 }
 #root .App .tooltip-wrap:hover > .tooltip::before,
-#root .App .tooltip-wrap:focus > .tooltip::before,
+#root .App .tooltip-wrap:focus-visible > .tooltip::before,
 .tooltip-wrap:hover > .tooltip::before,
-.tooltip-wrap:focus > .tooltip::before {
+.tooltip-wrap:focus-visible > .tooltip::before {
   content: '';
   position: absolute;
   border: 1em solid transparent;
@@ -1074,41 +1071,41 @@ nav .open.password-reset-container button.forgot-btn {
   z-index: 1;
 }
 #root .App .tooltip-wrap:hover > .tooltip.below::before,
-#root .App .tooltip-wrap:focus > .tooltip.below::before,
+#root .App .tooltip-wrap:focus-visible > .tooltip.below::before,
 .tooltip-wrap:hover > .tooltip.below::before,
-.tooltip-wrap:focus > .tooltip.below::before {
+.tooltip-wrap:focus-visible > .tooltip.below::before {
   top: calc(var(--tooltip-offset) * -0.9);
   left: calc(var(--tooltip-width) * 0.5);
   border-bottom-color: var(--tooltip-bgcolor);
 }
 #root .App .tooltip-wrap:hover > .tooltip.above::before,
-#root .App .tooltip-wrap:focus > .tooltip.above::before,
+#root .App .tooltip-wrap:focus-visible > .tooltip.above::before,
 .tooltip-wrap:hover > .tooltip.above::before,
-.tooltip-wrap:focus > .tooltip.above::before {
+.tooltip-wrap:focus-visible > .tooltip.above::before {
   top: unset;
   bottom: calc(var(--tooltip-offset) * -0.95);
   border-top-color: var(--tooltip-bgcolor);
   left: 47%;
 }
 #root .App .tooltip-wrap:hover > .tooltip.left.above::before,
-#root .App .tooltip-wrap:focus > .tooltip.left.above::before,
+#root .App .tooltip-wrap:focus-visible > .tooltip.left.above::before,
 #root .App .tooltip-wrap:hover > .tooltip.left.below::before,
-#root .App .tooltip-wrap:focus > .tooltip.left.below::before,
+#root .App .tooltip-wrap:focus-visible > .tooltip.left.below::before,
 .tooltip-wrap:hover > .tooltip.left.above::before,
-.tooltip-wrap:focus > .tooltip.left.above::before,
+.tooltip-wrap:focus-visible > .tooltip.left.above::before,
 .tooltip-wrap:hover > .tooltip.left.below::before,
-.tooltip-wrap:focus > .tooltip.left.below::before {
+.tooltip-wrap:focus-visible > .tooltip.left.below::before {
   left: unset;
   right: calc(var(--tooltip-offset) * 0.3);
 }
 #root .App .tooltip-wrap:hover > .tooltip.right.above::before,
-#root .App .tooltip-wrap:focus > .tooltip.right.above::before,
+#root .App .tooltip-wrap:focus-visible > .tooltip.right.above::before,
 #root .App .tooltip-wrap:hover > .tooltip.right.below::before,
-#root .App .tooltip-wrap:focus > .tooltip.right.below::before,
+#root .App .tooltip-wrap:focus-visible > .tooltip.right.below::before,
 .tooltip-wrap:hover > .tooltip.right.above::before,
-.tooltip-wrap:focus > .tooltip.right.above::before,
+.tooltip-wrap:focus-visible > .tooltip.right.above::before,
 .tooltip-wrap:hover > .tooltip.right.below::before,
-.tooltip-wrap:focus > .tooltip.right.below::before {
+.tooltip-wrap:focus-visible > .tooltip.right.below::before {
   right: unset;
   left: calc(var(--tooltip-offset) * 0.3);
 }
@@ -1240,8 +1237,8 @@ body * {
   box-sizing: border-box;
   word-break: break-word;
 }
-.transformations a,
-.transformations a > *,
+a,
+a > *,
 #modal-root a,
 #modal-root a > * {
   transition-property: color, border, transform, font-size, fill, background-position;
@@ -1315,40 +1312,40 @@ main a:visited > * {
   text-decoration-color: var(--color-visited);
 }
 main a:hover,
-main a:focus,
+main a:focus-visible,
 main a:visited:hover,
-main a:visited:focus,
+main a:visited:focus-visible,
 main a:hover > *,
-main a:focus > *,
+main a:focus-visible > *,
 main a:visited:hover > *,
-main a:visited:focus > *,
+main a:visited:focus-visible > *,
 button.reset.link:hover,
-button.reset.link:focus,
+button.reset.link:focus-visible,
 button.reset.link:hover > *,
-button.reset.link:focus > * {
+button.reset.link:focus-visible > * {
   color: var(--color-secondary-9);
   text-decoration: underline;
   text-decoration-color: var(--color-secondary-9);
 }
 button.reset.link,
 button.reset.link:hover,
-button.reset.link:focus,
+button.reset.link:focus-visible,
 button.reset.link:hover > *,
-button.reset.link:focus > * {
+button.reset.link:focus-visible > * {
   outline: none;
 }
 .light main a:hover,
-.light main a:focus,
+.light main a:focus-visible,
 .light main a:visited:hover,
-.light main a:visited:focus,
+.light main a:visited:focus-visible,
 .light main a:hover > *,
-.light main a:focus > *,
+.light main a:focus-visible > *,
 .light main a:visited:hover > *,
-.light main a:visited:focus > *,
+.light main a:visited:focus-visible > *,
 .light button.reset.link:hover,
-.light button.reset.link:focus,
+.light button.reset.link:focus-visible,
 .light button.reset.link:hover > *,
-.light button.reset.link:focus > * {
+.light button.reset.link:focus-visible > * {
   background-position: 50% 98%;
   transform-origin: 50% 98%;
 }
@@ -1556,15 +1553,13 @@ button.gray {
   background-position: 50% 3%;
 } */
 .light button.grayer:hover,
-.light button.grayer:focus,
 .light button.grayer:focus-visible,
 .light button.gray:hover,
-.light button.gray:focus,
 .light button.gray:focus-visible {
   background-position: 50% 98%;
 }
-.transformations button,
-.transformations button.restore,
+button,
+button.restore,
 #modal-root button,
 #modal-root button.restore {
   transition-property: border-color, border-width, color, background-color, background-position, outline, outline-offset, opacity, transform, border-radius;
@@ -1574,10 +1569,8 @@ button.gray {
 }
 
 button:hover,
-button:focus,
 button:focus-visible,
 button.restore:hover,
-button.restore:focus,
 button.restore:focus-visible {
   color: var(--color-primary-1);
   border-color: var(--color-primary-12);
@@ -1588,18 +1581,14 @@ button.restore:focus-visible {
 
 button:focus-visible,
 input[type='submit']:hover,
-input[type='submit']:focus,
 input[type='submit']:focus-visible,
 input[type='button']:hover,
-input[type='button']:focus,
 input[type='button']:focus-visible,
 body .focus-within:focus-within,
 button.restore:focus-visible,
 input[type='submit'].restore:hover,
-input[type='submit'].restore:focus,
 input[type='submit'].restore:focus-visible,
 input[type='button'].restore:hover,
-input[type='button'].restore:focus,
 input[type='button'].restore:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: -2px;
@@ -1663,7 +1652,7 @@ button.close {
   border-radius: var(--radius-medium);
 }
 button.close:hover,
-button.close:focus {
+button.close:focus-visible {
   color: inherit;
 }
 button.close span {
@@ -1787,13 +1776,13 @@ button.reset {
   outline-offset: 0;
 }
 button.reset:hover,
-button.reset:focus {
+button.reset:focus-visible {
   padding: 0.03em 0.06em 0.06em;
   outline-offset: 0;
 }
 button.reset.padding,
 button.reset.padding:hover,
-button.reset.padding:focus {
+button.reset.padding:focus-visible {
   padding: 0.3em 0.6em;
 }
 @media (min-width: 400px) {

@@ -87,7 +87,6 @@
 }
 
 .container:hover,
-.container:focus,
 .container:focus-visible,
 .container:focus-within {
   /* border-color: var(--color-fg);
@@ -123,7 +122,7 @@
   transition-timing-function: var(--transition-type);
 }
 .container:hover .value,
-.container:focus .value,
+.container:focus-visible .value,
 .container:focus-within .value {
   color: var(--color-gray-1);
 }
@@ -140,11 +139,11 @@ button.clear-btn {
 }
 
 .container:hover button.clear-btn,
-.container:focus button.clear-btn,
+.container:focus-visible button.clear-btn,
 .container:focus-within button.clear-btn {
   color: var(--color-gray-1);
 }
-.container button.clear-btn:focus,
+.container button.clear-btn:focus-visible,
 .container button.clear-btn:hover {
   color: var(--color-warning);
 }
@@ -159,7 +158,6 @@ button.clear-btn {
   transition-timing-function: var(--transition-type);
 }
 .container:hover .caret,
-.container:focus .caret,
 .container:focus-visible .caret,
 .container:focus-within .caret,
 .caret:hover {
@@ -260,7 +258,7 @@ button.clear-btn {
 }
 
 .option-btn:hover,
-.option-btn:focus {
+.option-btn:focus-visible {
   border-color: var(--color-warning);
   color: var(--color-warning);
   background-color: var(--color-bg-main);
@@ -269,7 +267,7 @@ button.clear-btn {
 }
 
 .option-btn:hover > .remove-btn,
-.option-btn:focus > .remove-btn {
+.option-btn:focus-visible > .remove-btn {
   color: var(--color-warning);
 }
 
@@ -301,18 +299,6 @@ button.clear-btn {
 .scr:focus-visible {
   outline: none;
 }
-
-/* .scr:focus {
-  clip: auto;
-  -webkit-clip-path: none;
-  -moz-clip-path: none;
-  -ms-clip-path: none;
-  -o-clip-path: none;
-  clip-path: none;
-  width: auto;
-  height: auto;
-  line-height: normal;
-} */
 
 @media (max-width: 299px) {
   button.clear-btn {

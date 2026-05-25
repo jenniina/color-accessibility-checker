@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './nav.module.css'
 import { useLanguageContext } from '../../contexts/LanguageContext'
@@ -7,6 +7,7 @@ import { Select, type SelectOption } from '../Select/Select'
 import { useTheme, useThemeUpdate } from '../../hooks/useTheme'
 import Icon from '../Icon/Icon'
 import FormLogin from '../Login/Login'
+import { useOutsideClick } from '../../hooks/useOutsideClick'
 
 import eye from '../../assets/eye3.svg'
 
@@ -23,6 +24,12 @@ export default function Nav() {
   const toggleTheme = useThemeUpdate()
 
   const [settingsOpen, setSettingsOpen] = useState(false)
+  const settingsRef = useRef<HTMLDivElement>(null)
+
+  useOutsideClick({
+    ref: settingsRef,
+    onOutsideClick: () => setSettingsOpen(false),
+  })
 
   const skipLinks = useMemo(
     () => [
@@ -143,7 +150,10 @@ export default function Nav() {
             />
           </div>
 
-          <div className={`${styles['setting-item']} ${styles.auth}`}>
+          <div
+            ref={settingsRef}
+            className={`${styles['setting-item']} ${styles.auth}`}
+          >
             <FormLogin
               text="nav"
               setIsFormOpen={setSettingsOpen}
