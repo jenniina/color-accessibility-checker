@@ -3,12 +3,10 @@ import { useLanguageContext } from '../../contexts/LanguageContext'
 import styles from './heading.module.css'
 import { useSelector } from 'react-redux'
 import { ReducerProps } from '../../types'
-import { useOutsideClick } from '../../hooks/useOutsideClick'
-import { useCallback, useRef, useState } from 'react'
+import { useState } from 'react'
 import Accordion from '../Accordion/Accordion'
 import { firstToLowerCase } from '../../utils'
 import CopyToClipboard from '../CopyToClipboard/CopyToClipboard'
-import { Link, useLocation as useRouterLocation } from 'react-router-dom'
 import Icon from '../Icon/Icon'
 
 export default function Header({
@@ -25,33 +23,17 @@ export default function Header({
   })
   const lightTheme = useTheme()
   const { t } = useLanguageContext()
-  const routerLocation = useRouterLocation()
 
   const resolvedTitle = title ?? t('ColorAccessibility') + ' ' + t('WCAGTool')
 
   const [hintsOpen, setHintsOpen] = useState(false)
-
-  const instructionsRef = useRef<HTMLDivElement | null>(null)
-
-  const handleOutsideClick = useCallback(() => {
-    setHintsOpen(false)
-  }, [])
-
-  useOutsideClick({
-    ref: instructionsRef,
-    onOutsideClick: handleOutsideClick,
-  })
 
   return (
     <div className={`${styles.header} ${lightTheme ? styles.light : ''}`}>
       <div className={styles.full}>
         <div className={styles.inner}>
           <h1 className={styles.title}>{resolvedTitle}</h1>
-          <div
-            id="instructions"
-            className={styles.instructions}
-            ref={instructionsRef}
-          >
+          <div id="instructions" className={styles.instructions}>
             {subtitle ? (
               <span className={styles.tagline}>{subtitle}</span>
             ) : null}
@@ -73,6 +55,7 @@ export default function Header({
                 isOpen={hintsOpen}
                 setIsFormOpen={setHintsOpen}
                 hideBrackets={true}
+                showButton={true}
               >
                 <>
                   <ul className={`ul medium ${styles['hints-list']}`}>
@@ -105,20 +88,6 @@ export default function Header({
                             label="TempAtJenniina"
                             ariaLabel={t('CopyToClipboard')}
                           />
-                        </div>{' '}
-                        <div className="flex column mt1">
-                          <Link
-                            replace
-                            to={`?${(() => {
-                              const next = new URLSearchParams(
-                                routerLocation.search
-                              )
-                              next.set('login', 'nav')
-                              return next.toString()
-                            })()}`}
-                          >
-                            {t('Login')}
-                          </Link>
                         </div>
                       </li>
                     )}

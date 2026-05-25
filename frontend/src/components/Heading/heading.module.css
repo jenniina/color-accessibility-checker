@@ -94,9 +94,11 @@
   }
   .instructions > .hints-wrapper > div.open {
     position: absolute;
+    top: 3em;
     left: unset;
     right: 0;
     padding: 2rem 0.5rem 0.2rem 0.8rem;
+    width: clamp(100px, 90vw, 500px);
   }
   .instructions > .hints-wrapper > button,
   .instructions > .hints-wrapper > button.closed {
