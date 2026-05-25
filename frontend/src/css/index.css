@@ -1435,6 +1435,7 @@ h6 {
   font-size: clamp(12px, calc(0.8rem * var(--responsive_scale)), 22px);
   letter-spacing: calc(var(--letter-spacing) * -0.9);
   padding: 0.3em 0.9em;
+  min-height: 2.3em;
 }
 #root .margin0 {
   margin: 0;
@@ -1719,7 +1720,7 @@ button.delete:hover {
   flex-flow: column nowrap;
   gap: 0.5em;
   z-index: 999;
-  min-width: 8rem;
+  min-width: clamp(100px, 90vw, 400px);
 }
 .logout-wrap .user-menu a,
 .logout-wrap .user-menu button {

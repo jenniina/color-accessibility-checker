@@ -458,11 +458,11 @@
   border-radius: 0.4em;
 }
 #color-container .input-wrap::before {
-  top: 0.2em;
-  height: 1.7em;
+  top: 0.1em;
+  height: 1.8em;
 }
 #color-container .items-per-page.input-wrap::before {
-  height: 1.5em;
+  height: 1.3em;
 }
 .color-edit-container > .color-select > div > div {
   border-top-color: gray;
@@ -768,7 +768,7 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
   width: 100%;
 }
