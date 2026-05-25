@@ -7,8 +7,6 @@ import { Select, type SelectOption } from '../Select/Select'
 import { useTheme, useThemeUpdate } from '../../hooks/useTheme'
 import Icon from '../Icon/Icon'
 import FormLogin from '../Login/Login'
-import { useOutsideClick } from '../../hooks/useOutsideClick'
-
 import eye from '../../assets/eye3.svg'
 
 function buildLanguageOptions(): SelectOption[] {
@@ -24,12 +22,6 @@ export default function Nav() {
   const toggleTheme = useThemeUpdate()
 
   const [settingsOpen, setSettingsOpen] = useState(false)
-  const settingsRef = useRef<HTMLDivElement>(null)
-
-  useOutsideClick({
-    ref: settingsRef,
-    onOutsideClick: () => setSettingsOpen(false),
-  })
 
   const skipLinks = useMemo(
     () => [
@@ -150,10 +142,7 @@ export default function Nav() {
             />
           </div>
 
-          <div
-            ref={settingsRef}
-            className={`${styles['setting-item']} ${styles.auth}`}
-          >
+          <div className={`${styles['setting-item']} ${styles.auth}`}>
             <FormLogin
               text="nav"
               setIsFormOpen={setSettingsOpen}

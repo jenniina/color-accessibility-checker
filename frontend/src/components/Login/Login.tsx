@@ -1,4 +1,4 @@
-import { useEffect, useState, FormEvent } from 'react'
+import { useEffect, useState, FormEvent, useRef } from 'react'
 import Accordion from '../Accordion/Accordion'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { notify } from '../../reducers/notificationReducer'
@@ -12,6 +12,7 @@ import Icon from '../Icon/Icon'
 import Register from '../Register/Register'
 import CopyToClipboard from '../CopyToClipboard/CopyToClipboard'
 import PasswordReset from '../PasswordReset/PasswordReset'
+import { useOutsideClick } from '../../hooks/useOutsideClick'
 
 interface LoginProps {
   setIsFormOpen?: (isFormOpen: boolean) => void
@@ -41,6 +42,8 @@ const FormLogin = ({
   const [password, setPassword] = useState('')
   const [loggingIn, setLoggingIn] = useState(false)
   const [registerOpen, setRegisterOpen] = useState(false)
+
+  const closeRef = useRef<HTMLDivElement>(null)
 
   const user = useSelector((state: ReducerProps) => {
     return state.auth?.user
@@ -113,10 +116,18 @@ const FormLogin = ({
       })
   }
 
+  useOutsideClick({
+    ref: closeRef,
+    onOutsideClick: () => {
+      setIsFormOpen?.(false)
+      setMenuOpen(false)
+    },
+  })
+
   return (
     <>
       {user ? (
-        <div className="logout-wrap">
+        <div ref={closeRef} className="logout-wrap">
           <button
             type="button"
             className="tooltip-wrap user-btn"
@@ -154,7 +165,10 @@ const FormLogin = ({
         </div>
       ) : (
         <>
-          <div className="flex column center gap-half login-icon-wrap">
+          <div
+            ref={closeRef}
+            className="flex column center gap-half login-icon-wrap"
+          >
             {showIcon && !isOpen && (
               <button
                 type="button"
