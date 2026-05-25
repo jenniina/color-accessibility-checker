@@ -883,7 +883,7 @@ body .z {
 }
 .accordion-container.child-absolute.right > div {
   position: absolute;
-  top: 0;
+  top: 2.5rem;
   right: 0;
   z-index: 666;
   background-color: var(--color-primary-2);
