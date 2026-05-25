@@ -75,6 +75,7 @@ const FormLogin = ({
   const [password, setPassword] = useState('')
   const [loggingIn, setLoggingIn] = useState(false)
   const [registerOpen, setRegisterOpen] = useState(false)
+  const [resetOpen, setResetOpen] = useState(false)
 
   const closeRef = useRef<HTMLDivElement>(null)
 
@@ -153,6 +154,8 @@ const FormLogin = ({
     ref: closeRef,
     onOutsideClick: () => {
       setIsFormOpen?.(false)
+      setRegisterOpen(false)
+      setResetOpen(false)
       setMenuOpen(false)
     },
   })
@@ -306,6 +309,8 @@ const FormLogin = ({
                   wrapperClass="password-reset-wrap"
                   text={`${t('ForgotPassword')}`}
                   hideBrackets={true}
+                  setIsFormOpen={setResetOpen}
+                  isOpen={resetOpen}
                 >
                   <PasswordReset text="login" />
                 </Accordion>
