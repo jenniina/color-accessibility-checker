@@ -18,6 +18,7 @@ import PasswordEdit from './components/PasswordEdit'
 import UsernameEdit from './components/UsernameEdit'
 import LanguageEdit from './components/LanguageEdit'
 import NicknameEdit from './components/NicknameEdit'
+import ButtonUnavailableAction from '../ButtonUnavailableAction/ButtonUnavailableAction'
 
 interface Props {
   type: string
@@ -36,6 +37,11 @@ const UserEditPage = ({ type, options }: Props) => {
   const user = useSelector((state: ReducerProps) => {
     return state.auth?.user
   })
+  const unavailableReason = sending
+    ? t('Saving')
+    : user?.name === 'temp'
+      ? t('CannotBeChangedForTestUser')
+      : ''
 
   useEffect(() => {
     void dispatch(initializeUser()).catch(console.error)
@@ -113,14 +119,15 @@ const UserEditPage = ({ type, options }: Props) => {
                   }}
                   className="flex center"
                 >
-                  <button
+                  <ButtonUnavailableAction
                     type="submit"
-                    disabled={sending || user.name === 'temp'}
+                    unavailable={Boolean(unavailableReason)}
+                    unavailableReason={unavailableReason}
                     className={`submit danger ${styles['delete-account']} ${styles.submit}`}
                   >
                     <Icon lib="ti" name="TiDeleteOutline" />{' '}
                     {t('DeleteAccount')}
-                  </button>
+                  </ButtonUnavailableAction>
                 </form>
               ) : (
                 ''

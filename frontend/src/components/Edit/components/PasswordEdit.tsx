@@ -6,6 +6,7 @@ import { updatePassword } from '../../../reducers/usersReducer'
 import { getErrorMessage } from '../../../utils'
 import styles from '../css/edit.module.css'
 import { useLanguageContext } from '../../../contexts/LanguageContext'
+import ButtonUnavailableAction from '../../ButtonUnavailableAction/ButtonUnavailableAction'
 
 interface Props {
   user: IUser
@@ -19,6 +20,11 @@ const PasswordEdit = ({ user }: Props) => {
   const [password, setPassword] = useState<IUser['password']>('')
   const [confirmPassword, setConfirmPassword] = useState<IUser['password']>('')
   const [sending, setSending] = useState(false)
+  const unavailableReason = sending
+    ? t('Saving')
+    : user?.name === 'temp'
+      ? t('CannotBeChangedForTestUser')
+      : ''
 
   const handleUserSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -117,9 +123,13 @@ const PasswordEdit = ({ user }: Props) => {
             {user.name === 'temp' && (
               <small>({t('CannotBeChangedForTestUser')})</small>
             )}
-            <button type="submit" disabled={sending || user.name === 'temp'}>
+            <ButtonUnavailableAction
+              type="submit"
+              unavailable={Boolean(unavailableReason)}
+              unavailableReason={unavailableReason}
+            >
               {t('Edit')}
-            </button>
+            </ButtonUnavailableAction>
           </form>
         </>
       ) : (

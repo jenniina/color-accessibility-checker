@@ -4,6 +4,7 @@ import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { notify } from '../../reducers/notificationReducer'
 import { forgot } from '../../reducers/usersReducer'
 import { useLanguageContext } from '../../contexts/LanguageContext'
+import ButtonUnavailableAction from '../ButtonUnavailableAction/ButtonUnavailableAction'
 
 interface Props {
   text?: string
@@ -15,6 +16,7 @@ const PasswordReset = ({ text }: Props) => {
 
   const [username, setUsername] = useState<string | undefined>('')
   const [sending, setSending] = useState(false)
+  const unavailableReason = sending ? t('SendingEmail') : ''
 
   const handleForgot = async (event: FormEvent) => {
     event.preventDefault()
@@ -58,15 +60,16 @@ const PasswordReset = ({ text }: Props) => {
             <span>{t('Email')}: </span>
           </label>
         </div>
-        <button
+        <ButtonUnavailableAction
           type="submit"
-          disabled={sending}
+          unavailable={Boolean(unavailableReason)}
+          unavailableReason={unavailableReason}
           id={`forgot-${text}`}
           className="forgot-btn restore"
         >
           <span>{t('SendResetLink')}</span>{' '}
           <Icon lib="ri" name="RiMailSendLine" />
-        </button>
+        </ButtonUnavailableAction>
       </form>
     </>
   )

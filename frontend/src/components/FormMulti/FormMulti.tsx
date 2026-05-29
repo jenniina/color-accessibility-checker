@@ -8,6 +8,7 @@ import { sendEmail } from './services/email'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { notify } from '../../reducers/notificationReducer'
 import { useLanguageContext } from '../../contexts/LanguageContext'
+import ButtonUnavailableAction from '../ButtonUnavailableAction/ButtonUnavailableAction'
 import MessageForm from './components/MessageForm'
 import InitialForm from './components/InitialForm'
 
@@ -136,14 +137,15 @@ function FormMulti() {
             </button>
           )}
           {isLastStep && (
-            <button
+            <ButtonUnavailableAction
               className={isLastStep ? styles.submit : styles.next}
               type="submit"
-              disabled={sending}
+              unavailable={sending}
+              unavailableReason={sending ? t('SendingEmail') : ''}
             >
               {sending ? t('SendingEmail') : t('Send')}{' '}
               <Icon lib="ri" name="RiMailSendLine" />
-            </button>
+            </ButtonUnavailableAction>
           )}
           {showError && (
             <div

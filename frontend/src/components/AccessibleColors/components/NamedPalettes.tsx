@@ -15,6 +15,7 @@ import {
 } from '../../../services/colors'
 import { ColorBlock, TColorMode } from '../AccessibleColors'
 import Accordion from '../../Accordion/Accordion'
+import ButtonUnavailableAction from '../../ButtonUnavailableAction/ButtonUnavailableAction'
 import { sanitize } from '../../../utils'
 import Icon from '../../Icon/Icon'
 import FormLogin from '../../Login/Login'
@@ -311,26 +312,31 @@ const NamedPalettes: FC<Props> = ({
     )
   }
   const pagination = (current: number, totalPages: number) => {
+    const atFirstPage = current === 1
+    const atLastPage = current === totalPages
+
     return hasSavedFiles ? (
       <div className={styles['pagination-controls']}>
         {current !== 1 ? (
           <>
-            <button
+            <ButtonUnavailableAction
               onClick={() => handlePageChange(1)}
-              disabled={current === 1}
+              unavailable={atFirstPage}
+              unavailableReason={atFirstPage ? t('AlreadyOnFirstPage') : ''}
               className={`gray ${styles['btn-small']} ${styles['pagination-btn']}`}
               type="button"
             >
               &laquo;&nbsp;<span className="scr">{t('BackToStart')}</span>
-            </button>
-            <button
+            </ButtonUnavailableAction>
+            <ButtonUnavailableAction
               onClick={() => handlePageChange(Math.max(current - 1, 1))}
-              disabled={current === 1}
+              unavailable={atFirstPage}
+              unavailableReason={atFirstPage ? t('AlreadyOnFirstPage') : ''}
               className={`gray ${styles['btn-small']} ${styles['pagination-btn']}`}
               type="button"
             >
               &nbsp;&lsaquo;&nbsp;<span className="scr">{t('Previous')}</span>
-            </button>
+            </ButtonUnavailableAction>
           </>
         ) : (
           <></>
@@ -340,25 +346,27 @@ const NamedPalettes: FC<Props> = ({
         </span>
         {current !== totalPages ? (
           <>
-            <button
+            <ButtonUnavailableAction
               onClick={() =>
                 handlePageChange(Math.min(current + 1, totalPages))
               }
-              disabled={current === totalPages}
+              unavailable={atLastPage}
+              unavailableReason={atLastPage ? t('AlreadyOnLastPage') : ''}
               className={`gray ${styles['btn-small']} ${styles['pagination-btn']}`}
               type="button"
             >
               <span className="scr">{t('Next')}</span>&nbsp;&rsaquo;&nbsp;
-            </button>
+            </ButtonUnavailableAction>
 
-            <button
+            <ButtonUnavailableAction
               onClick={() => handlePageChange(totalPages)}
-              disabled={current === totalPages}
+              unavailable={atLastPage}
+              unavailableReason={atLastPage ? t('AlreadyOnLastPage') : ''}
               className={`gray ${styles['btn-small']} ${styles['pagination-btn']}`}
               type="button"
             >
               <span className="scr">{t('ToLastPage')}</span>&nbsp;&raquo;
-            </button>
+            </ButtonUnavailableAction>
           </>
         ) : (
           <></>
@@ -407,21 +415,36 @@ const NamedPalettes: FC<Props> = ({
                   onChange={(e) => setName(e.target.value)}
                   placeholder={t('Name')}
                   maxLength={30}
-                  disabled={busy}
+                  readOnly={busy}
+                  aria-disabled={busy}
+                  aria-describedby={
+                    busy ? 'palette-name-busy-reason' : undefined
+                  }
                 />
                 <span>{t('Name')}:</span>
+                {busy ? (
+                  <>
+                    <span className="tooltip below left narrow2" role="tooltip">
+                      {`${t('Unavailable')}: ${t('Loading')}`}
+                    </span>
+                    <span id="palette-name-busy-reason" className="scr">
+                      {`${t('Unavailable')}: ${t('Loading')}`}
+                    </span>
+                  </>
+                ) : null}
               </label>
             </div>
-            <button
+            <ButtonUnavailableAction
               className="gray small tooltip-wrap"
               type="submit"
-              disabled={busy}
+              unavailable={busy}
+              unavailableReason={busy ? t('Loading') : ''}
             >
               {t('Save')} <Icon lib="fa" name="FaSave" aria-hidden="true" />
               <span className="tooltip below left narrow2">
                 {t('SaveToDatabase')}
               </span>
-            </button>
+            </ButtonUnavailableAction>
           </form>
         </div>
 
@@ -444,11 +467,12 @@ const NamedPalettes: FC<Props> = ({
                 >
                   <span>{p.versionName}</span>
                   <div className={styles['button-wrap']}>
-                    <button
+                    <ButtonUnavailableAction
                       className={`gray`}
                       type="button"
                       onClick={() => void handleLoadByName(p.versionName)}
-                      disabled={busy}
+                      unavailable={busy}
+                      unavailableReason={busy ? t('Loading') : ''}
                     >
                       {t('Load')} <span className="scr">{p.versionName}</span>{' '}
                       <Icon
@@ -456,12 +480,13 @@ const NamedPalettes: FC<Props> = ({
                         name="PiDownloadSimpleFill"
                         aria-hidden="true"
                       />
-                    </button>
-                    <button
+                    </ButtonUnavailableAction>
+                    <ButtonUnavailableAction
                       className={`gray`}
                       type="button"
                       onClick={() => void handleDeleteByName(p.versionName)}
-                      disabled={busy}
+                      unavailable={busy}
+                      unavailableReason={busy ? t('Loading') : ''}
                     >
                       {t('Delete')} <span className="scr">{p.versionName}</span>{' '}
                       <Icon
@@ -469,7 +494,7 @@ const NamedPalettes: FC<Props> = ({
                         name="RiDeleteBin2Line"
                         aria-hidden="true"
                       />
-                    </button>
+                    </ButtonUnavailableAction>
                     <Accordion
                       id={`accordion-palette-rename-${sanitize(p.versionName)}`}
                       className={`gray ${styles['colornewname']}`}
@@ -506,17 +531,40 @@ const NamedPalettes: FC<Props> = ({
                               onChange={(e) => setNewName(e.target.value)}
                               placeholder={t('Rename')}
                               maxLength={30}
-                              disabled={busy}
+                              readOnly={busy}
+                              aria-disabled={busy}
+                              aria-describedby={
+                                busy
+                                  ? `palette-rename-busy-${sanitize(p.versionName)}`
+                                  : undefined
+                              }
                             />
                             <span>{t('Rename')}:</span>{' '}
                             <span className="scr">{p.versionName}</span>
+                            {busy ? (
+                              <>
+                                <span
+                                  className="tooltip below left narrow2"
+                                  role="tooltip"
+                                >
+                                  {`${t('Unavailable')}: ${t('Loading')}`}
+                                </span>
+                                <span
+                                  id={`palette-rename-busy-${sanitize(p.versionName)}`}
+                                  className="scr"
+                                >
+                                  {`${t('Unavailable')}: ${t('Loading')}`}
+                                </span>
+                              </>
+                            ) : null}
                           </label>
                         </div>
                         <div className="flex row center gap">
-                          <button
+                          <ButtonUnavailableAction
                             className="gray mt-1"
                             type="button"
-                            disabled={busy}
+                            unavailable={busy}
+                            unavailableReason={busy ? t('Loading') : ''}
                             onClick={() =>
                               void handleRenameByName(p.versionName, newName)
                             }
@@ -526,11 +574,12 @@ const NamedPalettes: FC<Props> = ({
                             <span className="scr">
                               {p.versionName}: {t('NewName')} {newName}
                             </span>
-                          </button>
-                          <button
+                          </ButtonUnavailableAction>
+                          <ButtonUnavailableAction
                             className="gray mt-1"
                             type="button"
-                            disabled={busy}
+                            unavailable={busy}
+                            unavailableReason={busy ? t('Loading') : ''}
                             onClick={() => {
                               setEditName('')
                               setNewName('')
@@ -542,7 +591,7 @@ const NamedPalettes: FC<Props> = ({
                               name="ImCancelCircle"
                               aria-hidden="true"
                             />
-                          </button>
+                          </ButtonUnavailableAction>
                         </div>
                       </>
                     </Accordion>

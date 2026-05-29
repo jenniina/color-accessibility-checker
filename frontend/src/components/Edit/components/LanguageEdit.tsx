@@ -8,6 +8,7 @@ import { findUserById, updateUser } from '../../../reducers/usersReducer'
 import { getErrorMessage } from '../../../utils'
 import styles from '../css/edit.module.css'
 import { useLanguageContext } from '../../../contexts/LanguageContext'
+import ButtonUnavailableAction from '../../ButtonUnavailableAction/ButtonUnavailableAction'
 
 interface Props {
   user: IUser
@@ -25,6 +26,7 @@ const LanguageEdit = ({ user, options }: Props) => {
   )
 
   const [sending, setSending] = useState(false)
+  const unavailableReason = sending ? t('Saving') : ''
 
   const handleUserSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -114,9 +116,13 @@ const LanguageEdit = ({ user, options }: Props) => {
                 <span>{t('CurrentPassword')}</span>
               </label>
             </div>
-            <button type="submit" disabled={sending}>
+            <ButtonUnavailableAction
+              type="submit"
+              unavailable={Boolean(unavailableReason)}
+              unavailableReason={unavailableReason}
+            >
               {t('Edit')}
-            </button>
+            </ButtonUnavailableAction>
           </form>
         </>
       ) : (
