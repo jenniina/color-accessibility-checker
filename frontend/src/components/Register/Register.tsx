@@ -10,6 +10,7 @@ import { useState } from 'react'
 import { notify } from '../../reducers/notificationReducer'
 import { getErrorMessage } from '../../utils'
 import { createUser } from '../../reducers/usersReducer'
+import ButtonUnavailableAction from '../ButtonUnavailableAction/ButtonUnavailableAction'
 
 interface Props {
   setIsFormOpen?: (isFormOpen: boolean) => void
@@ -32,6 +33,7 @@ const Register = ({ setIsFormOpen, isOpen, text }: Props) => {
   const [confirmPassword, setConfirmPassword] = useState<string>('')
   const [name, setName] = useState<string>('')
   const [sending, setSending] = useState(false)
+  const unavailableReason = sending ? t('Saving') : ''
 
   const handleRegister = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
@@ -149,13 +151,14 @@ const Register = ({ setIsFormOpen, isOpen, text }: Props) => {
                 >
                   <small>{t('Disclaimer')}</small>
                 </Link>
-                <button
+                <ButtonUnavailableAction
                   type="submit"
-                  disabled={sending}
+                  unavailable={Boolean(unavailableReason)}
+                  unavailableReason={unavailableReason}
                   className={`gray restore ${text}`}
                 >
                   {t('Register')}
-                </button>
+                </ButtonUnavailableAction>
               </form>
             </>
           </Accordion>

@@ -946,6 +946,7 @@ nav .open.password-reset-container button.forgot-btn {
   z-index: 555;
   min-width: var(--width);
   width: var(--width);
+  text-decoration: none;
 }
 #root .App .tooltip-wrap > .tooltip.narrow,
 #root .App .tooltip-wrap.narrow > .tooltip,
@@ -1529,6 +1530,28 @@ button:disabled {
   background-position: 50% 3%;
 }
 .light button:disabled {
+  --sat: 30%;
+  --sat2: 50%;
+  background: linear-gradient(4deg, hsl(var(--hue-primary), var(--sat2), 6%) 0%, hsl(var(--hue-primary), var(--sat), 25%) 35%, hsl(var(--hue-primary), var(--sat), 60%) 55%, hsl(var(--hue-primary), var(--sat), 95%) 100%);
+  background-size: var(--bg-size);
+  background-position: 50% 3%;
+}
+button.unavailable-action {
+  cursor: not-allowed;
+}
+button.unavailable-action,
+button.unavailable-action:hover,
+button.unavailable-action:active {
+  --sat: 40%;
+  --sat2: 50%;
+  border: 1px solid hsl(var(--hue-primary), var(--sat), 30%);
+  background: linear-gradient(4deg, hsl(var(--hue-primary), var(--sat), 95%) 0%, hsl(var(--hue-primary), var(--sat), 60%) 33%, hsl(var(--hue-primary), var(--sat), 25%) 55%, hsl(var(--hue-primary), var(--sat2), 3%) 100%);
+  background-size: var(--bg-size);
+  background-position: 50% 3%;
+}
+.light button.unavailable-action,
+.light button.unavailable-action:hover,
+.light button.unavailable-action:active {
   --sat: 30%;
   --sat2: 50%;
   background: linear-gradient(4deg, hsl(var(--hue-primary), var(--sat2), 6%) 0%, hsl(var(--hue-primary), var(--sat), 25%) 35%, hsl(var(--hue-primary), var(--sat), 60%) 55%, hsl(var(--hue-primary), var(--sat), 95%) 100%);

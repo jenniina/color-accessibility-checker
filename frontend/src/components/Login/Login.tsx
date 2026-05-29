@@ -13,6 +13,7 @@ import Register from '../Register/Register'
 import CopyToClipboard from '../CopyToClipboard/CopyToClipboard'
 import PasswordReset from '../PasswordReset/PasswordReset'
 import { useOutsideClick } from '../../hooks/useOutsideClick'
+import ButtonUnavailableAction from '../ButtonUnavailableAction/ButtonUnavailableAction'
 
 interface LoginProps {
   setIsFormOpen?: (isFormOpen: boolean) => void
@@ -76,6 +77,7 @@ const FormLogin = ({
   const [loggingIn, setLoggingIn] = useState(false)
   const [registerOpen, setRegisterOpen] = useState(false)
   const [resetOpen, setResetOpen] = useState(false)
+  const loginReason = loggingIn ? t('LoggingIn') : ''
 
   const closeRef = useRef<HTMLDivElement>(null)
 
@@ -288,14 +290,15 @@ const FormLogin = ({
                       <span>{t('Password')}: </span>
                     </label>
                   </div>
-                  <button
+                  <ButtonUnavailableAction
                     type="submit"
-                    disabled={loggingIn}
+                    unavailable={Boolean(loginReason)}
+                    unavailableReason={loginReason}
                     id={`login-${text}`}
                     className={`login ${text} restore`}
                   >
                     {loggingIn ? t('LoggingIn') : t('Login')}
-                  </button>
+                  </ButtonUnavailableAction>
                 </form>
 
                 <Register
