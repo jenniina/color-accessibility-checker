@@ -13,6 +13,7 @@ import { useIsClient, useWindow } from '../../../hooks/useSSR'
 
 const status = 'colors'
 const format = 'hsl'
+type ColorFormat = ColorBlock['colorFormat']
 
 const defaultColors: ColorBlock[] = [
   {
@@ -96,7 +97,89 @@ const useAccessibleColors = (initialColorMode: TColorMode) => {
     defaultColors.length + 1
   )
   const [mode, setMode] = useState<TColorMode>(initialColorMode)
+  const [colorFormat, setColorFormat] = useLocalStorage<ColorFormat>(
+    'Jenniina-colorFormat',
+    format
+  )
   const [colorsReset, setColorsReset] = useState(false)
+
+  const formatRGBAsColor = useCallback(
+    (r: number, g: number, b: number, nextFormat: ColorFormat) => {
+      if (nextFormat === 'hex') {
+        return rgbToHex(r, g, b)
+      }
+
+      if (nextFormat === 'rgb') {
+        return `rgb(${r}, ${g}, ${b})`
+      }
+
+      const hsl = rgbToHSL(r, g, b)
+      return `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`
+    },
+    []
+  )
+
+  const parseColorToRGB = useCallback(
+    (color: string, sourceFormat: ColorFormat) => {
+      if (sourceFormat === 'hex') {
+        return hexToRGB(color)
+      }
+
+      if (sourceFormat === 'rgb') {
+        const rgbMatch =
+          /^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/i.exec(
+            color
+          )
+
+        if (!rgbMatch) {
+          throw new Error('Invalid RGB format')
+        }
+
+        return {
+          r: Number(rgbMatch[1]),
+          g: Number(rgbMatch[2]),
+          b: Number(rgbMatch[3]),
+        }
+      }
+
+      const hslMatch =
+        /^hsl\(\s*(\d{1,3})\s*,\s*(\d{1,3})%\s*,\s*(\d{1,3})%\s*\)$/i.exec(
+          color
+        )
+
+      if (!hslMatch) {
+        throw new Error('Invalid HSL format')
+      }
+
+      return hslToRGB(
+        Number(hslMatch[1]),
+        Number(hslMatch[2]),
+        Number(hslMatch[3])
+      )
+    },
+    []
+  )
+
+  const convertBlocksToFormat = useCallback(
+    (blocks: ColorBlock[], nextFormat: ColorFormat) => {
+      return blocks.map((block) => {
+        const rgb = parseColorToRGB(block.color, block.colorFormat)
+
+        return {
+          ...block,
+          color: formatRGBAsColor(rgb.r, rgb.g, rgb.b, nextFormat),
+          colorFormat: nextFormat,
+          luminance: calculateLuminance(rgb.r, rgb.g, rgb.b),
+          compliantColors: {
+            AAA_RegularText: [],
+            AA_RegularText: [],
+            AA_UIComponents: [],
+          },
+        }
+      })
+    },
+    [formatRGBAsColor, parseColorToRGB]
+  )
 
   const determineComplianceForBlock = useCallback(
     (block: ColorBlock, allColors: ColorBlock[]) => {
@@ -210,6 +293,9 @@ const useAccessibleColors = (initialColorMode: TColorMode) => {
             // Recalculate compliance for loaded colors
             const recalculatedColors = recalculateCompliance(loadedColors)
             setColors(recalculatedColors)
+            if (loadedColors[0]?.colorFormat) {
+              setColorFormat(loadedColors[0].colorFormat)
+            }
           }
         } catch {
           // Ignore invalid param
@@ -228,7 +314,13 @@ const useAccessibleColors = (initialColorMode: TColorMode) => {
     return () => {
       windowObj.removeEventListener('popstate', onPopState)
     }
-  }, [isClient, windowObj, recalculateCompliance, setColors])
+  }, [
+    isClient,
+    windowObj,
+    recalculateCompliance,
+    setColors,
+    setColorFormat,
+  ])
 
   // Update all colors in URL as human-readable string
   const updateSearchParams = useCallback(
@@ -292,15 +384,14 @@ const useAccessibleColors = (initialColorMode: TColorMode) => {
 
   const addColor = useCallback(() => {
     const { r, g, b } = hexToRGB(currentColor)
-    const { h, s, l } = rgbToHSL(r, g, b)
     const lum = calculateLuminance(r, g, b)
 
     const newColorBlock: ColorBlock = {
       id: idCounter,
-      color: `hsl(${h}, ${s}%, ${l}%)`,
+      color: formatRGBAsColor(r, g, b, colorFormat),
       luminance: lum,
       status: 'colors',
-      colorFormat: 'hsl',
+      colorFormat,
       compliantColors: {
         AA_RegularText: [],
         AAA_RegularText: [],
@@ -315,7 +406,9 @@ const useAccessibleColors = (initialColorMode: TColorMode) => {
     updateSearchParams(recalculatedColors)
     setIdCounter((prev) => prev + 1)
   }, [
+    colorFormat,
     currentColor,
+    formatRGBAsColor,
     idCounter,
     recalculateCompliance,
     setColors,
@@ -526,12 +619,48 @@ const useAccessibleColors = (initialColorMode: TColorMode) => {
     [colors, setColors, updateSearchParams, determineComplianceForBlock]
   )
 
+  const setAllColorFormats = useCallback(
+    (nextFormat: ColorFormat) => {
+      setColorFormat(nextFormat)
+
+      if (colors.length === 0) {
+        return
+      }
+
+      const converted = recalculateCompliance(
+        convertBlocksToFormat(colors, nextFormat)
+      )
+
+      setColors(converted)
+      updateSearchParams(converted)
+    },
+    [
+      colors,
+      convertBlocksToFormat,
+      recalculateCompliance,
+      setColorFormat,
+      setColors,
+      updateSearchParams,
+    ]
+  )
+
   const resetColors = useCallback(() => {
     deleteColors()
-    setColors(defaultColors)
-    updateSearchParams(defaultColors)
+    const nextColors = recalculateCompliance(
+      convertBlocksToFormat(defaultColors, colorFormat)
+    )
+    setColors(nextColors)
+    updateSearchParams(nextColors)
     setIdCounter(defaultColors.length + 1)
-  }, [deleteColors, setColors, setIdCounter, updateSearchParams])
+  }, [
+    colorFormat,
+    convertBlocksToFormat,
+    deleteColors,
+    recalculateCompliance,
+    setColors,
+    setIdCounter,
+    updateSearchParams,
+  ])
 
   const clearColors = useCallback(() => {
     deleteColors()
@@ -548,10 +677,10 @@ const useAccessibleColors = (initialColorMode: TColorMode) => {
       const lum = calculateLuminance(rgb.r, rgb.g, rgb.b)
       return {
         id: newIdCounter++,
-        color: `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`,
+        color: formatRGBAsColor(rgb.r, rgb.g, rgb.b, colorFormat),
         luminance: lum,
         status: status,
-        colorFormat: 'hsl',
+        colorFormat,
         compliantColors: {
           AA_RegularText: [],
           AAA_RegularText: [],
@@ -568,9 +697,11 @@ const useAccessibleColors = (initialColorMode: TColorMode) => {
     setIdCounter(newIdCounter)
     setColorsReset(false)
   }, [
+    colorFormat,
     colors,
     mode,
     colorsReset,
+    formatRGBAsColor,
     idCounter,
     recalculateCompliance,
     setColors,
@@ -598,6 +729,8 @@ const useAccessibleColors = (initialColorMode: TColorMode) => {
     clearColors,
     currentColor,
     setCurrentColor,
+    colorFormat,
+    setAllColorFormats,
     mode,
     setMode,
     makeColorPalette,

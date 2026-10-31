@@ -9,6 +9,7 @@ import { ColorBlock } from '../AccessibleColors'
 
 interface Props {
   block: ColorBlock
+  sharedFormat?: 'hsl' | 'hex' | 'rgb'
   updateColor: (
     id: number,
     color: string,
@@ -37,6 +38,7 @@ const hexRegex = /^#([0-9A-F]{3}){1,2}$/i
 const ColorsInput: FC<Props> = ({
   block,
   fontSize,
+  sharedFormat,
   updateColor,
   width,
   hexToRGB,
@@ -57,19 +59,21 @@ const ColorsInput: FC<Props> = ({
   }, [])
 
   const [selected, setSelected] = useState<SelectOption | undefined>(
-    colorFormatOptions.find((option) => option.value === block.colorFormat) ??
+    colorFormatOptions.find(
+      (option) => option.value === (sharedFormat ?? block.colorFormat)
+    ) ??
       colorFormatOptions[0]
   )
 
   // Sync dropdown selection with block.colorFormat
   useEffect(() => {
     const newSelected = colorFormatOptions.find(
-      (option) => option.value === block.colorFormat
+      (option) => option.value === (sharedFormat ?? block.colorFormat)
     )
     if (newSelected && newSelected.value !== selected?.value) {
       setSelected(newSelected)
     }
-  }, [block.colorFormat, colorFormatOptions, selected])
+  }, [block.colorFormat, colorFormatOptions, selected, sharedFormat])
 
   const [hex, setHex] = useState<string>('')
   const [r, setR] = useState<number>(0)
@@ -239,36 +243,38 @@ const ColorsInput: FC<Props> = ({
 
   return (
     <>
-      <Select
-        hideDelete
-        id="color-select"
-        className={styles['inner-mode-select']}
-        language={language}
-        instructions={t('SelectColorFormat')}
-        hide
-        gray
-        options={colorFormatOptions}
-        value={selected}
-        z={1}
-        onChange={(o) => {
-          setSelected(o)
-          if (o?.value === 'hex') {
-            const currentHex = rgbToHex(r, g, b)
-            setHex(currentHex)
-            updateColor(block.id, currentHex, 'hex')
-          } else if (o?.value === 'rgb') {
-            setR(r)
-            setG(g)
-            setB(b)
-            updateColor(block.id, `rgb(${r}, ${g}, ${b})`, 'rgb')
-          } else if (o?.value === 'hsl') {
-            setH(h)
-            setS(s)
-            setL(l)
-            updateColor(block.id, `hsl(${h}, ${s}%, ${l}%)`, 'hsl')
-          }
-        }}
-      />
+      {!sharedFormat && (
+        <Select
+          hideDelete
+          id="color-select"
+          className={styles['inner-mode-select']}
+          language={language}
+          instructions={t('SelectColorFormat')}
+          hide
+          gray
+          options={colorFormatOptions}
+          value={selected}
+          z={1}
+          onChange={(o) => {
+            setSelected(o)
+            if (o?.value === 'hex') {
+              const currentHex = rgbToHex(r, g, b)
+              setHex(currentHex)
+              updateColor(block.id, currentHex, 'hex')
+            } else if (o?.value === 'rgb') {
+              setR(r)
+              setG(g)
+              setB(b)
+              updateColor(block.id, `rgb(${r}, ${g}, ${b})`, 'rgb')
+            } else if (o?.value === 'hsl') {
+              setH(h)
+              setS(s)
+              setL(l)
+              updateColor(block.id, `hsl(${h}, ${s}%, ${l}%)`, 'hsl')
+            }
+          }}
+        />
+      )}
 
       {selected?.value === 'hex' && (
         <form className={styles.form} onSubmit={handleSubmit}>

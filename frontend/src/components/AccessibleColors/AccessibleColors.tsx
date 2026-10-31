@@ -26,6 +26,7 @@ import { useSearchParams } from 'react-router-dom'
 import { useConfirm } from '../../contexts/ConfirmContext'
 import { useLanguageContext } from '../../contexts/LanguageContext'
 import ColorsInput from './components/ColorsInput'
+import ContrastConstellationCanvas from './components/ContrastConstellationCanvas'
 import NamedPalettes from './components/NamedPalettes'
 import useSideScroll from '../../hooks/useSideScroll'
 import SEO from '../SEO/SEO'
@@ -99,8 +100,10 @@ const AccessibleColors: FC = () => {
     setCurrentColor,
     resetColors,
     clearColors,
+    colorFormat,
     mode,
     setMode,
+    setAllColorFormats,
     makeColorPalette,
     setColorsReset,
     updateSearchParams,
@@ -216,6 +219,25 @@ const AccessibleColors: FC = () => {
     { value: 'triad', label: t('Triad') },
     { value: 'tetrad', label: t('Tetrad') },
   ]
+
+  const colorFormatOptions: SelectOption[] = [
+    { value: 'hsl', label: 'HSL' },
+    { value: 'rgb', label: 'RGB' },
+    { value: 'hex', label: 'Hex' },
+  ]
+
+  const toggleColorNames = useCallback(() => {
+    setSearchParams(
+      (prev) => {
+        prev.set('name', name ? 'false' : 'true')
+        return prev
+      },
+      {
+        replace: true,
+        preventScrollReset: true,
+      }
+    )
+  }, [name, setSearchParams])
 
   const isValidMode = (value: string | null): value is TColorMode => {
     return (
@@ -1109,6 +1131,29 @@ const AccessibleColors: FC = () => {
                 y="above narrow2"
                 z={3}
               />
+              <Select
+                options={colorFormatOptions}
+                value={
+                  {
+                    value: colorFormat,
+                    label: colorFormatOptions.find(
+                      (option) => option.value === colorFormat
+                    )?.label,
+                  } as SelectOption
+                }
+                onChange={(option) => {
+                  if (!option) return
+                  setAllColorFormats(option.value as 'hsl' | 'rgb' | 'hex')
+                }}
+                id="color-format"
+                instructions={t('SelectColorFormat')}
+                className={`${styles['color-select']} ${styles['mode-select']}`}
+                hideDelete
+                gray
+                tooltip={true}
+                y="above narrow2"
+                z={3}
+              />
               <button
                 className={`gray tooltip-wrap ${styles['flat-left']}`}
                 type="button"
@@ -1551,6 +1596,7 @@ const AccessibleColors: FC = () => {
                       >
                         <ColorsInput
                           block={block}
+                          sharedFormat={colorFormat}
                           updateColor={updateColor}
                           width={width}
                           hexToRGB={hexToRGB}
@@ -1614,18 +1660,7 @@ const AccessibleColors: FC = () => {
                     <button
                       type="button"
                       title={name ? t('HideColorName') : t('ShowColorName')}
-                      onClick={() => {
-                        setSearchParams(
-                          (prev) => {
-                            prev.set('name', name ? 'false' : 'true')
-                            return prev
-                          },
-                          {
-                            replace: true,
-                            preventScrollReset: true,
-                          }
-                        )
-                      }}
+                      onClick={toggleColorNames}
                       className="reset p1"
                     >
                       <Icon
@@ -1637,18 +1672,7 @@ const AccessibleColors: FC = () => {
                     </button>
                     <button
                       type="button"
-                      onClick={() => {
-                        setSearchParams(
-                          (prev) => {
-                            prev.set('name', name ? 'false' : 'true')
-                            return prev
-                          },
-                          {
-                            replace: true,
-                            preventScrollReset: true,
-                          }
-                        )
-                      }}
+                      onClick={toggleColorNames}
                       className="gray tooltip-wrap"
                     >
                       {name ? t('HideColorName') : t('ShowColorName')}{' '}
@@ -1816,6 +1840,16 @@ const AccessibleColors: FC = () => {
           scrollRefCurrent={scrollRef.current}
           user={user}
         />
+        {blocks.length > 0 && (
+          <ContrastConstellationCanvas
+            colors={blocks}
+            showNames={name}
+            lightTheme={lightTheme}
+            colorFormat={colorFormat}
+            onToggleShowNames={toggleColorNames}
+            onColorFormatChange={setAllColorFormats}
+          />
+        )}
         <section className={styles.contact}>
           <div>
             <h2 className="left">{t('Contact')}</h2> <p>{t('GetInTouch')}</p>
